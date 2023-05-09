@@ -1,0 +1,22 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    height: 60px;
+    max-width: 1355px;
+    font-size:20px;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar div:hover{
+    border-bottom: 2px solid #A30000;
+    cursor: pointer;
+    
+    
+}
+
+.navbar .navbar-divstyle {
+    font-weight: 500 !important;
+    padding: 5px !important;
+    color: #3D3D3D;
+}
