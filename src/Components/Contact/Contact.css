@@ -1,0 +1,110 @@
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 5rem;
+    background-image: url('../../assets/images/hands.svg');
+    background-repeat: space;
+    background-size: contain;
+    align-items: center;
+}
+
+.form-contact-container {
+    background-color: #f2f1f0;
+    max-height: 40rem;
+    width: 45rem;
+    padding: 4rem;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem
+}
+
+.form-contact-container h2 {
+    color: #3D3D3D;
+}
+
+.form-contact-container span {
+
+    border-bottom: 2px solid #A30000;
+}
+
+
+.form-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem
+}
+
+.form-details-container div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.form-details-container input {
+    border-radius: 0;
+    background-color: #e5e5e5;
+    border-color: transparent;
+    font-size: 1rem;
+    padding: 0.7rem;
+    width: 23rem;
+    border-radius: 10px;
+}
+
+.form-details-container input:focus {
+    outline: none;
+}
+
+.form-details-container textarea:focus {
+    outline: none;
+}
+
+.form-details-container textarea {
+    border-radius: 0;
+    background-color: #e5e5e5;
+    border-color: transparent;
+    font-size: .9rem;
+    width: 23rem;
+    height: 5rem;
+    resize: none;
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.form-details-container div:nth-child(6) {
+    justify-content: flex-end;
+
+}
+
+.contact-btn {
+    background: #A30000;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 0 45px;
+    text-align: center;
+    cursor: pointer;
+    min-height: 44px;
+    height: 40px;
+    line-height: 1.2;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    text-transform: none;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    width: fit-content;
+}
+
+.contact-btn:hover {
+    background-color: transparent;
+    color: #A30000;
+    border-color: #A30000;
+    transform: scale(1.1);
+}
+.image-contact-container h1 {
+    max-width: 50rem;
+    padding: 0 5rem 0 10rem;
+}

@@ -3,6 +3,9 @@ import './App.css';
 import Home from './Components/Home/Home';
 import Navhead from './Components/Navhead/Navhead';
 import Footer from './Components/Footer/Footer';
+import Contact from './Components/Contact/Contact';
+import About from './Components/About/About';
+import Login from './Components/Login/Login';
 
 function App() {
   return (
@@ -17,8 +20,9 @@ function App() {
         <Route path='/requests' element={<Home />} />
         <Route path='/feed' element={<Home />} />
         <Route path='/volunteers' element={<Home />} />
-        <Route path='/about' element={<Home />} />
-      
+        <Route path='/about' element={<About />} />
+        <Route path='/contact' element={<Contact />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
       <Footer/>
     </div>

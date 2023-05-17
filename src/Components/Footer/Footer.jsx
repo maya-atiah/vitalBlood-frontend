@@ -5,7 +5,6 @@ import { FaPhone } from 'react-icons/fa'
 import {FaRegEnvelopeOpen} from 'react-icons/fa'
 const Footer = () => {
   return (
-    
     <div className='footer-container'>
       <div className='footer-logo-div'>
         {" "}
@@ -19,12 +18,12 @@ const Footer = () => {
           <div>Feed</div>
           <div>Volunteers</div>
         </div>
-        <div className='footer-title2'>
+        <div className='footer-title1'>
           <div>Quick Links</div>
           <div>About Us</div>
           <div>Contact Us</div>
         </div>
-        <div className='footer-title3'>
+        <div className='footer-title2'>
           <div>Get in Touch</div>
           <div className='footer-social-contact'>
             {" "}
@@ -38,6 +37,21 @@ const Footer = () => {
               <FaRegEnvelopeOpen />
             </div>
             <div>maya.atiah.99@gmail.com</div>
+          </div>
+        </div>
+
+        <div className='footer-title1-mobile'>
+        
+          <div className='footer-social-contact-mobile'>
+            {" "}
+            <div>
+              <FaPhone />
+            </div>
+        
+            <div>
+              <FaRegEnvelopeOpen />
+            </div>
+       
           </div>
         </div>
       </div>

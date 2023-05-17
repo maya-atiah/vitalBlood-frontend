@@ -137,6 +137,53 @@
     flex-direction: column;
     align-items: center;
     padding: 7rem 0;
-    
 
+
+}
+
+
+@media screen and (max-width:1127px) {
+    .team-area {
+        display: flex;
+        justify-content: center;
+        padding: 2rem 0;
+        gap: 5rem;
+    }
+
+    .imagehome-container {
+
+        padding: 2rem 0;
+    }
+
+    .single-team {
+        width: 400px;
+    }
+}
+
+
+@media screen and (max-width:910px) {
+    .team-area {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title-imagehome h1 {
+        font-size: 40px;
+    }
+
+}
+
+@media screen and (max-width:600px) {
+    .single-team {
+        width: 300px;
+        height: 400px;
+    }
+
+    .team-text h3{
+      font-size: 30px;
+    }
+
+         .team-text p{
+             font-size: 25px;
+         }
 }

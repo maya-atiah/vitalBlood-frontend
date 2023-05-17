@@ -18,7 +18,7 @@ const Home = () => {
           <div>
             <h2>“ Together, we can make a difference in someone's life.”</h2>
           </div>
-          <div>
+          <div className="home-btn-hero-div">
             <button className='home-btn-hero'>Donate</button>
           </div>
         </div>
