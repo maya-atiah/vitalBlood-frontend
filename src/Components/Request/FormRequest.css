@@ -1,0 +1,12 @@
+.request-details-form-input{
+    display: flex;
+        flex-direction: row;
+        gap: 2rem;
+
+}
+
+.request-details-form-input-container{
+    display: flex;
+    flex-direction: column;
+
+}

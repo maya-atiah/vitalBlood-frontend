@@ -19,7 +19,10 @@ const Navhead = () => {
       <Link to='/login' style={{ textDecoration: "none" }}>
         <div className='login-home'>
           {" "}
-          <FaUserCircle className='login-home-icon' /> <p>Login</p>
+          <button className='btn-login'>
+            <FaUserCircle className='login-home-icon' />
+            <div>Login</div>
+          </button>
         </div>
       </Link>
       <div className='nav-mobile'>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../Navbar/NavbarMobile.css';
-import { FaAlignRight, FaRegTimesCircle} from 'react-icons/fa';
+import { FaAlignRight, FaRegTimesCircle } from "react-icons/fa";
+import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
@@ -12,7 +13,7 @@ const NavbarMobile = () => {
     <FaAlignRight className='hamburger ' onClick={() => setOpen(!open)} />
   );
   const closeIcon = (
-    <FaRegTimesCircle className='hamburger' onClick={() => setOpen(!open)} />
+    <AiOutlineClose className='hamburger' onClick={() => setOpen(!open)} />
   );
 
   const closeMobileMenu = () => setOpen(false);

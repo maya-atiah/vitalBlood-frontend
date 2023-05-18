@@ -13,6 +13,39 @@
 
 }
 
+.btn-login{
+background: #A30000;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 0 30px;
+    text-align: center;
+    cursor: pointer;
+    /* min-height: 44px; */
+    height: 35px;
+    line-height: 1.2;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    text-transform: none;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    width: -moz-fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+
+}
+
+
+.btn-login:hover{
+    background-color: transparent;
+        color: #A30000;
+        border-color: #A30000;
+        transform: scale(1.1);
+}
+
 .logo-image-home {
     width: 200px;
 }
@@ -41,7 +74,8 @@
 }
 
 .login-home-icon {
-    font-size: 28px;
+    font-size: 25px;
+    padding-right: 0.5rem   ;
 }
 
 .nav-mobile {
