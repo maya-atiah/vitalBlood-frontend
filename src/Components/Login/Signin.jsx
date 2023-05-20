@@ -24,7 +24,7 @@ const Signin = ({ onSignupClick }) => {
          setErrMsg("you are loggedin ");
 
          setTimeout(() => setErrMsg(""), 3000);
-        //  window.location.reload();
+         window.location.reload();
        })
        .catch((error) => {
         setErrMsg(error.response.data.message);

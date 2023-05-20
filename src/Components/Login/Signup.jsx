@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
 import '../Login/Signup.css'
+import secureLocalStorage from "react-secure-storage";
 
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
@@ -25,9 +26,8 @@ const Signup = () => {
   
   const fetchRegister = async () => {
     try {
-      await axios.post(
-        "http://localhost:5000/api/user/register",
-        {
+      await axios
+        .post("http://localhost:5000/api/user/register", {
           firstName,
           lastName,
           email,
@@ -37,29 +37,35 @@ const Signup = () => {
           maritalStatus,
           gender,
           id_Number,
-          blood_type ,
-          nationality ,
+          blood_type,
+          nationality,
           emergency_number,
-          type
-        }
-      );
-      setErrMsg("Successfully registered! You can login now");
-      setISSubmitted(true);
-      setEmail('')
-      setPassword('')
-      setFirstName('')
-      setLastName('')
-      setLocation('')
-      setMaritalStatus('')
-      setPhone('')
-      setemergency_number('')
-      setid_Number('')
-      setType('')
-      setnationality('')
-      setGender('')
-      setTimeout(() => setErrMsg(""), 3000);
-
-   
+          type,
+        })
+        .then((res) => {
+          secureLocalStorage.setItem("token", res.data.token);
+          //  secureLocalStorage.setItem("role", res.data.role);
+          secureLocalStorage.setItem("loggedIn", true);
+          setErrMsg("you are loggedin ");
+          setTimeout(() => setErrMsg(""), 3000);
+           setErrMsg("Successfully registered! You can login now");
+           setISSubmitted(true);
+           setEmail("");
+           setPassword("");
+           setFirstName("");
+           setLastName("");
+           setLocation("");
+           setMaritalStatus("");
+           setPhone("");
+           setemergency_number("");
+           setid_Number("");
+           setType("");
+           setnationality("");
+           setGender("");
+           setTimeout(() => setErrMsg(""), 3000);
+          window.location.reload();
+        });
+     
     } catch (error) {
       setErrMsg(error.response.data.message);
       setTimeout(() => setErrMsg(""), 3000);
@@ -71,21 +77,7 @@ const Signup = () => {
 
     fetchRegister();
   };
-  console.log({
-    firstName,
-    lastName,
-    email,
-    password,
-    location,
-    phoneNumber,
-    maritalStatus,
-    gender,
-    id_Number,
-    blood_type,
-    nationality,
-    emergency_number,
-    type,
-  });
+
 
   return (
     <form className='form-signup' onSubmit={handleSubmit}>

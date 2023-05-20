@@ -1,0 +1,119 @@
+.user-container{
+display: flex;
+    flex-direction: row;
+    margin: 5rem;
+    /* gap: 20rem; */
+    /* margin: 5rem 1rem 5rem 15rem; */
+    align-items: center;
+    justify-content: center;
+   
+}
+
+.user-profile{
+    width:260px;
+    height:260px;
+    border-radius: 1000px;
+    border: 3px solid rgb(6, 180, 6);
+   
+}
+
+.user-image-container{
+background-color: #f2f1f0;
+    border-radius: 25px;
+    margin: 3rem;
+    padding: 8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+.user-image-container:hover{
+    box-shadow: #A30000 0px 1px 4px;
+}
+.user-image-container h2{
+    color:#A30000;
+}
+
+.update-button{
+    background: #A30000;
+        color: #ffffff;
+        border: 1px solid #A30000;
+        padding: 0 45px;
+        text-align: center;
+        cursor: pointer;
+        min-height: 44px;
+        height: 40px;
+        line-height: 1.2;
+        vertical-align: top;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 20px;
+        text-transform: none;
+        border-radius: 20px;
+        transition: all 0.2s ease-in-out;
+        width: fit-content;
+}
+.update-button:hover{
+    background-color: transparent;
+        color: #A30000;
+        border-color: #A30000;
+        transform: scale(1.1);
+}
+
+.user-details-container{
+    
+    BACKGROUND-COLOR: #f2f1f0;
+        display: flex;
+        flex-direction: column;
+        border-radius: 20px;
+        margin: 6rem;
+        /* width: 60rem; */
+        gap: 3rem;
+        padding: 5rem;
+        align-items: center;
+}
+.user-details{
+   
+        display: flex;
+        flex-direction: row;
+    
+        gap: 6rem;
+
+}
+.user-details-container h5{
+    letter-spacing: 2px;
+color: #A30000;
+}
+.user-details-container:hover{
+    box-shadow: #A30000 0px 1px 4px;
+}
+
+.user-details-titles{
+    display: flex;
+    flex-direction: column;
+    gap:2rem
+}
+.icon-user-profile-heart{
+    color: #A30000;
+    font-size: 20px;
+    margin:0.5rem ;
+}
+
+.user-profile-icon-user{
+    color: #A30000;
+        font-size: 20px;
+        margin-right: 0.5rem;
+}
+.user-details-titles span{
+    font-size: 20px;
+        font-weight: 500;
+        color: #A30000;
+        padding-right: 1rem;
+}
+
+.user-details-titles h4, .user-image-container h4{
+    font-size: 16px;
+        font-weight: 500;
+        /* letter-spacing: 2px;  */
+}

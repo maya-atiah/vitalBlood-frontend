@@ -1,0 +1,228 @@
+.feed-title-container {
+    background-color: #f2f1f0;
+    border-bottom-left-radius: 30% 10%;
+    border-bottom-right-radius: 30% 10%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.feed-title-container h3 {
+    color: #3D3D3D;
+    font-weight: 400;
+    padding-top: 0.5rem;
+}
+
+.request-card-details {
+  
+            margin: 6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+}
+.req-card-grid{
+
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+}
+
+.request-card {
+    width: 40rem;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 15px;
+    transition: 0.5s ease;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.request-card:hover{
+    box-shadow: #A30000 0px 1px 4px;
+}
+
+.img-request {
+    border-radius: 1000px;
+    height: 100px;
+    width: 100px;
+}
+
+.user-details-request {
+display: flex;
+    flex-direction: row-reverse;
+    gap: 5rem;
+    border-bottom: 3px solid black;
+    padding-bottom: 5px;
+    width: 100%;
+    justify-content: start;
+    align-items: center;
+}
+.loader-request {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    left: -32px;
+    border-radius: 50%;
+    color: #3D3D3D;
+    background: currentColor;
+    box-shadow: 32px 0, -32px 0, 64px 0;
+}
+
+.loader-request::after {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 10px;
+    background: #A30000;
+    animation: move_351 3s linear infinite alternate;
+}
+
+@keyframes move_351 {
+
+    0%,
+    5% {
+        left: -32px;
+        width: 16px;
+    }
+
+    15%,
+    20% {
+        left: -32px;
+        width: 48px;
+    }
+
+    30%,
+    35% {
+        left: 0px;
+        width: 16px;
+    }
+
+    45%,
+    50% {
+        left: 0px;
+        width: 48px;
+    }
+
+    60%,
+    65% {
+        left: 32px;
+        width: 16px;
+    }
+
+    75%,
+    80% {
+        left: 32px;
+        width: 48px;
+    }
+
+    95%,
+    100% {
+        left: 64px;
+        width: 16px;
+    }
+}
+.user-details-request-info {
+    gap: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.user-details-request-info h3 {
+    font-size: 20px;
+        font-weight: 600;
+        color: #A30000;
+        margin-bottom:0.5rem;
+}
+.patient-details-info div:first-child{
+        font-size: 20px;
+            font-weight: 600;
+            color: #A30000;
+            margin-bottom: 0.5rem;
+}
+
+.user-details-request h4 {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.patient-details-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    align-items: flex-start;
+}
+
+.patient-details-blood1,
+.patient-details-blood2 {
+    display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        align-items: flex-start;
+        margin-right: 1rem;}
+
+.patient-details-blood-container {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.patient-details-blood1 h4,
+.patient-details-blood2 h4 {
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+.request-card-details span{
+        font-size: 15px;
+            font-weight: 600;
+            color: #3D3D3D;
+}
+
+.donate-request-btn{
+    background: #A30000;
+        color: #ffffff;
+        border: 1px solid #A30000;
+        padding: 0 40px;
+        text-align: center;
+        cursor: pointer;
+        /* min-height: 44px; */
+        height: 35px;
+        line-height: 1.2;
+        vertical-align: top;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 20px;
+        text-transform: none;
+        border-radius: 20px;
+        transition: all 0.2s ease-in-out;
+        width: 10rem;
+}
+
+.donate-request-btn-div{
+    margin-top: 1rem;
+    align-items: center;
+}
+
+
+.donate-request-btn-div:hover{
+    background-color: transparent;
+        color: #A30000;
+        border-color: #A30000;
+        transform: scale(1.1);
+}
+
+@media screen and (max-width:1378px){
+    
+}

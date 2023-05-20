@@ -15,7 +15,7 @@ const Request = () => {
             <h3>
               with a one click you can submit a form and wait for a donors
             </h3>
-            <button onClick={() => setButtonPopup(true)}>Request</button>
+            <button onClick={() => setButtonPopup(true)} className="request-hero-btn">Request</button>
             <PopupRequest trigger={buttonPopup} setTrigger={setButtonPopup}>
             <FormRequest/>
             </PopupRequest>

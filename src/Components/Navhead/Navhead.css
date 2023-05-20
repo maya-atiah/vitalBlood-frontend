@@ -37,7 +37,19 @@ background: #A30000;
     
 
 }
-
+.login-home-user-profile{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
+    color: #A30000;
+    gap:1rem;
+}
+.login-home-icon-user{
+    font-size: 35px;
+    cursor: pointer;
+        color: #A30000;
+}
 
 .btn-login:hover{
     background-color: transparent;
@@ -82,6 +94,17 @@ background: #A30000;
     display: none;
 }
 
+.img-navhead{
+    border:4px solid rgb(2, 151, 2);
+    border-radius: 1000px;
+        height: 65px;
+        width: 65px;
+}
+.img-navhead:hover{
+    border: 4px solid #A30000;
+    cursor: pointer;
+}
+
 @media screen and (max-width:1180px) {
     .navhead {
         padding: 1vw 1vw 0 1vw;
@@ -112,7 +135,7 @@ background: #A30000;
         height: 3rem;
     }
 
-    .nav-navbar {
+    .nav-navbar,.login-home-icon-user {
         display: none;
     }
 .login-home{display: none;}

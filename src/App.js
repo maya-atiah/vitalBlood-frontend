@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home/Home';
@@ -7,25 +8,45 @@ import Contact from './Components/Contact/Contact';
 import About from './Components/About/About';
 import Login from './Components/Login/Login';
 import Request from './Components/Request/Request';
+import secureLocalStorage from 'react-secure-storage';
+import UserProfile from './Components/UserProfile/UserProfile';
+import Volunteers from './Components/Volunteers/Volunteers';
+import Donate from './Components/Donate/Donate';
+import Feed from './Components/Feed/Feed';
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    changeLoggedIn();
+  }, []);
+
+  const changeLoggedIn = () => {
+    let loggedin = secureLocalStorage.getItem('loggedIn');
+    if (loggedin) setIsLoggedIn(true);
+    else setIsLoggedIn(false);
+  };
+
   return (
     <div className="App">
-      <Navhead/>
-      
-      
+      <Navhead isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
       <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/donate' element={<Home />} />
-        <Route path='/request' element={<Request />} />
-        <Route path='/feed' element={<Home />} />
-        <Route path='/volunteers' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/login' element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route path="/donate" element={<Donate />} />
+        <Route path="/request" element={<Request />} />
+        <Route path="/feed" element={<Feed />} />
+        <Route path="/volunteers" element={<Volunteers />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/userProfile" element={<UserProfile />} />
       </Routes>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 }

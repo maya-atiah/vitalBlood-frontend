@@ -9,9 +9,8 @@
     justify-content: space-between;
 }
 .navbar div:hover{
-    border-bottom: 2px solid #A30000;
+   color: #A30000;
     cursor: pointer;
-    
     
 }
 
@@ -19,4 +18,10 @@
     font-weight: 400 !important;
     padding: 5px !important;
     color: #3D3D3D;
+}
+
+
+.active {
+    border-bottom: 2px solid #A30000;
+   
 }

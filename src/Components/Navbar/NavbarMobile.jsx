@@ -5,7 +5,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 
-const NavbarMobile = () => {
+const NavbarMobile = (props) => {
 
   const [open, setOpen] = useState(false);
   
@@ -18,6 +18,16 @@ const NavbarMobile = () => {
 
   const closeMobileMenu = () => setOpen(false);
 
+  const handleLogout = () => {
+    window.localStorage.clear();
+    window.location.reload();
+    props.setIsLoggedIn(false);
+  };
+
+  const handleonClicklogout = () => {
+    closeMobileMenu();
+    handleLogout()
+  }
    const animatedForm = { opacity: 0,y:-30 };
    const animatedTo = { opacity: 1, y:0};
   return (
@@ -114,18 +124,31 @@ const NavbarMobile = () => {
               </Link>
             </div>
             <div className='one'>
-              <Link to='/login' style={{ textDecoration: "none" }}>
+              {props.isLoggedIn == false ? (
+                <Link to='/login' style={{ textDecoration: "none" }}>
+                  <motion.div
+                    onClick={() => closeMobileMenu()}
+                    initial={animatedForm}
+                    animate={animatedTo}
+                    className='login-home-mobile'
+                  >
+                    {" "}
+                    {/* <FaUserCircle className='login-home-icon' /> */}
+                    Login
+                  </motion.div>
+                </Link>
+              ) : (
                 <motion.div
-                  onClick={() => closeMobileMenu()}
+                  onClick={handleonClicklogout}
                   initial={animatedForm}
                   animate={animatedTo}
                   className='login-home-mobile'
                 >
                   {" "}
                   {/* <FaUserCircle className='login-home-icon' /> */}
-                  Login
+                  Logout
                 </motion.div>
-              </Link>
+              )}
             </div>
           </div>
         )}
