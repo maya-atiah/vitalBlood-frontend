@@ -10,35 +10,13 @@ import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
 
 const Navhead = (props) => {
-  const [user, setUser] = useState({
-    _id: "64649e6d56aef2a0ad30655d",
-    details_id: {
-      _id: "64649e6d56aef2a0ad30655b",
-      firstName: "layla",
-      lastName: "AS",
-      email: "layla@gmail.com",
-      password: "$2a$10$XIjRasCX5rtOvJwhPEq4m.ODupYHt37Qq3nwjl6CVF2cHjEMO2BTG",
-      phoneNumber: 1233,
-      location: "beirut",
-      marital_status: "single",
-      gender: "female",
-      id_number: 123456,
-      blood_type: "O+",
-      nationality: "lebanese",
-      emergency_number: 124,
-      user_id: "64649e6d56aef2a0ad30655d",
-      image:'https://firebasestorage.googleapis.com/v0/b/vital-blood.appspot.com/o/files%2Ftestp.jpeg%20%20%20%20%20%20%202023-5-19%2014%3A59%3A16?alt=media&token=bf6c8315-e6ac-4abc-9366-80728ed4e66a',
-      is_deleted: false,
-      __v: 0,
-    },
-    type: "individual",
-  });
+  const [user, setUser] = useState();
 
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/user/getuserbyid",
+        "http://localhost:8000/api/user/getuserbyid",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -90,7 +68,7 @@ const Navhead = (props) => {
           </div>
           <div>
             <Link to='/userProfile' style={{ textDecoration: "none" }}>
-              {user.details_id.image ? (
+              {user && user.details_id.image ? (
                 <img
                   className='img-navhead'
                   src={user.details_id.image}

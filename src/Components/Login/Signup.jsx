@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useRef, useState } from "react";
-import '../Login/Signup.css'
+import "../Login/Signup.css";
 import secureLocalStorage from "react-secure-storage";
 
 const Signup = () => {
@@ -12,22 +12,21 @@ const Signup = () => {
   const [maritalStatus, setMaritalStatus] = useState("");
   const [gender, setGender] = useState("");
   const [id_Number, setid_Number] = useState("");
-  const [blood_type , setblood_type ] = useState("");
-  const [nationality , setnationality ] = useState("");
+  const [blood_type, setblood_type] = useState("");
+  const [nationality, setnationality] = useState("");
   const [emergency_number, setemergency_number] = useState("");
   const [phoneNumber, setPhone] = useState("");
-  const [type, setType] = useState('');
+  const [type, setType] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [isSubmitted, setISSubmitted] = useState(false);
 
-
-    const errRef = useRef();
+  const errRef = useRef();
   const emailRef = useRef();
-  
+
   const fetchRegister = async () => {
     try {
       await axios
-        .post("http://localhost:5000/api/user/register", {
+        .post("http://localhost:8000/api/user/register", {
           firstName,
           lastName,
           email,
@@ -48,24 +47,23 @@ const Signup = () => {
           secureLocalStorage.setItem("loggedIn", true);
           setErrMsg("you are loggedin ");
           setTimeout(() => setErrMsg(""), 3000);
-           setErrMsg("Successfully registered! You can login now");
-           setISSubmitted(true);
-           setEmail("");
-           setPassword("");
-           setFirstName("");
-           setLastName("");
-           setLocation("");
-           setMaritalStatus("");
-           setPhone("");
-           setemergency_number("");
-           setid_Number("");
-           setType("");
-           setnationality("");
-           setGender("");
-           setTimeout(() => setErrMsg(""), 3000);
+          setErrMsg("Successfully registered! You can login now");
+          setISSubmitted(true);
+          setEmail("");
+          setPassword("");
+          setFirstName("");
+          setLastName("");
+          setLocation("");
+          setMaritalStatus("");
+          setPhone("");
+          setemergency_number("");
+          setid_Number("");
+          setType("");
+          setnationality("");
+          setGender("");
+          setTimeout(() => setErrMsg(""), 3000);
           window.location.reload();
         });
-     
     } catch (error) {
       setErrMsg(error.response.data.message);
       setTimeout(() => setErrMsg(""), 3000);
@@ -77,7 +75,6 @@ const Signup = () => {
 
     fetchRegister();
   };
-
 
   return (
     <form className='form-signup' onSubmit={handleSubmit}>
@@ -122,7 +119,6 @@ const Signup = () => {
             value={email}
             ref={emailRef}
             onChange={(e) => setEmail(e.target.value)}
-           
           />
           <input
             type='password'
@@ -154,22 +150,25 @@ const Signup = () => {
         </div>
         <div className='signup-details'>
           {" "}
-          <input
-            type='text'
-            placeholder='Marital Status'
-            className='form-input-signup'
-            required
+          <select
+            className='select-signup'
             onChange={(e) => setMaritalStatus(e.target.value)}
             value={maritalStatus}
-          />{" "}
-          <input
-            type='text'
-            placeholder='Gender'
-            className='form-input-signup'
-            required
+          >
+            <option value=''>Select Marital Status</option>
+            <option value='Single'>Single</option>
+            <option value='Married'>Married</option>
+            <option value='Divorced'>Divorced</option>
+          </select>
+          <select
+            className='select-signup'
             onChange={(e) => setGender(e.target.value)}
             value={gender}
-          />
+          >
+            <option value=''>Gender</option>
+            <option value='Female'>Female</option>
+            <option value='Male'>Male</option>
+          </select>
         </div>
         <div className='signup-details'>
           {" "}
@@ -183,8 +182,8 @@ const Signup = () => {
           />
           <select
             className='select-signup'
-            onChange={(e) => setblood_type (e.target.value)}
-            value={blood_type }
+            onChange={(e) => setblood_type(e.target.value)}
+            value={blood_type}
           >
             <option value='0'>BLood Type</option>
             <option value='A+'>A+</option>
@@ -204,8 +203,8 @@ const Signup = () => {
             placeholder='nationality '
             className='form-input-signup'
             required
-            onChange={(e) => setnationality (e.target.value)}
-            value={nationality }
+            onChange={(e) => setnationality(e.target.value)}
+            value={nationality}
           />
           <input
             type='number'
@@ -216,14 +215,16 @@ const Signup = () => {
             value={emergency_number}
           />
         </div>
-        <input
-          type='text'
-          placeholder='Emergency Number'
-          className='form-input-signup'
-          required
+
+        <select
+          className='select-signup'
           onChange={(e) => setType(e.target.value)}
           value={type}
-        />
+        >
+          <option value=''>Type of User</option>
+          <option value='individual'>Individual</option>
+          <option value='organization'>Organization</option>
+        </select>
       </div>
       <button className='form--submit'>Sign up</button>
     </form>

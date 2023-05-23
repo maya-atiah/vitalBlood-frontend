@@ -15,16 +15,25 @@
     padding-top: 0.5rem;
 }
 
-.request-card-details {
-  
-            margin: 6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            justify-content: center;
-            align-items: center;
+.donate-request-btn-confirmation{
+    color:#A30000;
+    text-align: center;
+    background-color: #f2f1f0;
+    padding:1rem ;
+    align-items: center;
+    font-weight: 600;
 }
-.req-card-grid{
+.request-card-details {
+
+    margin: 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.req-card-grid {
 
     display: grid;
     grid-template-columns: auto auto;
@@ -44,7 +53,7 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
-.request-card:hover{
+.request-card:hover {
     box-shadow: #A30000 0px 1px 4px;
 }
 
@@ -55,7 +64,7 @@
 }
 
 .user-details-request {
-display: flex;
+    display: flex;
     flex-direction: row-reverse;
     gap: 5rem;
     border-bottom: 3px solid black;
@@ -64,6 +73,7 @@ display: flex;
     justify-content: start;
     align-items: center;
 }
+
 .loader-request {
     width: 16px;
     height: 16px;
@@ -131,6 +141,7 @@ display: flex;
         width: 16px;
     }
 }
+
 .user-details-request-info {
     gap: 0.2rem;
     display: flex;
@@ -138,17 +149,19 @@ display: flex;
     justify-content: flex-start;
     align-items: flex-start;
 }
+
 .user-details-request-info h3 {
     font-size: 20px;
-        font-weight: 600;
-        color: #A30000;
-        margin-bottom:0.5rem;
+    font-weight: 600;
+    color: #A30000;
+    margin-bottom: 0.5rem;
 }
-.patient-details-info div:first-child{
-        font-size: 20px;
-            font-weight: 600;
-            color: #A30000;
-            margin-bottom: 0.5rem;
+
+.patient-details-info div:first-child {
+    font-size: 20px;
+    font-weight: 600;
+    color: #A30000;
+    margin-bottom: 0.5rem;
 }
 
 .user-details-request h4 {
@@ -168,10 +181,11 @@ display: flex;
 .patient-details-blood1,
 .patient-details-blood2 {
     display: flex;
-        flex-direction: column;
-        gap: 0.4rem;
-        align-items: flex-start;
-        margin-right: 1rem;}
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+    margin-right: 1rem;
+}
 
 .patient-details-blood-container {
     display: flex;
@@ -184,45 +198,110 @@ display: flex;
     font-weight: 400;
     letter-spacing: 2px;
 }
-.request-card-details span{
-        font-size: 15px;
-            font-weight: 600;
-            color: #3D3D3D;
+
+.request-card-details span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #3D3D3D;
 }
 
-.donate-request-btn{
+.donate-request-btn {
     background: #A30000;
-        color: #ffffff;
-        border: 1px solid #A30000;
-        padding: 0 40px;
-        text-align: center;
-        cursor: pointer;
-        /* min-height: 44px; */
-        height: 35px;
-        line-height: 1.2;
-        vertical-align: top;
-        font-weight: 500;
-        font-style: normal;
-        font-size: 20px;
-        text-transform: none;
-        border-radius: 20px;
-        transition: all 0.2s ease-in-out;
-        width: 10rem;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 10px 30px;
+    text-align: center;
+    cursor: pointer;
+    min-height: 44px;
+    /* height: 60px; */
+    line-height: 1.2;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    text-transform: none;
+    border-radius: 30px;
+    transition: all 0.2s ease-in-out;
+    width: -moz-fit-content;
+    width: 10rem;
 }
 
-.donate-request-btn-div{
+.donate-request-btn:hover {
+    background-color: transparent;
+    color: #A30000;
+    border-color: #A30000;
+    transform: scale(1.1);
+}
+
+.donate-request-btn-div {
     margin-top: 1rem;
     align-items: center;
 }
 
 
-.donate-request-btn-div:hover{
+.donate-request-btn-div:hover {
     background-color: transparent;
-        color: #A30000;
-        border-color: #A30000;
-        transform: scale(1.1);
+    color: #A30000;
+    border-color: #A30000;
+    transform: scale(1);
 }
 
-@media screen and (max-width:1378px){
-    
+@media screen and (max-width:1390px) {
+    .req-card-grid {
+        display: block;
+
+    }
+
+    .request-card {
+        margin: 2rem 0 2rem 0;
+    }
+
+    .request-card-details {
+        margin: 2rem;
+    }
+}
+
+@media screen and (max-width:851px) {
+
+    .req-card-grid {
+        display: block;
+    }
+
+    .request-card {
+        width: auto;
+        align-items: center;
+        margin: 2rem;
+    }
+
+    .request-card-details {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        margin: 0rem;
+    }
+
+    .user-details-request {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0.1rem;
+        border-bottom: 3px solid black;
+        padding-bottom: 5px;
+        width: 100%;
+        align-items: center;
+    }
+
+    .feed-title h1 {
+        text-align: center;
+    }
+
+    .user-details-request-info {
+        align-items: center;
+    }
+
+    .patient-details-blood-container {
+        display: flex;
+        flex-direction: column-reverse;
+    }
 }

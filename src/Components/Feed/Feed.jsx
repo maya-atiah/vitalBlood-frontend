@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import "../Feed/Feed.css";
 import axios from "axios";
-import RequestImage from "../../assets/images/event_1.jpg";
 import LogoImageRequest from "../../assets/images/logoImageRequest.png";
+import Loader from "../../Loader/Loader";
+import secureLocalStorage from "react-secure-storage";
 
 const Feed = () => {
   const [donationRequests, setDonationRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/donation/getAllDonationRequest"
+        "http://localhost:8000/api/donation/getAllDonationRequest"
       );
       setDonationRequests(response.data);
     } catch (error) {
@@ -18,11 +20,55 @@ const Feed = () => {
     }
   };
 
-  console.log(donationRequests);
+  const donateRequest = async (donationRequestId, index) => {
+    try {
+      const token = secureLocalStorage.getItem("token");
+      if (!token) {
+        window.location.href = "/login";
+        return;
+      }
+
+      // Disable the button immediately
+      setDonationRequests((prevRequests) =>
+        prevRequests.map((request, i) =>
+          i === index ? { ...request, disabled: true } : request
+        )
+      );
+
+      await axios.post(
+        `http://localhost:8000/api/donation/donateToRequest/${donationRequestId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // Update the donationRequests state to mark the requested donation as "waiting for confirmation"
+      setDonationRequests((prevRequests) =>
+        prevRequests.map((request, i) =>
+          i === index
+            ? { ...request, status: "waiting for confirmation" }
+            : request
+        )
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
+    // Simulate loading for 3 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
   }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className='feed-container'>
@@ -39,12 +85,11 @@ const Feed = () => {
       </div>
       <div>
         <div className='request-card-details'>
-          <div className='loader-request'></div>
           <div className='req-card-grid'>
             {donationRequests &&
-              donationRequests.map((item) => {
+              donationRequests.map((item, index) => {
                 return (
-                  <div className='request-card' key={item._id}>
+                  <div className='request-card' key={index}>
                     <div className='user-details-request'>
                       <div className='user-details-request-info'>
                         <h3>User Details:</h3>
@@ -129,7 +174,22 @@ const Feed = () => {
                       </div>
                     </div>
                     <div className='donate-request-btn-div'>
-                      <button className='donate-request-btn'>Donate</button>
+                      {item.status === "waiting for confirmation" ? (
+                        <div
+                          className='donate-request-btn-confirmation'
+                          disabled
+                        >
+                          Waiting for Confirmation
+                        </div>
+                      ) : (
+                        <button
+                          className='donate-request-btn'
+                          onClick={() => donateRequest(item._id, index)}
+                          disabled={item.disabled} // Disable the button if it's already clicked
+                        >
+                          Donate
+                        </button>
+                      )}
                     </div>
                   </div>
                 );

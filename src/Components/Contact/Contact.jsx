@@ -1,33 +1,82 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ContactImage from "../../assets/images/hands.svg";
 import "../Contact/Contact.css";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
+import emailjs from "@emailjs/browser";
+import Loader from "../../Loader/Loader";
 
 const Contact = () => {
-
   const [value, setValue] = useState();
-  
+  const [loading, setLoading] = useState(true);
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    const firstName = e.target.elements.firstName.value;
+    const lastName = e.target.elements.lastName.value;
+
+    if (firstName && lastName) {
+      const templateParams = {
+        from_name: firstName + " " + lastName,
+        message: e.target.elements.message.value,
+        phone_number: value,
+        email: e.target.elements.email.value,
+      };
+
+      emailjs
+        .sendForm(
+          "service_3y4blym",
+          "template_2667if4",
+          form.current,
+          "d_65TWquepGbk75tH"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      console.log("Please fill in the first name and last name fields.");
+    }
+  };
+   useEffect(() => {
+
+     // Simulate loading for 3 seconds
+     setTimeout(() => {
+       setLoading(false);
+     }, 2000);
+   }, []);
+
+   if (loading) {
+     return <Loader />;
+   }
+
   return (
     <div className='contact-container'>
       <div className='image-contact-container'>
-        {" "}
-        <img src={ContactImage}/>
-        {/* <h1>With a few steps you will make someone’s smile</h1> */}
+        <img src={ContactImage} alt='Contact' />
       </div>
       <div className='form-contact-container'>
-        {" "}
         <h2>
           <span>Fill</span> the form
         </h2>
-        <form className='form-details-container'>
+        <form
+          className='form-details-container'
+          ref={form}
+          onSubmit={sendEmail}
+        >
           <div>
             <label>First Name</label>
-            <input placeholder='Enter your First Name'></input>
+            <input name='firstName' placeholder='Enter your First Name'></input>
           </div>
           <div>
             <label>Last Name</label>
-            <input placeholder='Enter your Last Name'></input>
+            <input name='lastName' placeholder='Enter your Last Name'></input>
           </div>
           <div>
             <label>Phone Number</label>
@@ -40,11 +89,14 @@ const Contact = () => {
           </div>
           <div>
             <label>Email</label>
-            <input placeholder='Enter your Email'></input>
+            <input name='email' placeholder='Enter your Email'></input>
           </div>
           <div>
             <label>Message</label>
-            <textarea placeholder='Write your message'></textarea>
+            <textarea
+              name='message'
+              placeholder='Write your message'
+            ></textarea>
           </div>
           <div>
             <button className='contact-btn'>Submit</button>
@@ -54,5 +106,7 @@ const Contact = () => {
     </div>
   );
 };
+
+
 
 export default Contact;

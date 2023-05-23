@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../About/About.css";
 import { FaUserPlus, FaTint, FaMobileAlt, FaSmileBeam } from "react-icons/fa";
+import Loader from "../../Loader/Loader";
 const About = () => {
+
+  const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+  
+     // Simulate loading for 3 seconds
+     setTimeout(() => {
+       setLoading(false);
+     }, 2000);
+   }, []);
+
+   if (loading) {
+     return <Loader />;
+   }
   return (
     <div className='about-container'>
       <div className='about-title-container'>

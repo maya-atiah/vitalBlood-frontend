@@ -62,11 +62,12 @@
 
 .select-signup {
     padding: 0.5rem;
-    width: 20rem;
-    height: 3rem;
-    color: gray;
-    background-color: white;
-    border-radius: 5px;
+        width: 20rem;
+        height: 3rem;
+        color: gray;
+        background-color: white;
+        margin-bottom: 0.8rem;
+        border-radius: 5px;
 
 }
 .select-signup:focus{

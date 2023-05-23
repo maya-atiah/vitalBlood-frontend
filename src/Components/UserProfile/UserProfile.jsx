@@ -5,39 +5,16 @@ import '../UserProfile/UserProfile.css'
 import LogoImageRequest from "../../assets/images/logoImageRequest.png";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
 import { FaUser } from 'react-icons/fa'
+import Loader from "../../Loader/Loader";
 
 
 
 
 const UserProfile = () => {
 
-
+    const [loading, setLoading] = useState(true);
     const [isupdated,setIsUpdated]=useState(false)
-    const [user, setUser] = useState({
-      _id: "64649e6d56aef2a0ad30655d",
-      details_id: {
-        _id: "64649e6d56aef2a0ad30655b",
-        firstName: "layla",
-        lastName: "AS",
-        email: "layla@gmail.com",
-        password:
-          "$2a$10$XIjRasCX5rtOvJwhPEq4m.ODupYHt37Qq3nwjl6CVF2cHjEMO2BTG",
-        phoneNumber: 1233,
-        location: "beirut",
-        marital_status: "single",
-        gender: "female",
-        id_number: 123456,
-        blood_type: "O+",
-        nationality: "lebanese",
-        emergency_number: 124,
-        user_id: "64649e6d56aef2a0ad30655d",
-        image:
-          "https://firebasestorage.googleapis.com/v0/b/vital-blood.appspot.com/o/files%2Ftestp.jpeg%20%20%20%20%20%20%202023-5-19%2014%3A59%3A16?alt=media&token=bf6c8315-e6ac-4abc-9366-80728ed4e66a",
-        is_deleted: false,
-        __v: 0,
-      },
-      type: "individual",
-    });
+    const [user, setUser] = useState();
 
   const [updatedUser, setUpdatedUser] = useState({
     firstName: "",
@@ -56,9 +33,10 @@ const UserProfile = () => {
   });
     const fetchUser = async () => {
       const token = secureLocalStorage.getItem("token");
+      
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/user/getuserbyid",
+          "http://localhost:8000/api/user/getuserbyid",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -80,7 +58,7 @@ const UserProfile = () => {
       const token = secureLocalStorage.getItem("token");
       try {
         const res = await axios.put(
-          "http://localhost:5000/api/user/update",
+          "http://localhost:8000/api/user/update",
           updatedUser,
           {
             headers: {
@@ -116,6 +94,19 @@ const UserProfile = () => {
         [e.target.name]: e.target.value,
       }));
     };
+  
+  
+   useEffect(() => {
+     // Simulate loading for 3 seconds
+     setTimeout(() => {
+       setLoading(false);
+     }, 1000);
+   }, []);
+
+   if (loading) {
+     return <Loader />;
+   }
+  
   return (
     <div>
       <div>

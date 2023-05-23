@@ -101,6 +101,17 @@
 .request-second-container {
         margin: 1rem 2rem;
     }
+        .title-request-container h3 {
+            font-size: 25px;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+            max-width: 600px;
+            color: #3D3D3D;
+        }
+                .request-image-container {
+                    height: 20rem;
+                }
 }
 
 @media screen and (max-width:800px){
@@ -115,10 +126,7 @@
         align-items: center;
     }
 
-    .request-image-container{
-        height:30rem;
-    }
-
+    
         .request-second-container {
             /* margin: 0.5rem;   */
             width: 100%;

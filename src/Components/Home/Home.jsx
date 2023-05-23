@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Home/Home.css";
 import Register from "../../assets/images/uregister.png";
 import Donate from "../../assets/images/donate-home.png";
 import Request from "../../assets/images/request.png";
 import About from "../../assets/images/about-home.png";
 import ImageHome from "./ImageHome";
+import Loader from "../../Loader/Loader";
 
 const Home = () => {
+
+      const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+     // Simulate loading for 3 seconds
+     setTimeout(() => {
+       setLoading(false);
+     }, 1000);
+   }, []);
+
+   if (loading) {
+     return <Loader />;
+  } 
+  
   return (
     <div className='home-container'>
       <div className='image-container'>

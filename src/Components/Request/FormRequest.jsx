@@ -1,34 +1,101 @@
 import React, { useState } from "react";
-import './FormRequest.css'
+import "./FormRequest.css";
+import secureLocalStorage from "react-secure-storage";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-const FormRequest = () => {
+const FormRequest = ({setTrigger}) => {
 
-    const [purpose, setPurpose] = useState('bloodRequest')
-      const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [dateOfBirth, setDateOfBirth] = useState('')
-    const [caseType, setCaseType] = useState('')
-    const [caseDetails, setCaseDetails] = useState('')
-    const [bloodType, setBloodType] = useState('');
-    const [dateNeeded, setDateNeeded] = useState('');
-    const [hospital, setHospital] = useState('');
-    const [levelOfEmergency, setLeveOfEmergency] = useState('');
-  const [numberOfUnits, setNumberOfUnits] = useState('');
-  const [EmergencyNumber, setEmergencyNumber] = useState('');
-  
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [caseType, setCaseType] = useState("");
+  const [caseDetails, setCaseDetails] = useState("");
+  const [bloodType, setBloodType] = useState("");
+  const [dateNeeded, setDateNeeded] = useState("");
+  const [hospital, setHospital] = useState("");
+  const [levelOfEmergency, setLeveOfEmergency] = useState("");
+  const [numberOfUnits, setNumberOfUnits] = useState("");
+  const [EmergencyNumber, setEmergencyNumber] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); 
+
+    try {
+      const token = secureLocalStorage.getItem("token");
+      if (!token) {
+        window.location.href = "/login";
+      }
+
+       if (
+         !firstName ||
+         !lastName ||
+         !dateOfBirth ||
+         !caseType ||
+         !caseDetails ||
+         !bloodType ||
+         !dateNeeded ||
+         !hospital ||
+         !levelOfEmergency ||
+         !numberOfUnits ||
+         !EmergencyNumber
+       ) {
+         toast.error("Please fill in all the required fields.", {
+           className: "toast error",
+         });
+         return;
+       }
+
+      const response = await axios.post(
+        "http://localhost:8000/api/donation/createRequest",
+        {
+          firstName,
+          lastName,
+          dateOfBirth,
+          caseType,
+          caseDetails,
+          bloodType,
+          dateNeeded,
+          hospital,
+          levelOfEmergency,
+          numberOfUnits,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log(response.data);
+
+      setFirstName("");
+      setLastName("");
+      setDateOfBirth("");
+      setCaseType("");
+      setCaseDetails("");
+      setBloodType("");
+      setDateNeeded("");
+      setHospital("");
+      setLeveOfEmergency("");
+      setNumberOfUnits("");
+      setEmergencyNumber("");
+
+    toast.success("Your blood request is submitted successfully", {
+      className: "toast success",
+    });
+      setTrigger(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("There is something wrong. Try again", {
+        className: "toast error", 
+      });
+    }
+  };
+
   return (
     <div className='form-container'>
       <h2 className='fill-form-request'>Fill the Form</h2>
-      <form>
-        {/* <div>
-          <input
-            type='text'
-            placeholder='purpose'
-            className='form-input-signup'
-            required
-            value={purpose}
-          />
-        </div> */}
+      <form onSubmit={handleSubmit}>
         <div className='request-details-form-input-container'>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
@@ -163,7 +230,7 @@ const FormRequest = () => {
             <div className='label-input-container'>
               <label>Write the number of units needed*</label>
               <input
-                type='text'
+                type='number'
                 placeholder='Number of blood Units'
                 className='form-input-signup'
                 required
