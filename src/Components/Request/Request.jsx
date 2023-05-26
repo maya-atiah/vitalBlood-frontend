@@ -18,6 +18,7 @@ const Request = () => {
       toast.error("You should login");
       window.location.href = "/login";
       return;
+    
     }
     setButtonPopup(true);
   };
@@ -29,6 +30,15 @@ const Request = () => {
        setLoading(false);
      }, 1000);
    }, []);
+  
+  useEffect(() => {
+    if (buttonPopup)
+      document.body.style.overflowY = 'hidden';
+    else
+      document.body.style.overflowY= 'scroll';
+
+   }, [buttonPopup]);
+
 
    if (loading) {
      return <Loader />;

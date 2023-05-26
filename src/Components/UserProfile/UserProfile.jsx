@@ -1,118 +1,159 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import secureLocalStorage from "react-secure-storage";
-import '../UserProfile/UserProfile.css'
+import "../UserProfile/UserProfile.css";
 import LogoImageRequest from "../../assets/images/logoImageRequest.png";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
-import { FaUser } from 'react-icons/fa'
+import { FaUser } from "react-icons/fa";
 import Loader from "../../Loader/Loader";
-
-
-
+import DonationsList from "../../DonationList/DonationList";
+import PopupUserEdit from "./PopupUserEdit";
 
 const UserProfile = () => {
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState();
+  const [donations, setDonations] = useState([]);
+  const [donationToDelete, setDonationToDelete] = useState("");
+  const [show, setShow] = useState(false);
+  const [image, setImage] = useState(null);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [marital_status, setMaritalStatus] = useState("");
+  const [id_number, setIdNumber] = useState("");
+  const [location, setLocation] = useState("");
+  const [emergency_number, setEmergencyNumber] = useState("");
 
-    const [loading, setLoading] = useState(true);
-    const [isupdated,setIsUpdated]=useState(false)
-    const [user, setUser] = useState();
+  //****fetch user details  */
+  const fetchUser = async () => {
+    const token = secureLocalStorage.getItem("token");
 
-  const [updatedUser, setUpdatedUser] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    phoneNumber: "",
-    location: "",
-    marital_status: "",
-    gender: "",
-    id_number: "",
-    blood_type: "",
-    nationality: "",
-    emergency_number: "",
-    image: "",
-  });
-    const fetchUser = async () => {
-      const token = secureLocalStorage.getItem("token");
-      
-      try {
-        const res = await axios.get(
-          "http://localhost:8000/api/user/getuserbyid",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUser(res.data);
-      } catch (error) {
-        console.log("Error:", error);
-      }
-    };
+    try {
+      const res = await axios.get(
+        "http://localhost:8000/api/user/getuserbyid",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUser(res.data);
+      setPhoneNumber(res.data.details.phoneNumber);
+      setMaritalStatus(res.data.details.marital_status);
+      setIdNumber(res.data.details.id_number);
+      setLocation(res.data.details.location);
+      setEmergencyNumber(res.data.details.emergency_number);
+      // setImage(res.data.details.image)
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
-    useEffect(() => {
-      fetchUser();
-    }, []);
-  
-  
-    const updateUser = async () => {
-      const token = secureLocalStorage.getItem("token");
-      try {
-        const res = await axios.put(
-          "http://localhost:8000/api/user/update",
-          updatedUser,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log("User updated successfully:", res.data);
-        setUser(res.data);
-        setUpdatedUser({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-          phoneNumber: "",
-          location: "",
-          marital_status: "",
-          gender: "",
-          id_number: "",
-          blood_type: "",
-          nationality: "",
-          emergency_number: "",
-          image: "",
-        });
-      } catch (error) {
-        console.log("Error:", error);
-      }
-    };
+  /**fetch donations */
+  const fetchDonations = async () => {
+    const token = secureLocalStorage.getItem("token");
 
-    const handleInputChange = (e) => {
-      setUpdatedUser((prevState) => ({
-        ...prevState,
-        [e.target.name]: e.target.value,
-      }));
-    };
-  
-  
-   useEffect(() => {
-     // Simulate loading for 3 seconds
-     setTimeout(() => {
-       setLoading(false);
-     }, 1000);
-   }, []);
+    try {
+      const response = await axios.get(
+        "http://localhost:8000/api/donation/getDonationsByUser",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = response.data;
+      setDonations(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-   if (loading) {
-     return <Loader />;
-   }
+  //***delete donation by id  */
+  const deleteDonation = async (donationId) => {
+    const token = secureLocalStorage.getItem("token");
+
+    try {
+      await axios.delete(
+        `http://localhost:8000/api/donation/deleteDonationById/${donationId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // Remove the deleted donation from the donations state
+      setDonations((prevDonations) =>
+        prevDonations.filter((donation) => donation._id !== donationId)
+      );
+      setDonationToDelete(""); // Reset the donationToDelete state
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  //***Update user information */
+  const updateUser = async () => {
+    const token = secureLocalStorage.getItem("token");
+
+    try {
+      await axios.put(
+        "http://localhost:8000/api/user/updateUserProfile",
+        {
+          phoneNumber,
+          id_number,
+          emergency_number,
+          image,
+          marital_status,
+          location,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
+
+
+  // const handleSubmitUpdate = (e) => {
+  //   e.prevetDefault();
+  //   updateUser();
+  // };
   
+   const handleSubmitUpdate = async (e) => {
+     e.preventDefault(); 
+
+     try {
+       await updateUser();
+       setShow(false); 
+     } catch (error) {
+       console.log("Error:", error);
+     }
+   };
+
+
+  useEffect(() => {
+    fetchUser();
+    fetchDonations();
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <div>
         {user && (
           <div key={user._id} className='user-container'>
             <div className='user-image-container'>
+              <h5> " Together, we can make a difference in someone's life "</h5>
               {user.details_id.image ? (
                 <img
                   className='user-profile'
@@ -131,86 +172,167 @@ const UserProfile = () => {
                 {user.details_id.firstName} {user.details_id.lastName}
               </h2>
               <h4>Email: {user.details_id.email}</h4>
-              <button
-                className='update-button'
-                onClick={() => setIsUpdated(true)}
-              >
+              <button className='update-button' onClick={() => setShow(true)}>
                 Edit
               </button>
-            </div>
-            <div className='user-details-container'>
-              <h5> " Together, we can make a difference in someone's life "</h5>
-              <div className='user-details'>
-                <div className='user-details-titles'>
-                  {" "}
-                  <h4>
-                    <span>Phone Number</span>
-                    {user.details_id.phoneNumber}{" "}
-                  </h4>
-                  <h4>
-                    <span>Location</span> {user.details_id.location}
-                  </h4>
-                  <h4>
-                    <span>Marital Status </span>
-                    {user.details_id.marital_status}
-                  </h4>
-                  <h4>
-                    <span>Gender </span> {user.details_id.gender}
-                  </h4>
-                </div>
-                <div className='user-details-titles'>
-                  {" "}
-                  <h4>
-                    <span>Id Number </span> {user.details_id.id_number}
-                  </h4>
-                  <h4>
-                    <span>Blood Type</span>
-                    {user.details_id.blood_type}
-                  </h4>{" "}
-                  <h4>
-                    <span>Nationality</span> {user.details_id.nationality}
-                  </h4>
-                  <h4>
-                    <span>Emergency Number </span>
-                    {user.details_id.emergency_number}
-                  </h4>
-                </div>
-              </div>
               <div>
                 <BsFillBalloonHeartFill className='icon-user-profile-heart' />
                 <BsFillBalloonHeartFill className='icon-user-profile-heart' />
                 <BsFillBalloonHeartFill className='icon-user-profile-heart' />
               </div>
             </div>
+            {/* <div>
+              {" "}
+              <div>
+                <BsFillBalloonHeartFill className='icon-user-profile-heart' />
+                <BsFillBalloonHeartFill className='icon-user-profile-heart' />
+                <BsFillBalloonHeartFill className='icon-user-profile-heart' />
+              </div>{" "}
+            </div> */}
+            <div className='user-details-container'>
+              <div className='test1'>
+                <div>
+                  <div className='user-details'>
+                    <h4>User Details</h4>
+                    <div className='user-details-titles'>
+                      {" "}
+                      <p>
+                        <span>Phone Number</span>
+                        {user.details_id.phoneNumber}{" "}
+                      </p>
+                      <p>
+                        <span>Location</span> {user.details_id.location}
+                      </p>
+                      <p>
+                        <span>Marital Status </span>
+                        {user.details_id.marital_status}
+                      </p>
+                      <p>
+                        <span>Gender </span> {user.details_id.gender}
+                      </p>{" "}
+                      <p>
+                        <span>Id Number </span> {user.details_id.id_number}
+                      </p>
+                      <p>
+                        <span>Blood Type</span>
+                        {user.details_id.blood_type}
+                      </p>{" "}
+                      <p>
+                        <span>Nationality</span> {user.details_id.nationality}
+                      </p>
+                      <p>
+                        <span>Emergency Number </span>
+                        {user.details_id.emergency_number}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='test1'>
+                <div className='donationlist-container'>
+                  <h4> My Requests</h4>
+                  <div className='donation-container-user'>
+                    <div className='donation-container-user-card'>
+                      {donations &&
+                        donations.map((item) => {
+                          return (
+                            <div
+                              key={item._id}
+                              className='donation-subcontainer-user'
+                            >
+                              <div>
+                                <p>
+                                  {" "}
+                                  <span>Blood Type: </span>
+                                  {item.details.bloodRequest.bloodType}
+                                </p>
+                                <p>
+                                  {" "}
+                                  <span>Date Needed:</span>
+                                  {new Date(
+                                    item.details.bloodRequest.dateNeeded
+                                  ).toLocaleDateString()}
+                                </p>
+                                <p>
+                                  <span>Hospital:</span>
+                                  {item.details.bloodRequest.hospital}
+                                </p>
+                                <p>
+                                  <span>Level Of Emergency:</span>
+                                  {item.details.bloodRequest.levelOfEmergency}
+                                </p>
+
+                                <p>
+                                  <span> Number Of units</span>
+                                  {item.details.bloodRequest.numberOfUnits}
+                                </p>
+                                <div>
+                                  {/* Delete button */}
+                                  <button
+                                    className='delete-button'
+                                    onClick={() => deleteDonation(item._id)}
+                                  >
+                                    Delete
+                                  </button>
+                                </div>
+                              </div>
+                              <div>
+                                <p>
+                                  <span>Patient Name:</span>{" "}
+                                  {item.details.patientInfo.firstName}{" "}
+                                  {item.details.patientInfo.lastName}
+                                </p>
+
+                                <p>
+                                  {" "}
+                                  <span>Case :</span> 4{" "}
+                                  {item.details.patientInfo.caseType}
+                                </p>
+                                <p>
+                                  <span>Case Details: </span>
+                                  {item.details.patientInfo.caseDetails}
+                                </p>
+                                <p>
+                                  <span>Date Of Birth:</span>{" "}
+                                  {new Date(
+                                    item.details.patientInfo.dateOfBirth
+                                  ).toLocaleDateString()}
+                                </p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className='donationlist-container'>
+                <h4> Donation Request list</h4> <DonationsList />
+              </div>
+            </div>
           </div>
         )}
       </div>
-      {isupdated && (
-        <div>
-          {user && (
-            <div key={user._id} className='user-container'>
-              <div className='user-image-container'>
-                {/* user profile image */}
-                <h2>
-                  <FaUser className='user-profile-icon-user' />{" "}
-                  {user.details_id.firstName} {user.details_id.lastName}
-                </h2>
-                <h4>Email: {user.details_id.email}</h4>
-                <button className='update-button' onClick={updateUser}>
-                  Update
-                </button>
-              </div>
-              <div className='user-details-container'>
+
+      <PopupUserEdit trigger={show} setTrigger={setShow}>
+        {user && (
+          <div key={user._id} className='user-container-popup'>
+            <div>
+              <h4 className='title-user-popup'> User Edit Information</h4>
+              <div className='user-details-container-popup'>
                 {/* user details */}
-                <div className='user-details'>
-                  <div className='user-details-titles'>
+                <form
+                  className='user-details-popup'
+                  onSubmit={handleSubmitUpdate}
+                >
+                  <div className='user-details-titles-popup'>
                     <h4>
                       <span>Phone Number:</span>{" "}
                       <input
                         type='text'
                         name='phoneNumber'
-                        value={updatedUser.phoneNumber}
-                        onChange={handleInputChange}
+                        value={phoneNumber}
+                        onChange={(e) => setPhoneNumber(e.target.value)}
                       />
                     </h4>
                     <h4>
@@ -218,8 +340,8 @@ const UserProfile = () => {
                       <input
                         type='text'
                         name='location'
-                        value={updatedUser.location}
-                        onChange={handleInputChange}
+                        value={location}
+                        onChange={(e) => setLocation(e.target.value)}
                       />
                     </h4>
                     <h4>
@@ -227,69 +349,57 @@ const UserProfile = () => {
                       <input
                         type='text'
                         name='marital_status'
-                        value={updatedUser.marital_status}
-                        onChange={handleInputChange}
+                        value={marital_status}
+                        onChange={(e) => setMaritalStatus(e.target.value)}
                       />
                     </h4>
-                    <h4>
-                      <span>Gender:</span>{" "}
-                      <input
-                        type='text'
-                        name='gender'
-                        value={updatedUser.gender}
-                        onChange={handleInputChange}
-                      />
-                    </h4>
-                  </div>
-                  <div className='user-details-titles'>
+
                     <h4>
                       <span>ID Number:</span>{" "}
                       <input
                         type='text'
                         name='id_number'
-                        value={updatedUser.id_number}
-                        onChange={handleInputChange}
+                        value={id_number}
+                        onChange={(e) => setIdNumber(e.target.value)}
                       />
                     </h4>
-                    <h4>
-                      <span>Blood Type:</span>{" "}
-                      <input
-                        type='text'
-                        name='blood_type'
-                        value={updatedUser.blood_type}
-                        onChange={handleInputChange}
-                      />
-                    </h4>
-                    <h4>
-                      <span>Nationality:</span>{" "}
-                      <input
-                        type='text'
-                        name='nationality'
-                        value={updatedUser.nationality}
-                        onChange={handleInputChange}
-                      />
-                    </h4>
+
                     <h4>
                       <span>Emergency Number:</span>{" "}
                       <input
                         type='text'
                         name='emergency_number'
-                        value={updatedUser.emergency_number}
-                        onChange={handleInputChange}
+                        value={emergency_number}
+                        onChange={(e) => setEmergencyNumber(e.target.value)}
+                      />
+                    </h4>
+                    <h4>
+                      <span>Image:</span>{" "}
+                      <input
+                        className='inputadd'
+                        type='file'
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          console.log(file); // Check the file object in the console
+                          setImage(file);
+                        }}
                       />
                     </h4>
                   </div>
-                </div>
-                <div>
+                  <div className='submit-user-profile-div'>
+                    <button className='submit-user-profile'>Submit</button>
+                  </div>
+                </form>
+                <div className='balloons-user-popup'>
                   <BsFillBalloonHeartFill className='icon-user-profile-heart' />
                   <BsFillBalloonHeartFill className='icon-user-profile-heart' />
                   <BsFillBalloonHeartFill className='icon-user-profile-heart' />
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </PopupUserEdit>
     </div>
   );
 };

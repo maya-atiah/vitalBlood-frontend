@@ -12,22 +12,23 @@
     z-index: 1000;
 }
 
-.popup-inner-user {
+.popup-inner {
     position: relative;
-    padding: 40px;
+    padding: 50px;
 
     background-color: #e7e7e7;
     border-radius: 20px;
-    height: 30rem;
+    height: 40rem;
     display: flex;
     align-items: center;
 }
 
-.popup-inner-user .close-popup-icon {
+.popup-inner .close-popup-icon {
     position: absolute;
     top: 16px;
     right: 16px;
     cursor: pointer;
+
     color: #A30000;
     margin-right: 2rem;
     text-align: center;
@@ -66,4 +67,60 @@
     transition: all 0.2s ease-in-out;
     width: -moz-fit-content;
     width: 10rem;
+}
+
+.user-container-popup input{
+        border-radius: 0;
+            background-color: #e5e5e5;
+            border-color: transparent;
+            font-size: 1rem;
+            padding: 0.2rem;
+            width: 10rem;
+            border-radius: 10px;
+
+}
+.user-details-container-popup{
+display: flex;
+    flex-direction: column;
+}
+
+.user-container-popup{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-details-titles-popup{
+    /* display: flex; */
+    display: flex;
+   flex-direction: column;
+    gap: 1px;
+}
+
+.user-details-container-popup span{
+        font-size: 15px;
+            font-weight: 500;
+            color: #A30000;
+            padding-right: 1rem;
+}
+
+.user-details-titles-popup h4{
+    padding: 0.6rem;
+}
+.user-container-popup input {
+    border-radius: 0;
+    background-color: white;
+    border-color: transparent;
+    font-size: 1rem;
+    padding: 0.2rem;
+    width: 10rem;
+    border-radius: 10px;
+}
+
+.balloons-user-popup{
+    text-align: center;
+}
+
+.title-user-popup{
+    text-align: center;
+    padding-bottom: 2rem;
 }

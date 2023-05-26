@@ -1,0 +1,101 @@
+.donation-List-container {
+    margin-top: 2rem;
+}
+
+.donation-List-container h2 {
+
+    color: #a30000;
+    padding: 1rem;
+}
+
+.donations-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.donations-table th,
+.donations-table td {
+    padding: 5px;
+        text-align: left;
+        border-bottom: 1px solid #3d3d3d;
+        font-size: 14px;
+    }
+
+.donations-table th {
+
+    background-color: #a30000;
+        color: #ffffff;
+        font-size: 15px;
+}
+
+.donations-table tr:nth-child(even) {
+    background-color: #f2f1f0;
+
+}
+
+.donations-table tr:hover {
+
+    color: #a30000;
+}
+
+.action-button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.accept-button {
+    margin-bottom: 0.2rem;
+        background-color: #a30000;
+        color: #ffffff;
+}
+
+.accept-button:hover {
+    background-color: #f2f1f0;
+    color: #a30000;
+}
+
+.reject-button {
+    background-color: #f2f1f0;
+    color: #3d3d3d;
+    border: 1px solid #3d3d3d;
+    margin-left: 0.2rem;
+}
+
+.reject-button:hover {
+    background-color: #a30000;
+    color: #f2f1f0;
+    border: none;
+
+}
+
+@media (max-width: 768px) {
+
+    .donations-table th,
+    .donations-table td {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .donation-list-container {
+        margin: 1rem;
+    }
+
+    .donation-list-container h2 {
+        font-size: 20px;
+    }
+
+    .donations-table th,
+    .donations-table td {
+        padding: 8px;
+    }
+
+    .action-button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+}

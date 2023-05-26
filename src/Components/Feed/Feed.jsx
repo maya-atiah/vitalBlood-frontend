@@ -8,6 +8,7 @@ import secureLocalStorage from "react-secure-storage";
 const Feed = () => {
   const [donationRequests, setDonationRequests] = useState([]);
   const [loading, setLoading] = useState(true);
+ const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async () => {
     try {
@@ -35,7 +36,9 @@ const Feed = () => {
         )
       );
 
-      await axios.post(
+      setIsLoading(true); // Set isLoading to true
+
+      const res = await axios.post(
         `http://localhost:8000/api/donation/donateToRequest/${donationRequestId}`,
         {},
         {
@@ -55,8 +58,11 @@ const Feed = () => {
       );
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false); // Set isLoading back to false after the request is complete
     }
   };
+
 
   useEffect(() => {
     fetchData();
@@ -88,6 +94,7 @@ const Feed = () => {
           <div className='req-card-grid'>
             {donationRequests &&
               donationRequests.map((item, index) => {
+                const isRequestLoading = item.disabled === true;
                 return (
                   <div className='request-card' key={index}>
                     <div className='user-details-request'>
@@ -147,6 +154,7 @@ const Feed = () => {
                             <span>Level Of Emergency:</span>{" "}
                             {item.details.bloodRequest.levelOfEmergency}
                           </h4>
+                          
                         </div>
                         <div className='patient-details-blood2'>
                           <h4>
@@ -157,7 +165,7 @@ const Feed = () => {
 
                           <h4>
                             {" "}
-                            <span>Case :</span>{" "}
+                            <span>Case :</span> 4{" "}
                             {item.details.patientInfo.caseType}
                           </h4>
                           <h4>
@@ -175,25 +183,22 @@ const Feed = () => {
                     </div>
                     <div className='donate-request-btn-div'>
                       {item.status === "waiting for confirmation" ? (
-                        <div
-                          className='donate-request-btn-confirmation'
-                          disabled
-                        >
-                          Waiting for Confirmation
-                        </div>
-                      ) : (
-                        <button
-                          className='donate-request-btn'
-                          onClick={() => donateRequest(item._id, index)}
-                          disabled={item.disabled} // Disable the button if it's already clicked
-                        >
-                          Donate
-                        </button>
-                      )}
-                    </div>
+                      <div className="donate-request-btn-confirmation" disabled>
+                        Waiting for Confirmation
+                      </div>
+                    ) : (
+                      <button
+                        className="donate-request-btn"
+                        onClick={() => donateRequest(item._id, index)}
+                        disabled={isRequestLoading}
+                      >
+                        {isRequestLoading ? "Submitting..." : "Donate"}
+                      </button>
+                    )}
                   </div>
-                );
-              })}
+                </div>
+              );
+            })}
           </div>
           <div>{/* <img src={RequestImage} /> */}</div>
         </div>

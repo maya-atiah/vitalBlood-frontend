@@ -1,6 +1,30 @@
-/* .donate-container{
-    background-image: url('../../assets/images/output-onlinepngtools\ \(6\).png');
+.donate-container{
+    background-image: url('../../assets/images/donatewallpeaper.jpg');
         background-repeat: round;
         background-size: cover;
-        height: 50rem;
-}  */
+        height: 55rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        /* border-bottom-left-radius: 30% 10%;
+            border-bottom-right-radius: 30% 10%;     */
+} 
+
+.donate-subcontainer{
+    margin: 20rem;
+        background-color: #e5e5e5;
+        padding: 3rem;
+           border-radius: 25px;
+}
+.donate-form-container input {
+            border-radius: 0;
+            background-color: white;
+            border-color: transparent;
+            font-size: 1rem;
+            padding: 0.7rem;
+            width: 23rem;
+            border-radius: 10px;
+            margin: 0.7rem;
+         
+        }

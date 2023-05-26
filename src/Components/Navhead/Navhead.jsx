@@ -33,7 +33,7 @@ const Navhead = (props) => {
 
   const handleLogout = () => {
     window.localStorage.clear();
-    window.location.reload();
+   
     props.setIsLoggedIn(false);
   };
 
