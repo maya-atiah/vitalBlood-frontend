@@ -67,6 +67,11 @@ const UserProfile = () => {
     }
   };
 
+  //  const donate =[]
+  //  donate=  donations && donations.filter((data) => data.type === "donate")
+  //      ? donations.find((data) => data.type === "donate")
+  //      : null;
+// console.log('donate',donate)
   //***delete donation by id  */
   const deleteDonation = async (donationId) => {
     const token = secureLocalStorage.getItem("token");
@@ -234,7 +239,7 @@ const UserProfile = () => {
                   <div className='donation-container-user'>
                     <div className='donation-container-user-card'>
                       {donations &&
-                        donations.map((item) => {
+                        donations.filter((donation) => donation.type === 'request').map((item) => {
                           return (
                             <div
                               key={item._id}

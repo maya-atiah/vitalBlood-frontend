@@ -86,6 +86,7 @@ const Navhead = (props) => {
         <NavbarMobile
           isLoggedin={props.isLoggedIn}
           setIsLoggedIn={props.setIsLoggedIn}
+          user={props.user}
         />
       </div>
     </header>

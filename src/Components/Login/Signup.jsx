@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import "../Login/Signup.css";
 import secureLocalStorage from "react-secure-storage";
 
+
 const Signup = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");

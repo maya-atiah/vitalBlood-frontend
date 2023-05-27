@@ -2,6 +2,7 @@ import React from 'react'
 import Event1 from '../../assets/images/event_1.jpg';
 import Event2 from '../../assets/images/event2.png';
 import '../Home/ImageHome.css'
+import { Link } from 'react-router-dom';
 
 const ImageHome = () => {
   return (
@@ -14,14 +15,16 @@ const ImageHome = () => {
       <div className='team-area'>
         <div className='single-team'>
           <img src={Event1} alt='donate blood' />
-          
+
           <div className='team-text'>
             <h3> Donate A Blood</h3>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
               pulvinar dui nibh,
             </p>
-            <button className='home-btn2'> Donate</button>
+            <Link to='/donate' style={{ textDecoration: "none" }}>
+              <button className='home-btn2'> Donate</button>
+            </Link>
           </div>
         </div>
         <div className='single-team'>
@@ -32,7 +35,9 @@ const ImageHome = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
               pulvinar dui nibh,
             </p>
-            <button className='home-btn2'> Request</button>
+            <Link to='/request' style={{ textDecoration: "none" }}>
+              <button className='home-btn2'> Request</button>
+            </Link>
           </div>
         </div>
       </div>

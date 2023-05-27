@@ -13,6 +13,8 @@ import UserProfile from './Components/UserProfile/UserProfile';
 import Volunteers from './Components/Volunteers/Volunteers';
 import Donate from './Components/Donate/Donate';
 import Feed from './Components/Feed/Feed';
+import Page404 from './Components/Page404/Page404';
+import Signup from './Components/Login/Signup';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -38,7 +40,9 @@ function App() {
         />
        
         <Route path="/donate" element={<Donate />} />
+        <Route path='/*' element={<Page404/>}/>
         <Route path="/request" element={<Request />} />
+        <Route path='/register' element={<Signup/>}/>
         <Route path="/feed" element={<Feed />} />
         <Route path="/volunteers" element={<Volunteers />} />
         <Route path="/about" element={<About />} />

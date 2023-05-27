@@ -6,6 +6,7 @@ import Request from "../../assets/images/request.png";
 import About from "../../assets/images/about-home.png";
 import ImageHome from "./ImageHome";
 import Loader from "../../Loader/Loader";
+import { Link } from "react-router-dom";
 
 const Home = () => {
 
@@ -33,8 +34,10 @@ const Home = () => {
           <div>
             <h2>“ Together, we can make a difference in someone's life.”</h2>
           </div>
-          <div className="home-btn-hero-div">
-            <button className='home-btn-hero'>Donate</button>
+          <div className='home-btn-hero-div'>
+            <Link to='/donate' style={{ textDecoration: "none" }}>
+              <button className='home-btn-hero'>Donate</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -44,43 +47,49 @@ const Home = () => {
           <h4>With a few steps you will make someone’s smile</h4>
         </div>
         <div className='steps-home-container'>
-          <div className='details-imp-home'>
-            <div>
-              <img src={Register} />
+          <Link to='/login' style={{ textDecoration: "none" }}>
+            <div className='details-imp-home'>
+              <div>
+                <img src={Register} />
+              </div>
+              <h4>Register</h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                pulvinar dui nibh, vel rutrum turpis congue non. Nulla vitae
+                interdum enim. Morbi dui sem, ultrices ut lectus ac, porta
+                mollis nisl.
+              </p>
             </div>
-            <h4>Register</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              pulvinar dui nibh, vel rutrum turpis congue non. Nulla vitae
-              interdum enim. Morbi dui sem, ultrices ut lectus ac, porta mollis
-              nisl.
-            </p>
-          </div>
-          <div className='details-imp-home'>
-            <div>
-              <img src={Donate} />
+          </Link>
+          <Link to='/donate' style={{ textDecoration: "none" }}>
+            <div className='details-imp-home'>
+              <div>
+                <img src={Donate} />
+              </div>
+              <h4>Donate</h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                pulvinar dui nibh, vel rutrum turpis congue non. Nulla vitae
+                interdum enim. Morbi dui sem, ultrices ut lectus ac, porta
+                mollis nisl.
+              </p>
             </div>
-            <h4>Donate</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              pulvinar dui nibh, vel rutrum turpis congue non. Nulla vitae
-              interdum enim. Morbi dui sem, ultrices ut lectus ac, porta mollis
-              nisl.
-            </p>
-          </div>
-          <div className='details-imp-home'>
-            <div>
-              {" "}
-              <img src={Request} />
+          </Link>
+          <Link to='/request' style={{ textDecoration: "none" }}>
+            <div className='details-imp-home'>
+              <div>
+                {" "}
+                <img src={Request} />
+              </div>
+              <h4>Request</h4>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
+                pulvinar dui nibh, vel rutrum turpis congue non. Nulla vitae
+                interdum enim. Morbi dui sem, ultrices ut lectus ac, porta
+                mollis nisl.
+              </p>
             </div>
-            <h4>Request</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              pulvinar dui nibh, vel rutrum turpis congue non. Nulla vitae
-              interdum enim. Morbi dui sem, ultrices ut lectus ac, porta mollis
-              nisl.
-            </p>
-          </div>
+          </Link>
         </div>
       </div>
       <div className='home-about-container'>
@@ -102,15 +111,22 @@ const Home = () => {
             interdum enim. Morbi dui sem, ultrices ut lectus ac, porta mollis
             nisl.
           </p>
-          <button className='home-btn'> Read more</button>
+          <Link to='/about' style={{ textDecoration: "none" }}>
+            {" "}
+            <button className='home-btn'> Read more</button>
+          </Link>
         </div>
       </div>
       <div>
-        <ImageHome/>
+        <ImageHome />
       </div>
-      <div>
-        
+      <div className='start-saving-lives'>
+        <h2>Start Saving Lives</h2>
+        <Link to='/login' style={{ textDecoration: "none" }}>
+          <button className='home-btn-bottom'>Register</button>
+        </Link>
       </div>
+      <div></div>
     </div>
   );
 };

@@ -83,3 +83,26 @@
     align-items: center;
     gap: 10px
 }
+
+@media screen and (max-width:850px){
+    .table-volunteers {
+            position:none;
+            top:0;
+
+        }
+.volunteers-title-container{
+    height: 13rem;
+}
+.volunteers-title-container h4{
+    text-align: center;
+}
+        .volunteers-title-container h1{
+            
+                    text-align: center;
+                    font-size: 40px;
+                
+        }
+                .table-volunteers table td {
+                    padding: 7px 12px;
+                }
+}

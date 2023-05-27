@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../Navbar/NavbarMobile.css';
-import { FaAlignRight, FaRegTimesCircle } from "react-icons/fa";
+import { FaAlignRight, FaRegTimesCircle, FaUserCircle } from "react-icons/fa";
 import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
@@ -120,6 +120,28 @@ const NavbarMobile = (props) => {
                   className='navbar-divstyle'
                 >
                   Contact Us{" "}
+                </motion.div>
+              </Link>
+            </div>
+            <div className='one'>
+               <Link to='/userProfile' style={{ textDecoration: "none" }}>
+                <motion.div
+                  onClick={() => closeMobileMenu()}
+                  initial={animatedForm}
+                  animate={animatedTo}
+                  className='navbar-divstyle'
+                >
+                 
+                    {props.user && props.user.details_id.image ? (
+                      <img
+                        className='img-navhead'
+                        src={props.user.details_id.image}
+                        alt='User Image'
+                      />
+                    ) : (
+                      <FaUserCircle className='login-home-icon-user' />
+                    )}
+                 
                 </motion.div>
               </Link>
             </div>

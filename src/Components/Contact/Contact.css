@@ -36,7 +36,8 @@
     gap: 2rem
 }
 
-.form-details-container div {
+.form-container-div-input,
+.form-container-div-input-one {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -73,10 +74,10 @@
     padding: 30px;
 }
 
-.form-details-container div:nth-child(6) {
+/* .form-details-container div:nth-child(6) {
     justify-content: flex-end;
 
-}
+} */
 
 .contact-btn {
     background: #A30000;
@@ -104,43 +105,56 @@
     border-color: #A30000;
     transform: scale(1.1);
 }
+
 .image-contact-container h1 {
     max-width: 50rem;
     padding: 0 5rem 0 10rem;
 }
 
-@media screen and (max-width:896px){
-.contact-container {
+.form-container-div-input-one-res {
+    display: none
+}
+
+@media screen and (max-width:896px) {
+    .contact-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
         padding: 0.2rem;
-        background-image: url(http://localhost:3000/static/media/hands.4f14a9b….svg);
-        background-repeat: space;
-        background-size: contain;
-        height: auto;
+        background-image: url('../../assets/images/hands.svg');
+        height: 50rem;
     }
-        .form-contact-container {
-            background-color: white;
-            /* max-height: auto; */
-            width: 100%;
-            padding: 0.5rem;
-            border-radius: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
-        }
 
-                .form-details-container div {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                    gap:0.5rem;
-                }
-                                .form-details-container div {
-                                    display: flex;
-                                    flex-direction: column;
-                                    align-items: flex-start;
-                                    gap: 0.5rem;
-                                }
+    .form-contact-container {
+        background-color: white;
+        /* max-height: auto; */
+        width: 100%;
+        padding: 0.5rem;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    .form-container-div-input,
+    .form-container-div-input-one-res {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .form-container-div-input-one {
+        display: none;
+    }
+
+    .form-details-container input,
+    .form-details-container textarea {
+        width: 100%;
+    }
+
+    .form-details-container{
+        gap:1rem;
+    }
+
 }

@@ -34,16 +34,14 @@
     gap: 1rem;
 }
 
-.footer-title1 div:first-child,
-.footer-title2 div:first-child,
-.footer-title3 div:first-child {
+.footer-first{
     font-size: 20px;
     color: #A30000;
 }
 
-.footer-container-details {
+/* .footer-container-details {
     cursor: pointer;
-}
+} */
 
 .footer-title1 div:nth-child(2),
 .footer-title1 div:nth-child(3),
@@ -55,7 +53,13 @@
 .footer-title1-mobile {
     display: none;
 }
-
+.footer-a:hover,.footer-social-contact:hover{
+      cursor: pointer;
+      color: #A30000;
+}
+.footer-a{
+    color:#3D3D3D
+}
 @media screen and (max-width:1567px) {
 
     .footer-container {

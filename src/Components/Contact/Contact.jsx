@@ -70,15 +70,15 @@ const Contact = () => {
           ref={form}
           onSubmit={sendEmail}
         >
-          <div>
+          <div className='form-container-div-input'>
             <label>First Name</label>
             <input name='firstName' placeholder='Enter your First Name'></input>
           </div>
-          <div>
+          <div className='form-container-div-input'>
             <label>Last Name</label>
             <input name='lastName' placeholder='Enter your Last Name'></input>
           </div>
-          <div>
+          <div className='form-container-div-input-one'>
             <label>Phone Number</label>
             <PhoneInput
               placeholder='Enter phone number'
@@ -87,11 +87,22 @@ const Contact = () => {
               defaultCountry='LB'
             />
           </div>
-          <div>
+
+          <div className='form-container-div-input-one-res'>
+            <label>Phone Number</label>
+            <input
+              placeholder='Enter phone number'
+              value={value}
+              onChange={setValue}
+              defaultCountry='LB'
+            />
+          </div>
+
+          <div className='form-container-div-input'>
             <label>Email</label>
             <input name='email' placeholder='Enter your Email'></input>
           </div>
-          <div>
+          <div className='form-container-div-input'>
             <label>Message</label>
             <textarea
               name='message'

@@ -68,9 +68,11 @@ const Volunteers = () => {
   return (
     <div className='volunnteers-container'>
       <div className='volunteers-title-container '>
-        <div className="image-center">
+        {/* <div className="image-center">
 
-        </div>
+        </div> */}
+        <h1>Our Volunteers</h1>
+        <h4>Roll up your sleeves and join the movement!</h4>
       </div>
       <div className='table-volunteers'>
         <table>
@@ -107,7 +109,6 @@ const Volunteers = () => {
                         />
                       )}
                       <div>
-                     
                         {item.details_id.firstName} {item.details_id.lastName}
                       </div>
                     </td>
