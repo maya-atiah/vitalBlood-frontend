@@ -16,8 +16,8 @@ const FormRequest = ({setTrigger}) => {
   const [hospital, setHospital] = useState("");
   const [levelOfEmergency, setLeveOfEmergency] = useState("");
   const [numberOfUnits, setNumberOfUnits] = useState("");
-  const [EmergencyNumber, setEmergencyNumber] = useState("");
-
+  // const [EmergencyNumber, setEmergencyNumber] = useState("");
+const [isLoading,setIsLoading]=useState(false)
   const handleSubmit = async (event) => {
     event.preventDefault(); 
 
@@ -27,25 +27,24 @@ const FormRequest = ({setTrigger}) => {
         window.location.href = "/login";
       }
 
-       if (
-         !firstName ||
-         !lastName ||
-         !dateOfBirth ||
-         !caseType ||
-         !caseDetails ||
-         !bloodType ||
-         !dateNeeded ||
-         !hospital ||
-         !levelOfEmergency ||
-         !numberOfUnits ||
-         !EmergencyNumber
-       ) {
-         toast.error("Please fill in all the required fields.", {
-           className: "toast error",
-         });
-         return;
-       }
-
+      //  if (
+      //    !firstName ||
+      //    !lastName ||
+      //    !dateOfBirth ||
+      //    !caseType ||
+      //    !caseDetails ||
+      //    !bloodType ||
+      //    !dateNeeded ||
+      //    !hospital ||
+      //    !levelOfEmergency ||
+      //    !numberOfUnits
+      //  ) {
+      //    toast.error("Please fill in all the required fields.", {
+      //      className: "toast error",
+      //    });
+      //    return;
+      //  }
+   setIsLoading(true)
       const response = await axios.post(
         "http://localhost:8000/api/donation/createRequest",
         {
@@ -78,7 +77,7 @@ const FormRequest = ({setTrigger}) => {
       setHospital("");
       setLeveOfEmergency("");
       setNumberOfUnits("");
-      setEmergencyNumber("");
+      // setEmergencyNumber("");
 
     toast.success("Your blood request is submitted successfully", {
       className: "toast success",
@@ -89,6 +88,8 @@ const FormRequest = ({setTrigger}) => {
       toast.error("There is something wrong. Try again", {
         className: "toast error", 
       });
+    } finally{
+      setIsLoading(false)
     }
   };
 
@@ -159,7 +160,7 @@ const FormRequest = ({setTrigger}) => {
                 value={caseDetails}
               ></textarea>
             </div>
-            <div className='label-input-container'>
+            {/* <div className='label-input-container'>
               <label>Write the emergency number*</label>
               <input
                 type='number'
@@ -169,7 +170,7 @@ const FormRequest = ({setTrigger}) => {
                 onChange={(e) => setEmergencyNumber(e.target.value)}
                 value={EmergencyNumber}
               />{" "}
-            </div>
+            </div> */}
           </div>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
@@ -205,7 +206,7 @@ const FormRequest = ({setTrigger}) => {
           </div>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
-              <label>Write the date needed*</label>
+              <label>Hospital*</label>
               <input
                 type='text'
                 placeholder='Hospital'
@@ -223,8 +224,9 @@ const FormRequest = ({setTrigger}) => {
                 value={levelOfEmergency}
                 placeholder='Level of Emergency'
               >
-                <option value='A+'>Urgent</option>
-                <option value='A-'>Medium</option>
+                <option value='0'>level Of Emergency</option>
+                <option value='Urgent'>Urgent</option>
+                <option value='Medium'>Medium</option>
               </select>
             </div>
             <div className='label-input-container'>
@@ -241,7 +243,9 @@ const FormRequest = ({setTrigger}) => {
           </div>
         </div>
 
-        <button className='submit-request-btn'>Submit</button>
+        <button className='submit-request-btn'>
+          {isLoading ? "Submitting..." : "Request"}
+        </button>
       </form>
     </div>
   );

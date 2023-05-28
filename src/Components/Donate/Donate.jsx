@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import '../Donate/Donate.css'
-import Loader from '../../Loader/Loader';
-import PhoneInput from 'react-phone-number-input';
-import axios from 'axios';
-import { toast } from 'react-toastify';
-import secureLocalStorage from 'react-secure-storage';
+import React, { useEffect, useState } from "react";
+import "../Donate/Donate.css";
+import Loader from "../../Loader/Loader";
+import PhoneInput from "react-phone-number-input";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import secureLocalStorage from "react-secure-storage";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
 
 const Donate = () => {
   const [loading, setLoading] = useState(true);
@@ -16,14 +16,15 @@ const Donate = () => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [bloodType, setBloodType] = useState("");
   const [hospital, setHospital] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [dateNeeded, setDateNeeded] = useState("");
-  const [user, setUser] = useState();
-  
+  const [user, setUser] = useState("");
+  const [isLoading, setIsloading] = useState(false);
+
   //****fetch user details  */
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
-
+ localStorage.setItem("path", "donate");
     try {
       const res = await axios.get(
         "http://localhost:8000/api/user/getuserbyid",
@@ -37,12 +38,15 @@ const Donate = () => {
       setFirstName(res.data.details.firstName);
       setLastName(res.data.details.lastName);
       setBloodType(res.data.details.blood_type);
-      setPhoneNumber(res.data.details.phoneNumber)
+      setPhoneNumber(res.data.details.phoneNumber);
       // setImage(res.data.details.image)
     } catch (error) {
       console.log("Error:", error);
     }
   };
+
+
+  //***Submit Donation */
   const handleSubmitDonation = async (event) => {
     event.preventDefault();
 
@@ -58,7 +62,7 @@ const Donate = () => {
         });
         return;
       }
-
+      setIsloading(true);
       const response = await axios.post(
         "http://localhost:8000/api/donation/createDonation",
         {
@@ -67,6 +71,7 @@ const Donate = () => {
           dateOfBirth,
           bloodType,
           hospital,
+          dateNeeded,
         },
         {
           headers: {
@@ -81,7 +86,8 @@ const Donate = () => {
       setDateOfBirth("");
       setBloodType("");
       setHospital("");
-
+      setPhoneNumber('');
+      setDateNeeded('');
       toast.success("Your blood request is submitted successfully", {
         className: "toast success",
       });
@@ -90,12 +96,14 @@ const Donate = () => {
       toast.error("There is something wrong. Try again", {
         className: "toast error",
       });
+    } finally {
+      setIsloading(false);
     }
   };
 
   useEffect(() => {
     // Simulate loading for 3 seconds
-    fetchUser()
+    fetchUser();
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -186,12 +194,15 @@ const Donate = () => {
             ></input>
           </div>
           <div>
-            <button className='contact-btn'>Submit</button>
+            <button className='contact-btn'>
+              {isLoading ? "Subitting..." : "Donate"}
+            </button>
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
-}
+};
 
-export default Donate
+export default Donate;

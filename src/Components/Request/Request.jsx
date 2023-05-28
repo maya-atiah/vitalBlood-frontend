@@ -9,11 +9,14 @@ import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../Loader/Loader";
 
 const Request = () => {
+
   const [buttonPopup, setButtonPopup] = useState(false);
   const [loading, setLoading] = useState(true);
   
   const handleClickSubmit = () => {
     const token = secureLocalStorage.getItem("token");
+    localStorage.setItem("path", "request");
+    console.log('token',token)
     if (!token) {
       toast.error("You should login");
       window.location.href = "/login";

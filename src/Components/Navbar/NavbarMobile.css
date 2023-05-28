@@ -10,7 +10,7 @@
         color: #A30000;
         background-color: white;
         /* margin-left: -1rem; */
-        z-index: 1000;
+        z-index: 10000;
         font-size: 22px;
         width: 100%;
         /* justify-content: space-between;   */

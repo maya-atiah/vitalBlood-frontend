@@ -2,7 +2,7 @@
 
     text-align: center;
     width: 100%;
-    height: 85vh;
+    height: 97vh;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -87,6 +87,7 @@
 
 .dont-have {
     cursor: pointer;
+    padding-bottom: 0.5rem;
 }
 
 .form--input {

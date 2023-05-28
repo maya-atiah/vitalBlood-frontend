@@ -4,12 +4,16 @@ import axios from "axios";
 import LogoImageRequest from "../../assets/images/logoImageRequest.png";
 import Loader from "../../Loader/Loader";
 import secureLocalStorage from "react-secure-storage";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Feed = () => {
   const [donationRequests, setDonationRequests] = useState([]);
   const [loading, setLoading] = useState(true);
- const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
+  //***FEtch donation requests */
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -21,20 +25,23 @@ const Feed = () => {
     }
   };
 
+  ///****Requesting to donate****//////
   const donateRequest = async (donationRequestId, index) => {
     try {
       const token = secureLocalStorage.getItem("token");
+        secureLocalStorage.setItem("path", "feed");
       if (!token) {
         window.location.href = "/login";
         return;
       }
 
-      // Disable the button immediately
-      setDonationRequests((prevRequests) =>
-        prevRequests.map((request, i) =>
-          i === index ? { ...request, disabled: true } : request
-        )
-      );
+      const request = donationRequests[index];
+
+      // Check if the donor has already requested to donate for this request
+      if (request.status === "waiting for confirmation") {
+        setErrMsg("Donor has already requested to donate for this request");
+        return;
+      }
 
       setIsLoading(true); // Set isLoading to true
 
@@ -50,20 +57,22 @@ const Feed = () => {
 
       // Update the donationRequests state to mark the requested donation as "waiting for confirmation"
       setDonationRequests((prevRequests) =>
-        prevRequests.map((request, i) =>
-          i === index
-            ? { ...request, status: "waiting for confirmation" }
-            : request
+        prevRequests.map((req, i) =>
+          i === index ? { ...req, status: "waiting for confirmation" } : req
         )
       );
     } catch (error) {
+      toast.error(error.response.data.message, {
+        className: "toast error",
+      });
+      setErrMsg(error.response.data.message);
       console.log(error);
     } finally {
-      setIsLoading(false); // Set isLoading back to false after the request is complete
+      setIsLoading(false);
     }
   };
 
-
+  //**useEffect */
   useEffect(() => {
     fetchData();
     // Simulate loading for 3 seconds
@@ -154,7 +163,6 @@ const Feed = () => {
                             <span>Level Of Emergency:</span>{" "}
                             {item.details.bloodRequest.levelOfEmergency}
                           </h4>
-                          
                         </div>
                         <div className='patient-details-blood2'>
                           <h4>
@@ -181,28 +189,33 @@ const Feed = () => {
                         </div>
                       </div>
                     </div>
+                    <p className='error-donate'>{item.errMsg}</p>
                     <div className='donate-request-btn-div'>
                       {item.status === "waiting for confirmation" ? (
-                      <div className="donate-request-btn-confirmation" disabled>
-                        Waiting for Confirmation
-                      </div>
-                    ) : (
-                      <button
-                        className="donate-request-btn"
-                        onClick={() => donateRequest(item._id, index)}
-                        disabled={isRequestLoading}
-                      >
-                        {isRequestLoading ? "Submitting..." : "Donate"}
-                      </button>
-                    )}
+                        <div
+                          className='donate-request-btn-confirmation'
+                          disabled
+                        >
+                          Waiting for Confirmation
+                        </div>
+                      ) : (
+                        <button
+                          className='donate-request-btn'
+                          onClick={() => donateRequest(item._id, index)}
+                          disabled={isRequestLoading}
+                        >
+                          {isRequestLoading ? "Submitting..." : "Donate"}
+                        </button>
+                      )}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
           <div>{/* <img src={RequestImage} /> */}</div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Logo from "../../assets/images/logo.png";
 import { FaPhone } from 'react-icons/fa'
 import {FaRegEnvelopeOpen} from 'react-icons/fa'
 import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <div className='footer-container'>

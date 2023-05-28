@@ -238,75 +238,85 @@ const UserProfile = () => {
                   <h4> My Requests</h4>
                   <div className='donation-container-user'>
                     <div className='donation-container-user-card'>
-                      {donations &&
-                        donations.filter((donation) => donation.type === 'request').map((item) => {
-                          return (
-                            <div
-                              key={item._id}
-                              className='donation-subcontainer-user'
-                            >
-                              <div>
-                                <p>
-                                  {" "}
-                                  <span>Blood Type: </span>
-                                  {item.details.bloodRequest.bloodType}
-                                </p>
-                                <p>
-                                  {" "}
-                                  <span>Date Needed:</span>
-                                  {new Date(
-                                    item.details.bloodRequest.dateNeeded
-                                  ).toLocaleDateString()}
-                                </p>
-                                <p>
-                                  <span>Hospital:</span>
-                                  {item.details.bloodRequest.hospital}
-                                </p>
-                                <p>
-                                  <span>Level Of Emergency:</span>
-                                  {item.details.bloodRequest.levelOfEmergency}
-                                </p>
+                      {donations.length === 0 ? (
+                        <div>No data</div>
+                      ) : (
+                        <>
+                          {donations
+                            .filter((donation) => donation.type === "request")
+                            .map((item) => {
+                              return (
+                                <div
+                                  key={item._id}
+                                  className='donation-subcontainer-user'
+                                >
+                                  <div>
+                                    <p>
+                                      {" "}
+                                      <span>Blood Type: </span>
+                                      {item.details.bloodRequest.bloodType}
+                                    </p>
+                                    <p>
+                                      {" "}
+                                      <span>Date Needed:</span>
+                                      {new Date(
+                                        item.details.bloodRequest.dateNeeded
+                                      ).toLocaleDateString()}
+                                    </p>
+                                    <p>
+                                      <span>Hospital:</span>
+                                      {item.details.bloodRequest.hospital}
+                                    </p>
+                                    <p>
+                                      <span>Level Of Emergency:</span>
+                                      {
+                                        item.details.bloodRequest
+                                          .levelOfEmergency
+                                      }
+                                    </p>
 
-                                <p>
-                                  <span> Number Of units</span>
-                                  {item.details.bloodRequest.numberOfUnits}
-                                </p>
-                                <div>
-                                  {/* Delete button */}
-                                  <button
-                                    className='delete-button'
-                                    onClick={() => deleteDonation(item._id)}
-                                  >
-                                    Delete
-                                  </button>
+                                    <p>
+                                      <span> Number Of units</span>
+                                      {item.details.bloodRequest.numberOfUnits}
+                                    </p>
+                                    <div>
+                                      {/* Delete button */}
+                                      <button
+                                        className='delete-button'
+                                        onClick={() => deleteDonation(item._id)}
+                                      >
+                                        Delete
+                                      </button>
+                                    </div>
+                                  </div>
+                                  <div>
+                                    <p>
+                                      <span>Patient Name:</span>{" "}
+                                      {item.details.patientInfo.firstName}{" "}
+                                      {item.details.patientInfo.lastName}
+                                    </p>
+
+                                    <p>
+                                      {" "}
+                                      <span>Case :</span> 4{" "}
+                                      {item.details.patientInfo.caseType}
+                                    </p>
+                                    <p>
+                                      <span>Case Details: </span>
+                                      {item.details.patientInfo.caseDetails}
+                                    </p>
+                                    <p>
+                                      <span>Date Of Birth:</span>{" "}
+                                      {new Date(
+                                        item.details.patientInfo.dateOfBirth
+                                      ).toLocaleDateString()}
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                              <div>
-                                <p>
-                                  <span>Patient Name:</span>{" "}
-                                  {item.details.patientInfo.firstName}{" "}
-                                  {item.details.patientInfo.lastName}
-                                </p>
-
-                                <p>
-                                  {" "}
-                                  <span>Case :</span> 4{" "}
-                                  {item.details.patientInfo.caseType}
-                                </p>
-                                <p>
-                                  <span>Case Details: </span>
-                                  {item.details.patientInfo.caseDetails}
-                                </p>
-                                <p>
-                                  <span>Date Of Birth:</span>{" "}
-                                  {new Date(
-                                    item.details.patientInfo.dateOfBirth
-                                  ).toLocaleDateString()}
-                                </p>
-                              </div>
-                            </div>
-                          );
-                        })}
+                              );
+                            })}
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>

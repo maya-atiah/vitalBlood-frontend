@@ -72,12 +72,43 @@
 
 }
 
+.donationlist-mobile{
+    display: none;
+}
+.donations-mobile {
+    display: grid;
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 1rem;
+    background-color: white;
+    padding: 1rem;
+    margin: 1rem;
+    grid-auto-columns: auto auto auto;
+}
+.donations-mobile span{
+   
+    font-size: 15px;
+        font-weight: 500;
+        color: #A30000;
+        padding-right: 1rem;
+}
+
+@media screen and (max-width:800px){
+    .donations-table{
+        display: none;
+    }
+    .donationlist-mobile{
+        display: block;
+    }
+}
 @media (max-width: 768px) {
 
     .donations-table th,
     .donations-table td {
         font-size: 12px;
     }
+
 }
 
 @media (max-width: 576px) {

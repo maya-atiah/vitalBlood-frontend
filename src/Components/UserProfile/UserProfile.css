@@ -4,9 +4,8 @@
     margin: 5rem;
     /* gap: 20rem; */
     /* margin: 5rem 1rem 5rem 15rem; */
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-
 }
 
 .user-profile {
@@ -105,7 +104,7 @@
 .user-details-titles {
     /* display: flex; */
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto ;
     gap: 1px;
 }
 
@@ -128,12 +127,14 @@
 }
 
 .donation-container-user-card {
-    width: 15rem;
+    /* width: 15rem; */
     border-radius: 20px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     padding: 1rem;
     background-color: white;
-
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
 }
 
 .user-details-titles span {
@@ -247,6 +248,19 @@
     text-align: center;
 }
 
+@media screen and (max-width:1390px) {
+    .user-container {
+        display: flex;
+        flex-direction: row;
+        margin: 1rem;
+    }
+
+    .user-details-container {
+        padding: 1rem;
+
+    }
+}
+
 @media screen and (max-width:1214px) {
     .user-container {
         display: flex;
@@ -260,11 +274,35 @@
 
     .user-image-container {
         height: auto;
-        width: 50%;
+        width: 95%;
     }
 
     .user-profile {
 
         margin-top: 1rem;
     }
+
+        .user-details-container {
+            padding: 1rem;
+            width: 95%;
+        }
+}
+
+@media screen and (max-width:800px){
+    .user-container{
+        margin:1rem;
+    }
+
+        .user-image-container {
+        
+            margin: 1rem;
+            padding: 1rem;
+           
+        }
+                .user-details-titles {
+                    /* display: flex; */
+                    display: block;
+                    grid-template-columns: auto auto auto;
+                    gap: 1px;
+                }
 }

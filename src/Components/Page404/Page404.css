@@ -101,3 +101,18 @@ align-items: center
         transform: rotate(-180deg);
     }
 }
+
+@media screen  and (max-width:850px){
+    .pageerror-container {
+            background-color: #A30000;
+            height: 40rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+                .pageerror-subcontainer h1 {
+                    color: #f2f1f0;
+                    font-size: 30px;
+                }
+}

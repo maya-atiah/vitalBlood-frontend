@@ -33,6 +33,7 @@ const Navhead = (props) => {
 
   const handleLogout = () => {
     window.localStorage.clear();
+    window.location.reload()
    
     props.setIsLoggedIn(false);
   };
@@ -43,9 +44,11 @@ const Navhead = (props) => {
 
   return (
     <header className='navhead pre-header'>
-      <div>
-        <img src={Logo} alt='logo' className='logo-image-home' />
-      </div>
+      <Link to='/' style={{ textDecoration: "none" }}>
+        <div>
+          <img src={Logo} alt='logo' className='logo-image-home' />
+        </div>
+      </Link>
       <div className='nav-navbar'>
         <Navbar />
       </div>

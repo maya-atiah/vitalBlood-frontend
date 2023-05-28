@@ -15,6 +15,7 @@ import Donate from './Components/Donate/Donate';
 import Feed from './Components/Feed/Feed';
 import Page404 from './Components/Page404/Page404';
 import Signup from './Components/Login/Signup';
+import Scroll from './Components/Scroll/Scroll';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -50,7 +51,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/userProfile" element={<UserProfile />} />
       </Routes>
-
+<Scroll/>
       <Footer />
     </div>
   );

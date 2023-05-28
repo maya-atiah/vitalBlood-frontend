@@ -97,14 +97,14 @@
 }
 
 .img-navhead {
-    border: 4px solid rgb(2, 151, 2);
+    border: 2px solid rgb(2, 151, 2);
     border-radius: 1000px;
-    height: 65px;
-    width: 65px;
+    height: 50px;
+    width: 50px;
 }
 
 .img-navhead:hover {
-    border: 4px solid #A30000;
+    border: 2px solid #A30000;
     cursor: pointer;
 }
 
@@ -118,7 +118,7 @@
     }
 
     .img-navhead {
-        border: 4px solid rgb(2, 151, 2);
+        border: 2px solid rgb(2, 151, 2);
         border-radius: 1000px;
         height: 45px;
         width: 45px;
