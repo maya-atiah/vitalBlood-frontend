@@ -123,7 +123,7 @@ const NavbarMobile = (props) => {
                 </motion.div>
               </Link>
             </div>
-            <div className='one'>
+            {props.isLoggedIn==true ? (  <div className='one'>
                <Link to='/userProfile' style={{ textDecoration: "none" }}>
                 <motion.div
                   onClick={() => closeMobileMenu()}
@@ -132,19 +132,12 @@ const NavbarMobile = (props) => {
                   className='navbar-divstyle'
                 >
                  
-                    {props.user && props.user.details_id.image ? (
-                      <img
-                        className='img-navhead'
-                        src={props.user.details_id.image}
-                        alt='User Image'
-                      />
-                    ) : (
-                      <FaUserCircle className='login-home-icon-user' />
-                    )}
+                   My Profile
                  
                 </motion.div>
               </Link>
-            </div>
+            </div>):''}
+          
             <div className='one'>
               {props.isLoggedIn == false ? (
                 <Link to='/login' style={{ textDecoration: "none" }}>
@@ -154,8 +147,6 @@ const NavbarMobile = (props) => {
                     animate={animatedTo}
                     className='login-home-mobile'
                   >
-                    {" "}
-                    {/* <FaUserCircle className='login-home-icon' /> */}
                     Login
                   </motion.div>
                 </Link>
@@ -167,7 +158,6 @@ const NavbarMobile = (props) => {
                   className='login-home-mobile'
                 >
                   {" "}
-                  {/* <FaUserCircle className='login-home-icon' /> */}
                   Logout
                 </motion.div>
               )}

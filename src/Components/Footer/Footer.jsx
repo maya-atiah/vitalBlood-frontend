@@ -6,6 +6,10 @@ import {FaRegEnvelopeOpen} from 'react-icons/fa'
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+
+  const handlescroll = () => {
+    window.scrollTo(0,0)
+  }
   return (
     <div className='footer-container'>
       <div className='footer-logo-div'>
@@ -16,25 +20,37 @@ const Footer = () => {
         <div className='footer-title1'>
           <div className='footer-first'>Join the Donation</div>
           <Link to='/request' style={{ textDecoration: "none" }}>
-            <div className='footer-a'>Request</div>
+            <div className='footer-a' onClick={handlescroll}>
+              Request
+            </div>
           </Link>
           <Link to='/donate' style={{ textDecoration: "none" }}>
-            <div className='footer-a'>Donate</div>
+            <div className='footer-a' onClick={handlescroll}>
+              Donate
+            </div>
           </Link>
           <Link to='/feed' style={{ textDecoration: "none" }}>
-            <div className='footer-a'>Feed</div>
+            <div className='footer-a' onClick={handlescroll}>
+              Feed
+            </div>
           </Link>
           <Link to='/volunteers' style={{ textDecoration: "none" }}>
-            <div className='footer-a'>Volunteers</div>
+            <div className='footer-a' onClick={handlescroll}>
+              Volunteers
+            </div>
           </Link>
         </div>
         <div className='footer-title1'>
           <div className='footer-first'>Quick Links</div>
           <Link to='/about' style={{ textDecoration: "none" }}>
-            <div className='footer-a'>About Us</div>
+            <div className='footer-a' onClick={handlescroll}>
+              About Us
+            </div>
           </Link>
           <Link to='/contact' style={{ textDecoration: "none" }}>
-            <div className='footer-a'>Contact Us</div>
+            <div className='footer-a' onClick={handlescroll}>
+              Contact Us
+            </div>
           </Link>
         </div>
         <div className='footer-title2'>
@@ -77,10 +93,24 @@ const Footer = () => {
           <div className='footer-social-contact-mobile'>
             {" "}
             <div>
-              <FaPhone />
+              <a
+                style={{ textDecoration: "none" }}
+                className='footer-a'
+                target='_blank'
+                href='https://wa.me/'
+              >
+                <FaPhone />
+              </a>
             </div>
             <div>
-              <FaRegEnvelopeOpen />
+              <a
+                href='mailto:maya.atiah.99@gmail.com'
+                style={{ textDecoration: "none" }}
+                className='footer-a'
+              >
+                {" "}
+                <FaRegEnvelopeOpen />
+              </a>
             </div>
           </div>
         </div>

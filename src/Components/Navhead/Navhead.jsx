@@ -34,6 +34,7 @@ const Navhead = (props) => {
   const handleLogout = () => {
     window.localStorage.clear();
     window.location.reload()
+    window.location.href='/'
    
     props.setIsLoggedIn(false);
   };
@@ -71,10 +72,10 @@ const Navhead = (props) => {
           </div>
           <div>
             <Link to='/userProfile' style={{ textDecoration: "none" }}>
-              {user && user.details_id.image ? (
+              {user && user.details_id?.image ? (
                 <img
                   className='img-navhead'
-                  src={user.details_id.image}
+                  src={user.details_id?.image}
                   alt='User Image'
                 />
               ) : (

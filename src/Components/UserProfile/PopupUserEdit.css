@@ -1,4 +1,4 @@
-.popupRequest {
+.popupUSer {
     position: fixed;
     top: 0;
     left: 0;
@@ -74,7 +74,7 @@
             background-color: #e5e5e5;
             border-color: transparent;
             font-size: 1rem;
-            padding: 0.2rem;
+            padding: 0.5rem;
             width: 10rem;
             border-radius: 10px;
 

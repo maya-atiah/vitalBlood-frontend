@@ -193,6 +193,12 @@
         /* margin-right: 4rem; */
 
     }
+    .img-navhead{
+        display:none;
+    }
+    .login-home-icon-user{
+        display:none;
+    }
 
     .navhead {
         height: 3rem;

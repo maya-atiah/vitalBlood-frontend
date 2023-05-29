@@ -4,6 +4,7 @@ import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+
 const FormRequest = ({setTrigger}) => {
 
   const [firstName, setFirstName] = useState("");
@@ -16,7 +17,8 @@ const FormRequest = ({setTrigger}) => {
   const [hospital, setHospital] = useState("");
   const [levelOfEmergency, setLeveOfEmergency] = useState("");
   const [numberOfUnits, setNumberOfUnits] = useState("");
-  // const [EmergencyNumber, setEmergencyNumber] = useState("");
+
+  
 const [isLoading,setIsLoading]=useState(false)
   const handleSubmit = async (event) => {
     event.preventDefault(); 
@@ -26,24 +28,6 @@ const [isLoading,setIsLoading]=useState(false)
       if (!token) {
         window.location.href = "/login";
       }
-
-      //  if (
-      //    !firstName ||
-      //    !lastName ||
-      //    !dateOfBirth ||
-      //    !caseType ||
-      //    !caseDetails ||
-      //    !bloodType ||
-      //    !dateNeeded ||
-      //    !hospital ||
-      //    !levelOfEmergency ||
-      //    !numberOfUnits
-      //  ) {
-      //    toast.error("Please fill in all the required fields.", {
-      //      className: "toast error",
-      //    });
-      //    return;
-      //  }
    setIsLoading(true)
       const response = await axios.post(
         "http://localhost:8000/api/donation/createRequest",
@@ -125,7 +109,7 @@ const [isLoading,setIsLoading]=useState(false)
               <label>Write the patient's date of birth</label>
               <input
                 type='date'
-                placeholder='Date of Birth'
+                placeholder='Last Name'
                 className='form-input-signup'
                 required
                 onChange={(e) => setDateOfBirth(e.target.value)}
@@ -135,11 +119,12 @@ const [isLoading,setIsLoading]=useState(false)
           </div>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
-              <label>Choose the case</label>
+              <label>Choose the case*</label>
               <select
                 className='select-signup'
                 onChange={(e) => setCaseType(e.target.value)}
                 value={caseType}
+                requierd
               >
                 <option value='0'>Case Type</option>
                 <option value='Accident'>Accident</option>
@@ -174,11 +159,12 @@ const [isLoading,setIsLoading]=useState(false)
           </div>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
-              <label>Choose patient's blood type</label>
+              <label>Choose patient's blood type*</label>
               <select
                 className='select-signup'
                 onChange={(e) => setBloodType(e.target.value)}
                 value={bloodType}
+                required
               >
                 <option value='0'>BLood Type</option>
                 <option value='A+'>A+</option>
@@ -201,7 +187,7 @@ const [isLoading,setIsLoading]=useState(false)
                 required
                 onChange={(e) => setDateNeeded(e.target.value)}
                 value={dateNeeded}
-              />{" "}
+              />
             </div>
           </div>
           <div className='request-details-form-input'>
@@ -223,6 +209,7 @@ const [isLoading,setIsLoading]=useState(false)
                 onChange={(e) => setLeveOfEmergency(e.target.value)}
                 value={levelOfEmergency}
                 placeholder='Level of Emergency'
+                required
               >
                 <option value='0'>level Of Emergency</option>
                 <option value='Urgent'>Urgent</option>

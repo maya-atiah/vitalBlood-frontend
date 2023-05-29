@@ -12,9 +12,9 @@ const Signup = ({ onBackToLoginClick }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [location, setLocation] = useState("");
-  const [maritalStatus, setMaritalStatus] = useState("");
+  const [marital_status, setMaritalStatus] = useState("");
   const [gender, setGender] = useState("");
-  const [id_Number, setid_Number] = useState("");
+  const [id_number, setid_Number] = useState("");
   const [blood_type, setblood_type] = useState("");
   const [nationality, setnationality] = useState("");
   const [emergency_number, setemergency_number] = useState("");
@@ -22,13 +22,27 @@ const Signup = ({ onBackToLoginClick }) => {
   const [type, setType] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [isSubmitted, setISSubmitted] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+
 
   const errRef = useRef();
   const emailRef = useRef();
+  const confirmPasswordRef = useRef();
+
 
    const navigate = useNavigate();
 
   const fetchRegister = async () => {
+
+     if (password !== confirmPassword) {
+       toast.error("Passwords do not match", {
+         className: "toast error",
+       });
+       setErrMsg("Passwords do not match");
+       confirmPasswordRef.current.focus();
+       return;
+     }
+
     try {
       await axios
         .post("http://localhost:8000/api/user/register", {
@@ -38,9 +52,9 @@ const Signup = ({ onBackToLoginClick }) => {
           password,
           location,
           phoneNumber,
-          maritalStatus,
+          marital_status,
           gender,
-          id_Number,
+          id_number,
           blood_type,
           nationality,
           emergency_number,
@@ -100,11 +114,20 @@ const Signup = ({ onBackToLoginClick }) => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+ const handleSubmit = (e) => {
+   e.preventDefault();
 
-    fetchRegister();
-  };
+   if (password !== confirmPassword) {
+     toast.error("Passwords do not match", {
+       className: "toast error",
+     });
+     setErrMsg("Passwords do not match");
+     confirmPasswordRef.current.focus();
+     return;
+   }
+
+   fetchRegister();
+ };
 
   return (
     <>
@@ -152,17 +175,6 @@ const Signup = ({ onBackToLoginClick }) => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              type='password'
-              placeholder='Password'
-              className='form-input-signup'
-              required
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />{" "}
-          </div>
-          <div className='signup-details'>
-            {" "}
-            <input
               type='number'
               placeholder='Phone Number'
               className='form-input-signup'
@@ -170,6 +182,44 @@ const Signup = ({ onBackToLoginClick }) => {
               onChange={(e) => setPhone(e.target.value)}
               value={phoneNumber}
             />
+          </div>
+          <div className='signup-details'>
+            <input
+              type='password'
+              placeholder='Password'
+              className='form-input-signup'
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />{" "}
+            <input
+              type='password'
+              placeholder='Confirm Password'
+              className='form-input-signup'
+              required
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                if (password !== e.target.value) {
+                  setErrMsg("Passwords do not match");
+                } else {
+                  setErrMsg("");
+                }
+              }}
+              value={confirmPassword}
+              ref={confirmPasswordRef}
+            />
+          </div>
+          <div className='signup-details'>
+            {" "}
+            <select
+              className='select-signup'
+              onChange={(e) => setType(e.target.value)}
+              value={type}
+            >
+              <option value=''>Type of User</option>
+              <option value='individual'>Individual</option>
+              <option value='organization'>Organization</option>
+            </select>
             <input
               type='text'
               placeholder='Location'
@@ -184,7 +234,7 @@ const Signup = ({ onBackToLoginClick }) => {
             <select
               className='select-signup'
               onChange={(e) => setMaritalStatus(e.target.value)}
-              value={maritalStatus}
+              value={marital_status}
             >
               <option value=''>Select Marital Status</option>
               <option value='Single'>Single</option>
@@ -209,7 +259,7 @@ const Signup = ({ onBackToLoginClick }) => {
               className='form-input-signup'
               required
               onChange={(e) => setid_Number(e.target.value)}
-              value={id_Number}
+              value={id_number}
             />
             <select
               className='select-signup'
@@ -246,16 +296,6 @@ const Signup = ({ onBackToLoginClick }) => {
               value={emergency_number}
             />
           </div>
-
-          <select
-            className='select-signup'
-            onChange={(e) => setType(e.target.value)}
-            value={type}
-          >
-            <option value=''>Type of User</option>
-            <option value='individual'>Individual</option>
-            <option value='organization'>Organization</option>
-          </select>
         </div>
         <div onClick={() => onBackToLoginClick()} className='dont-have'>
           Back to login?

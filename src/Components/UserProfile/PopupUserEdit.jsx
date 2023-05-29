@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const PopupUserEdit = (props) => {
   return props.trigger ? (
-    <div className='popupRequest'>
+    <div className='popupUSer'>
       <div className='popup-inner-user'>
         <div
           onClick={() => props.setTrigger(!props.trigger)}

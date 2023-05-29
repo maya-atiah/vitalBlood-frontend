@@ -1,17 +1,32 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import '../Navbar/Navbar.css'
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import "../Navbar/Navbar.css";
 
 const Navbar = () => {
+  const [activeLink, setActiveLink] = useState("Home");
+  const location = useLocation(); // Import and use the useLocation hook
 
+  const handleNavLinkClick = (link) => {
+    setActiveLink(link);
+  };
 
-    const [activeLink, setActiveLink] = useState("Home");
+  useEffect(() => {
+    const currentPath = location.pathname;
+    const links = [
+      "Home",
+      "Request",
+      "Donate",
+      "Feed",
+      "Volunteers",
+      "About",
+      "Contact",
+    ];
+    const matchingLink = links.find((link) =>
+      currentPath.includes(link.toLowerCase())
+    );
+    setActiveLink(matchingLink || "");
+  }, [location.pathname]);
 
-    const handleNavLinkClick = (link) => {
-      setActiveLink(link);
-    };
-
-  
   return (
     <div className='navbar'>
       <Link
@@ -55,7 +70,7 @@ const Navbar = () => {
           activeLink === "Volunteers" ? "active" : ""
         }`}
         style={{ textDecoration: "none" }}
-        onClick={() => handleNavLinkClick("DoVolunteers")}
+        onClick={() => handleNavLinkClick("Volunteers")}
       >
         <div className='navbar-divstyle'>Volunteers </div>
       </Link>

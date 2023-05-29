@@ -14,7 +14,10 @@
     flex-direction: row;
     justify-content: center;
 }
-
+.details-request h1{
+    font-size: 28px;
+        color: #A30000;
+}
 .title-request-container {
     display: flex;
     flex-direction: column;
@@ -54,9 +57,12 @@
 .title-request-container h3 {
     font-size: 30px;
     font-weight: 400;
-    letter-spacing: 2px;
+    letter-spacing: 0.5px;
     max-width: 500px;
     color: #3D3D3D;
+}
+.save-life{
+   color:#A30000;
 }
 
 .request-second-container {

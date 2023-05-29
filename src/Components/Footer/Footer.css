@@ -80,9 +80,9 @@
 }
 
 @media screen and (max-width:1071px) {
-    .footer-container {
+.footer-container {
         flex-direction: column;
-        gap: 5rem;
+        gap: 2rem;
     }
 }
 

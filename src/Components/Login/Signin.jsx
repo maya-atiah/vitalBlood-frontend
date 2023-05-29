@@ -89,7 +89,7 @@ const Signin = ({ onSignupClick }) => {
           />
         </div>
         <div onClick={() => onSignupClick()} className='dont-have'>
-          Don't hava an account?
+         Signup!
         </div>
         <button className='form--submit'>Sign in</button>
       </form>

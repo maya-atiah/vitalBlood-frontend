@@ -39,19 +39,20 @@ function App() {
           path="/login"
           element={<Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />}
         />
-       
+        <Route path='userProfile' element={isLoggedIn === true ? <UserProfile /> : <Login />} />
+
         <Route path="/donate" element={<Donate />} />
-        <Route path='/*' element={<Page404/>}/>
+        <Route path='/*' element={<Page404 />} />
         <Route path="/request" element={<Request />} />
-        <Route path='/register' element={<Signup/>}/>
+        <Route path='/register' element={<Signup />} />
         <Route path="/feed" element={<Feed />} />
         <Route path="/volunteers" element={<Volunteers />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/" element={<Home />} />
-        <Route path="/userProfile" element={<UserProfile />} />
+        {/* <Route path="/userProfile" element={<UserProfile />} /> */}
       </Routes>
-<Scroll/>
+      <Scroll />
       <Footer />
     </div>
   );

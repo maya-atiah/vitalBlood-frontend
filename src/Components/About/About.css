@@ -23,7 +23,8 @@
     align-items: flex-start;
 }
 .about-details p{
-    line-height: 30px;
+    line-height: 35px;
+    
    
 }
 .about-more-details-cards p{
@@ -71,6 +72,17 @@ padding: 1rem 19rem 5rem;
 
 .about-more-details-cards:hover{
 box-shadow: rgba(0, 0, 0, 0.477) 0px 1px 4px;
+}
+
+.span2-about{
+    color: #A30000;
+    font-weight: 400;
+    font-size: 15px;
+}
+.span3-about{
+    color: #A30000;
+        font-weight: 400;
+       
 }
 
 @media screen and (max-width:1320px){

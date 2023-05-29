@@ -29,6 +29,11 @@
     margin: 0.7rem;
 
 }
+ .donate-container-label {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
 
 .select-doante {
     border-radius: 0;
@@ -40,6 +45,9 @@
     border-radius: 10px;
     margin: 0.7rem;
     color: #7d7c7c
+}
+.donate-container-label label {
+    color: #A30000;
 }
 
 @media screen and (max-width:1295px) {
@@ -69,8 +77,14 @@
         padding: 1rem;
         border-radius: 25px;
         margin: 0.8rem;
-            width: 100%;
+        width: 100%;
     }
+         .donate-container-label {
+             display: flex;
+             /* justify-content: space-between; */
+             align-items:flex-start;
+             flex-direction: column;
+         }
 
     .donate-subcontainer h1 {
 
@@ -80,7 +94,14 @@
 
     }
 
-    .donate-form-container input ,.select-doante {
+    .donate-container-label label{
+        padding-left: 1rem;
+    }
+
+   
+
+    .donate-form-container input,
+    .select-doante {
         border-radius: 0;
         background-color: white;
         border-color: transparent;
@@ -112,14 +133,15 @@
         width: -moz-fit-content;
         width: fit-content;
     }
-        .donate-container {
-            background-size: contain;
-            height: 40rem;
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            /* background-color: #A30000;
+
+    .donate-container {
+        background-size: contain;
+        height: 45rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #A30000;
             background-image: none; */
-        }
+    }
 }

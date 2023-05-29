@@ -131,19 +131,19 @@ const DonationsList = () => {
           </thead>
           <tbody>
           {donations.length == 0 ? (<tr>
-            <td colSpan='7'>Your cart is empty.</td>
+            <td colSpan='7'>No requests</td>
           </tr>) : (
             <>
               {donations.map((donation) =>
                 donation.request_id.map((request) => (
                   <tr key={request._id}>
                     <td>
-                      {request.donor_id.details_id.firstName}{" "}
-                      {request.donor_id.details_id.lastName}
+                      {request.donor_id.details_id?.firstName}{" "}
+                      {request.donor_id.details_id?.lastName}
                     </td>
-                    <td>{request.donor_id.details_id.email}</td>
-                    <td>{request.donor_id.details_id.phoneNumber}</td>
-                    <td>{request.donor_id.details_id.location}</td>
+                    <td>{request.donor_id.details_id?.email}</td>
+                    <td>{request.donor_id.details_id?.phoneNumber}</td>
+                    <td>{request.donor_id.details_id?.location}</td>
                     <td>{request.status}</td>
                     <td>
                       {request.status !== "accepted" && (

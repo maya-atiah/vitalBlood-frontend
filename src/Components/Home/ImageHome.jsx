@@ -18,10 +18,7 @@ const ImageHome = () => {
 
           <div className='team-text'>
             <h3> Donate A Blood</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              pulvinar dui nibh,
-            </p>
+            <p>Become an invaluable lifeline to someone in urgent need</p>
             <Link to='/donate' style={{ textDecoration: "none" }}>
               <button className='home-btn2'> Donate</button>
             </Link>
@@ -31,10 +28,7 @@ const ImageHome = () => {
           <img src={Event2} alt='request blood' />
           <div className='team-text'>
             <h3> Request A blood</h3>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              pulvinar dui nibh,
-            </p>
+            <p>Wait for someone to step forward and offer their assistance</p>
             <Link to='/request' style={{ textDecoration: "none" }}>
               <button className='home-btn2'> Request</button>
             </Link>

@@ -6,8 +6,11 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 
 const Donate = () => {
   const [loading, setLoading] = useState(true);
@@ -35,10 +38,10 @@ const Donate = () => {
         }
       );
       setUser(res.data);
-      setFirstName(res.data.details.firstName);
-      setLastName(res.data.details.lastName);
-      setBloodType(res.data.details.blood_type);
-      setPhoneNumber(res.data.details.phoneNumber);
+      setFirstName(res.data.details?.firstName);
+      setLastName(res.data.details?.lastName);
+      setBloodType(res.data.details?.blood_type);
+      setPhoneNumber(res.data.details?.phoneNumber);
       // setImage(res.data.details.image)
     } catch (error) {
       console.log("Error:", error);
@@ -122,28 +125,34 @@ const Donate = () => {
           // ref={form}
           onSubmit={handleSubmitDonation}
         >
-          <div>
+          <div className='donate-container-label'>
+            <label>First Name</label>
             <input
               name='firstName'
               placeholder='First Name'
               onChange={(e) => setFirstName(e.target.value)}
               value={firstName}
+              className='form--input'
               autoComplete='off'
             ></input>
           </div>
-          <div>
+          <div className='donate-container-label'>
+            <label>Last Name</label>
             <input
               name='lastName'
               placeholder='Last Name'
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
               autoComplete='off'
+              className='form--input'
             ></input>
           </div>
-          <div>
+          <div className='donate-container-label'>
+            <label>Phone Number</label>
             <input
               placeholder='Phone Number'
               name='phoneNumber'
+              className='form--input'
               // value={value}
               // onChange={setValue}
               value={phoneNumber}
@@ -151,21 +160,33 @@ const Donate = () => {
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
-          <div>
-            <DatePicker
-              selected={dateOfBirth}
-              onChange={(date) => setDateOfBirth(date)}
-              placeholderText='Date of Birth'
+          <div className='donate-container-label'>
+            <label>Date of Birth</label>
+
+            <input
+              type='date'
+              className='form--input'
+              placeholder='Date of Birth'
+              // className='form-input-signup'
+              required
+              onChange={(e) => setDateOfBirth(e.target.value)}
+              value={dateOfBirth}
             />
           </div>
-          <div>
-            <DatePicker
-              selected={dateNeeded}
-              onChange={(date) => setDateNeeded(date)}
-              placeholderText='Date for donation'
+          <div className='donate-container-label'>
+            <label>Date for Donation</label>
+            <input
+              type='date'
+              placeholder='Date for Donation'
+              // className='form-input-signup'
+              className='form--input'
+              required
+              onChange={(e) => setDateNeeded(e.target.value)}
+              value={dateNeeded}
             />
           </div>
-          <div>
+          <div className='donate-container-label'>
+            <label>Blood Type</label>
             <select
               className='select-doante'
               onChange={(e) => setBloodType(e.target.value)}
@@ -184,18 +205,20 @@ const Donate = () => {
             </select>
           </div>
 
-          <div>
+          <div className='donate-container-label'>
+            <label>Hospital</label>
             <input
               name='text'
               placeholder='Hospital'
               onChange={(e) => setHospital(e.target.value)}
               value={hospital}
               autoComplete='off'
+              className='form--input'
             ></input>
           </div>
           <div>
             <button className='contact-btn'>
-              {isLoading ? "Subitting..." : "Donate"}
+              {isLoading ? "Submitting..." : "Donate"}
             </button>
           </div>
         </form>

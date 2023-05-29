@@ -68,9 +68,10 @@
 .reject-button:hover {
     background-color: #a30000;
     color: #f2f1f0;
-    border: none;
+    /* border: none; */
 
 }
+
 
 .donationlist-mobile{
     display: none;
@@ -92,6 +93,12 @@
         font-weight: 500;
         color: #A30000;
         padding-right: 1rem;
+}
+.test1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
 }
 
 @media screen and (max-width:800px){

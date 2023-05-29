@@ -21,6 +21,7 @@ const UserProfile = () => {
   const [id_number, setIdNumber] = useState("");
   const [location, setLocation] = useState("");
   const [emergency_number, setEmergencyNumber] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   //****fetch user details  */
   const fetchUser = async () => {
@@ -66,12 +67,8 @@ const UserProfile = () => {
       console.error(error);
     }
   };
+  
 
-  //  const donate =[]
-  //  donate=  donations && donations.filter((data) => data.type === "donate")
-  //      ? donations.find((data) => data.type === "donate")
-  //      : null;
-// console.log('donate',donate)
   //***delete donation by id  */
   const deleteDonation = async (donationId) => {
     const token = secureLocalStorage.getItem("token");
@@ -95,49 +92,70 @@ const UserProfile = () => {
     }
   };
 
-  //***Update user information */
+
+  // ***Update user information
   const updateUser = async () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
-      await axios.put(
+      const formData = new FormData();
+      formData.append("phoneNumber", phoneNumber);
+      formData.append("id_number", id_number);
+      formData.append("marital_status", marital_status);
+       formData.append("location", location);
+      formData.append("emergency_number", emergency_number);
+      if (image) {
+        formData.append("image", image);
+      }
+ setIsLoading(true)
+      const response = await axios.put(
         "http://localhost:8000/api/user/updateUserProfile",
-        {
-          phoneNumber,
-          id_number,
-          emergency_number,
-          image,
-          marital_status,
-          location,
-        },
+        formData,
         {
           headers: {
             Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
           },
         }
       );
+
+      // Update the user state with the updated user information
+      setUser(response.data);
+
+      // Reset the form fields and image state
+      setPhoneNumber(response.data.details?.phoneNumber);
+      setMaritalStatus(response.data.details?.marital_status);
+      setIdNumber(response.data.details?.id_number);
+      setLocation(response.data.details?.location);
+      setEmergencyNumber(response.data.details?.emergency_number);
+      setImage(null);
+
+      // Show success message or perform any other actions
+      console.log("User information updated successfully!");
+    } catch (error) {
+      console.error("Error updating user information:", error);
+    } finally {
+      setIsLoading(false)
+    }
+  };
+
+  useEffect(() => {
+    if (show)
+      document.body.style.overflowY = 'hidden';
+    else
+      document.body.style.overflowY= 'scroll';
+
+   }, [show]);
+  const handleSubmitUpdate = async (e) => {
+    e.preventDefault();
+
+    try {
+      await updateUser();
+      setShow(false);
     } catch (error) {
       console.log("Error:", error);
     }
   };
-
-
-  // const handleSubmitUpdate = (e) => {
-  //   e.prevetDefault();
-  //   updateUser();
-  // };
-  
-   const handleSubmitUpdate = async (e) => {
-     e.preventDefault(); 
-
-     try {
-       await updateUser();
-       setShow(false); 
-     } catch (error) {
-       console.log("Error:", error);
-     }
-   };
-
 
   useEffect(() => {
     fetchUser();
@@ -145,12 +163,16 @@ const UserProfile = () => {
 
     setTimeout(() => {
       setLoading(false);
-    }, 4000);
+    }, 7000);
   }, []);
 
   if (loading) {
     return <Loader />;
   }
+
+   
+
+
 
   return (
     <div>
@@ -159,10 +181,10 @@ const UserProfile = () => {
           <div key={user._id} className='user-container'>
             <div className='user-image-container'>
               <h5> " Together, we can make a difference in someone's life "</h5>
-              {user.details_id.image ? (
+              {user.details?.image ? (
                 <img
                   className='user-profile'
-                  src={user.details_id.image}
+                  src={user.details?.image}
                   alt='User Image'
                 />
               ) : (
@@ -174,9 +196,9 @@ const UserProfile = () => {
               )}
               <h2>
                 <FaUser className='user-profile-icon-user' />{" "}
-                {user.details_id.firstName} {user.details_id.lastName}
+                {user.details_id?.firstName} {user.details_id?.lastName}
               </h2>
-              <h4>Email: {user.details_id.email}</h4>
+              <h4>Email: {user.details_id?.email}</h4>
               <button className='update-button' onClick={() => setShow(true)}>
                 Edit
               </button>
@@ -203,31 +225,31 @@ const UserProfile = () => {
                       {" "}
                       <p>
                         <span>Phone Number</span>
-                        {user.details_id.phoneNumber}{" "}
+                        {user.details?.phoneNumber}{" "}
                       </p>
                       <p>
-                        <span>Location</span> {user.details_id.location}
+                        <span>Location</span> {user.details?.location}
                       </p>
                       <p>
                         <span>Marital Status </span>
-                        {user.details_id.marital_status}
+                        {user.details?.marital_status}
                       </p>
                       <p>
-                        <span>Gender </span> {user.details_id.gender}
+                        <span>Gender </span> {user.details?.gender}
                       </p>{" "}
                       <p>
-                        <span>Id Number </span> {user.details_id.id_number}
+                        <span>Id Number </span> {user.details?.id_number}
                       </p>
                       <p>
                         <span>Blood Type</span>
-                        {user.details_id.blood_type}
+                        {user.details?.blood_type}
                       </p>{" "}
                       <p>
-                        <span>Nationality</span> {user.details_id.nationality}
+                        <span>Nationality</span> {user.details?.nationality}
                       </p>
                       <p>
                         <span>Emergency Number </span>
-                        {user.details_id.emergency_number}
+                        {user.details?.emergency_number}
                       </p>
                     </div>
                   </div>
@@ -332,7 +354,7 @@ const UserProfile = () => {
       <PopupUserEdit trigger={show} setTrigger={setShow}>
         {user && (
           <div key={user._id} className='user-container-popup'>
-            <div>
+            <div >
               <h4 className='title-user-popup'> User Edit Information</h4>
               <div className='user-details-container-popup'>
                 {/* user details */}
@@ -341,68 +363,68 @@ const UserProfile = () => {
                   onSubmit={handleSubmitUpdate}
                 >
                   <div className='user-details-titles-popup'>
-                    <h4>
-                      <span>Phone Number:</span>{" "}
+                    <div className='test1'>
+                      <div>Phone Number:</div>{" "}
                       <input
                         type='text'
                         name='phoneNumber'
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
                       />
-                    </h4>
-                    <h4>
-                      <span>Location:</span>{" "}
+                    </div>
+                    <div className='test1'>
+                      <div>Location:</div>{" "}
                       <input
                         type='text'
                         name='location'
                         value={location}
                         onChange={(e) => setLocation(e.target.value)}
                       />
-                    </h4>
-                    <h4>
-                      <span>Marital Status:</span>{" "}
+                    </div>
+                    <div className='test1'>
+                      <div>Marital Status:</div>{" "}
                       <input
                         type='text'
                         name='marital_status'
                         value={marital_status}
                         onChange={(e) => setMaritalStatus(e.target.value)}
                       />
-                    </h4>
+                    </div>
 
-                    <h4>
-                      <span>ID Number:</span>{" "}
+                    <div className='test1'>
+                      <div>ID Number:</div>{" "}
                       <input
                         type='text'
                         name='id_number'
                         value={id_number}
                         onChange={(e) => setIdNumber(e.target.value)}
                       />
-                    </h4>
+                    </div>
 
-                    <h4>
-                      <span>Emergency Number:</span>{" "}
+                    <div className='test1'>
+                      <div>Emergency Number:</div>{" "}
                       <input
                         type='text'
                         name='emergency_number'
                         value={emergency_number}
                         onChange={(e) => setEmergencyNumber(e.target.value)}
                       />
-                    </h4>
-                    <h4>
-                      <span>Image:</span>{" "}
+                    </div>
+                    <div className='test1'>
+                      <div>Image:</div>{" "}
                       <input
                         className='inputadd'
                         type='file'
                         onChange={(e) => {
                           const file = e.target.files[0];
-                          console.log(file); // Check the file object in the console
+                          // console.log(file); // Check the file object in the console
                           setImage(file);
                         }}
                       />
-                    </h4>
+                    </div>
                   </div>
                   <div className='submit-user-profile-div'>
-                    <button className='submit-user-profile'>Submit</button>
+                    <button className='submit-user-profile'>{isLoading ? "Submitting" : "Submit"}</button>
                   </div>
                 </form>
                 <div className='balloons-user-popup'>
