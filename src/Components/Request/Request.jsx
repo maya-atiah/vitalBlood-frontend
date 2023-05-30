@@ -8,11 +8,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Loader from "../../Loader/Loader";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const Request = () => {
 
   const [buttonPopup, setButtonPopup] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const navigate=useNavigate()
   
   const handleClickSubmit = () => {
     const token = secureLocalStorage.getItem("token");
@@ -20,7 +23,7 @@ const Request = () => {
    
     if (!token) {
       toast.error("You should login");
-      window.location.href = "/login";
+     navigate('/login')
       return;
     
     }

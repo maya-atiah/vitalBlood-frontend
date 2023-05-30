@@ -3,7 +3,7 @@ import Logo from "../../assets/images/logo.png";
 import Navbar from "../Navbar/Navbar";
 import { FaUserCircle } from "react-icons/fa";
 import "../Navhead/Navhead.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavbarMobile from "../Navbar/NavbarMobile";
 import { BiLogOut } from "react-icons/bi";
 import axios from "axios";
@@ -12,6 +12,7 @@ import secureLocalStorage from "react-secure-storage";
 const Navhead = (props) => {
   const [user, setUser] = useState();
 
+  const navigate=useNavigate()
   function isAuthenticated() {
       
   const token = secureLocalStorage.getItem('token');
@@ -41,7 +42,7 @@ const Navhead = (props) => {
   const handleLogout = () => {
     window.localStorage.clear();
     window.location.reload()
-    window.location.href='/'
+   navigate('/')
    
     props.setIsLoggedIn(false);
   };

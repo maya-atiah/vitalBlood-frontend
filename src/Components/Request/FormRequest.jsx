@@ -3,6 +3,7 @@ import "./FormRequest.css";
 import secureLocalStorage from "react-secure-storage";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 const FormRequest = ({setTrigger}) => {
@@ -19,14 +20,15 @@ const FormRequest = ({setTrigger}) => {
   const [numberOfUnits, setNumberOfUnits] = useState("");
 
   
-const [isLoading,setIsLoading]=useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const navigate=useNavigate()
   const handleSubmit = async (event) => {
     event.preventDefault(); 
 
     try {
       const token = secureLocalStorage.getItem("token");
       if (!token) {
-        window.location.href = "/login";
+      navigate('/login')
       }
    setIsLoading(true)
       await axios.post(
