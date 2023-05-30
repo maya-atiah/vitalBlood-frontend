@@ -6,24 +6,25 @@ import Request from "../../assets/images/request.png";
 import About from "../../assets/images/about-home.png";
 import ImageHome from "./ImageHome";
 import Loader from "../../Loader/Loader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
 
 const Home = (props) => {
   const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   const handleFormSubmit = (props) => {
     // Handle form submission logic here
   
-    window.location.href = "/donate";
+    navigate("/donate");
   };
 
   const handleRedirect = () => {
     // Handle redirect logic here
-  
-    window.location.href = "/feed";
+   navigate("/feed");
+   
   };
   const handleShowPopup = () => {
     setShowPopup(true);

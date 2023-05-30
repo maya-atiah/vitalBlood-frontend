@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
+import { useNavigate } from "react-router-dom";
 
 const Donate = () => {
   const [loading, setLoading] = useState(true);
@@ -18,6 +19,8 @@ const Donate = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsloading] = useState(false);
 
+
+  const navigate = useNavigate();
 
    function isAuthenticated() {
      const token = secureLocalStorage.getItem("token");
@@ -56,7 +59,7 @@ const Donate = () => {
       const token = secureLocalStorage.getItem("token");
       localStorage.setItem("path", "donate");
       if (!token) {
-        window.location.href = "/login";
+      navigate('/login')
       }
 
       if (!firstName || !lastName || !dateOfBirth || !bloodType || !hospital) {

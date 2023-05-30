@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import Event1 from '../../assets/images/event_1.jpg';
 import Event2 from '../../assets/images/event2.png';
 import '../Home/ImageHome.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BsFillBalloonHeartFill } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 
 const ImageHome = () => {
 
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
     const handleShowPopup = () => {
       setShowPopup(true);
@@ -22,14 +23,14 @@ const ImageHome = () => {
   const handleRedirect = () => {
     // Handle redirect logic here
    
-    window.location.href = "/feed";
+    navigate("/feed");
     handlescroll();
   };
 
    const handleFormSubmit = () => {
      // Handle form submission logic here
   
-     window.location.href = "/donate";
+   navigate('/donate')
      handlescroll();
    };
   

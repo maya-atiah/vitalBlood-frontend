@@ -7,12 +7,14 @@ import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { BiGitPullRequest } from "react-icons/bi";
+import { useNavigate } from "react-router-dom";
 
 const Feed = () => {
   const [donationRequests, setDonationRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
 
+   const navigate = useNavigate();
   //***FEtch donation requests */
   const fetchData = async () => {
     try {
@@ -33,7 +35,7 @@ const Feed = () => {
       const token = secureLocalStorage.getItem("token");
       secureLocalStorage.setItem("path", "feed");
       if (!token) {
-        window.location.href = "/login";
+      navigate('/login')
         return;
       }
 

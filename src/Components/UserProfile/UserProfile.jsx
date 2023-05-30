@@ -140,7 +140,7 @@ const UserProfile = () => {
       setImage(null);
 
       // Show success message or perform any other actions
-      console.log("User information updated successfully!");
+    
     } catch (error) {
       console.error("Error updating user information:", error);
     } finally {
