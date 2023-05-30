@@ -1,0 +1,136 @@
+.about-title-container {
+    background-color: #f2f1f0;
+    border-bottom-left-radius: 30% 10%;
+    border-bottom-right-radius: 30% 10%;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-title-container h3 {
+    color: #3D3D3D;
+    font-weight: 400;
+    padding-top: 0.5rem;
+}
+
+.about-details {
+    padding: 5rem 20rem 5rem 20rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.about-details p {
+    line-height: 35px;
+
+
+}
+
+.about-more-details-cards p {
+    text-align: center;
+}
+
+
+.about-details h3 {
+    color: #A30000;
+    font-size: 25px;
+}
+
+/* .about-details span{
+    border-bottom: solid 3px #3D3D3D ;
+} */
+.about-more-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* background-color: #f2f1f0; */
+    padding: 1rem 19rem 5rem;
+    gap: 2rem;
+
+}
+
+.about-more-details h4 {
+    color: #A30000;
+}
+
+.about-more-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #A30000;
+}
+
+.about-more-details-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 20px;
+    border-radius: 15px;
+    cursor: default;
+}
+
+.about-more-details-cards:hover {
+    box-shadow: rgba(0, 0, 0, 0.477) 0px 1px 4px;
+}
+
+.span2-about {
+    color: #A30000;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.span3-about {
+    color: #A30000;
+    font-weight: 400;
+
+}
+
+@media screen and (max-width:1320px) {
+    .about-details {
+        padding: 2rem 5rem;
+    }
+
+    .about-more-details {
+
+        padding: 2rem 5rem;
+    }
+
+}
+
+@media screen and (max-width:980px) {
+
+    .about-title-container h3 {
+        color: #3D3D3D;
+        font-weight: 400;
+        padding-top: 0.5rem;
+        max-width: 500px;
+    }
+
+}
+
+@media screen and (max-width:880px) {
+    .about-title-container {
+        height: 25rem;
+
+    }
+
+    .about-title h1,
+    .about-sub-title h3 {
+        text-align: center;
+    }
+
+    .about-details {
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .about-more-details {
+        padding: 2rem 1rem;
+        flex-direction: column;
+    }
+}

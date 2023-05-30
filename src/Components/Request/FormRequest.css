@@ -1,0 +1,146 @@
+.request-details-form-input {
+    display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+
+}
+
+.request-details-form-input-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.submit-request-btn {
+    background: #A30000;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 10px 30px;
+    text-align: center;
+    line-height: 0.5;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    text-transform: none;
+    border-radius: 30px;
+    transition: all 0.2s ease-in-out;
+    /* width: 8rem; */
+    margin: 1rem 2rem;
+}
+
+.fill-form-request {
+    color: #A30000;
+    padding-bottom: 1rem;
+}
+
+.form-request-textarea {
+    border-radius: 0;
+    width: 20rem;
+    gap: 1rem;
+    margin-bottom: 1.25em;
+    height: 90px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 0.8em;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+}
+
+.label-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin:0 1rem;
+}
+
+.label-input-container label {
+    font-size: 1rem;
+    color: #A30000
+}
+
+.form-container {
+    height: 500px;
+    overflow: auto
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    color: rgba(0, 0, 0, 0.87);
+    box-sizing: border-box;
+    background-color: white;
+    position: relative;
+    cursor: text;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+    padding-right: 14px;
+}
+.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    font: inherit;
+    letter-spacing: inherit;
+    color: currentColor;
+    padding: 7px 0 5px;
+    border: 0;
+    box-sizing: content-box;
+    background: none;
+    height: 0.4375em;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: block;
+    min-width: 0;
+    width: 100%;
+    -webkit-animation-name: mui-auto-fill-cancel;
+    animation-name: mui-auto-fill-cancel;
+    -webkit-animation-duration: 10ms;
+    animation-duration: 10ms;
+    padding: 20.5px 14px;
+    padding-right: 0;
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-error .MuiOutlinedInput-notchedOutline {
+    border-color: #8b8383!important;
+}
+.css-1xhypcz-MuiStack-root>.MuiTextField-root {
+    min-width: 200px;
+    width: 100%;
+}
+.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    color: rgb(109 105 105 / 87%)!important;
+    box-sizing: border-box;
+    position: relative;
+    cursor: text;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+    padding-right: 14px;
+}
+.css-1xhypcz-MuiStack-root {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-bottom: 1rem;
+}
+
+@media screen and (max-width:1592px) {}

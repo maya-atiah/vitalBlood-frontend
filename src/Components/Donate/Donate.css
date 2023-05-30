@@ -1,0 +1,150 @@
+.donate-container {
+    background-image: url('../../assets/images/donatewallpeaper.jpg');
+    background-repeat: round;
+    background-size: cover;
+    height: 55rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    /* border-bottom-left-radius: 30% 10%;
+            border-bottom-right-radius: 30% 10%;     */
+}
+
+.donate-subcontainer {
+    margin: 20rem;
+    background-color: #e5e5e5;
+    padding: 3rem;
+    border-radius: 25px;
+}
+
+.donate-form-container input {
+    border-radius: 0;
+    background-color: white;
+    border-color: transparent;
+    font-size: 1rem;
+    padding: 0.7rem;
+    width: 23rem;
+    border-radius: 10px;
+    margin: 0.7rem;
+
+}
+
+.donate-container-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.select-doante {
+    border-radius: 0;
+    background-color: white;
+    border-color: transparent;
+    font-size: 1rem;
+    padding: 0.7rem;
+    width: 23rem;
+    border-radius: 10px;
+    margin: 0.7rem;
+    color: #7d7c7c
+}
+
+.donate-container-label label {
+    color: #A30000;
+}
+
+@media screen and (max-width:1295px) {
+    .donate-container {
+
+        background-size: cover;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .donate-subcontainer {
+        margin: 2rem;
+
+    }
+}
+
+
+
+@media screen and (max-width:870px) {
+
+    .donate-subcontainer {
+        margin: 1rem;
+        background-color: #e5e5e5;
+        padding: 1rem;
+        border-radius: 25px;
+        margin: 0.8rem;
+        width: 100%;
+    }
+
+    .donate-container-label {
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .donate-subcontainer h1 {
+
+
+        font-size: 30px;
+        color: #A30000;
+
+    }
+
+    .donate-container-label label {
+        padding-left: 1rem;
+    }
+
+
+
+    .donate-form-container input,
+    .select-doante {
+        border-radius: 0;
+        background-color: white;
+        border-color: transparent;
+        font-size: 1rem;
+        padding: 0.5rem;
+        width: 100%;
+        border-radius: 10px;
+        margin: 0.5rem;
+    }
+
+
+    .contact-btn {
+        background: #A30000;
+        color: #ffffff;
+        border: 1px solid #A30000;
+        padding: 0 45px;
+        text-align: center;
+        cursor: pointer;
+        /* min-height: 44px; */
+        height: 29px;
+        line-height: 1.2;
+        vertical-align: top;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 17px;
+        text-transform: none;
+        border-radius: 20px;
+        transition: all 0.2s ease-in-out;
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+
+    .donate-container {
+        background-size: contain;
+        height: 45rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #A30000;
+            background-image: none; */
+    }
+}

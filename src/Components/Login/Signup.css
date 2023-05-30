@@ -1,0 +1,26 @@
+@media screen and (max-width:850px) {
+    .form-signup {
+        width: 100%;
+        background-color: white;
+        padding: 3.125em;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        box-shadow: 0px 0px 0px 0px;
+        height: auto;
+
+    }
+
+    .signup-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+
+
+    .select-signup {
+        margin-bottom: 1.25em;
+    }
+
+}

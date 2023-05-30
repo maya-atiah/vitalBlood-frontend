@@ -1,0 +1,134 @@
+.volunteers-title-container {
+    background-color: #f2f1f0;
+    border-bottom-left-radius: 30% 10%;
+    border-bottom-right-radius: 30% 10%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.image-center {
+    background-image: url('../../assets/images/volunteers.png');
+    background-repeat: round;
+    background-size: cover;
+    width: 40rem;
+    height: 30rem;
+
+}
+
+.no-volunteers {
+    font-size: 20px;
+    color: #A30000;
+    font-weight: 500;
+
+}
+
+.table-volunteers {
+    position: relative;
+    max-height: 500px;
+    /* Adjust the height as needed */
+    overflow-y: auto;
+    top: -60px;
+    background: #fff;
+    border: 1px solid #ededed;
+    border-radius: 6px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: inset 0 0 0 1px rgba(143, 160, 241, .2), 0 10px 20px rgba(213, 220, 247, .59);
+}
+
+.table-volunteers table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table-volunteers table tr:last-child {
+    border-bottom: none !important;
+}
+
+.table-volunteers table th {
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 20px;
+}
+
+.table-volunteers tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+
+}
+
+
+.table-volunteers table tr {
+    position: relative;
+    border-bottom: 1px solid #ededed;
+
+}
+
+.table-volunteers table td {
+    padding: 10px 20px;
+
+}
+
+.table-volunteers table td,
+.table-volunteers table th {
+    position: relative;
+    vertical-align: middle;
+}
+
+.table-volunteers table img {
+    border-radius: 1000px;
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+.image-user-volunteer {
+    height: 40px;
+
+}
+
+.td-image {
+    display: flex;
+    align-items: center;
+    gap: 10px
+}
+
+@media screen and (max-width:850px) {
+    .table-volunteers {
+        position: none;
+        top: 0;
+
+    }
+
+    .table-volunteers {
+        max-height: none;
+        overflow-y: auto;
+    }
+
+    .volunteers-title-container {
+        height: 13rem;
+    }
+
+    .volunteers-title-container h4 {
+        text-align: center;
+    }
+
+    .volunteers-title-container h1 {
+
+        text-align: center;
+        font-size: 40px;
+
+    }
+
+    .table-volunteers table td {
+        padding: 7px 12px;
+    }
+}

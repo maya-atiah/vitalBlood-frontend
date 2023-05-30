@@ -1,22 +1,27 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    height: 60px;
+    height: 55px;
     max-width: 1355px;
-    font-size:17px;
+    font-size:18px;
     gap: 2rem;
     align-items: center;
     justify-content: space-between;
 }
 .navbar div:hover{
-    border-bottom: 2px solid #A30000;
+   color: #A30000;
     cursor: pointer;
-    
     
 }
 
 .navbar .navbar-divstyle {
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     padding: 5px !important;
     color: #3D3D3D;
+}
+
+
+.active {
+    border-bottom: 2px solid #A30000;
+   
 }

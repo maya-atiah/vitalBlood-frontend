@@ -1,0 +1,325 @@
+.user-container {
+    display: flex;
+    flex-direction: row;
+    margin: 5rem;
+    /* gap: 20rem; */
+    /* margin: 5rem 1rem 5rem 15rem; */
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.user-profile {
+    width: 200px;
+    height: 200px;
+    border-radius: 1000px;
+box-shadow: #A30000 0px 1px 4px;
+    margin-top: 5rem
+}
+
+.user-container input {
+    border-radius: 0;
+    background-color: #e5e5e5;
+    border-color: transparent;
+    font-size: 1rem;
+    padding: 0.7rem;
+    width: 23rem;
+    border-radius: 10px;
+
+}
+
+.user-image-container {
+    height: 50rem;
+    background-color: #f2f1f0;
+    border-radius: 25px;
+    margin: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    align-items: center;
+}
+
+
+.user-image-container h2 {
+    color: #A30000;
+}
+
+.update-button {
+    background: #A30000;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 0 45px;
+    text-align: center;
+    cursor: pointer;
+    min-height: 44px;
+    height: 40px;
+    line-height: 1.2;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 20px;
+    text-transform: none;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    width: fit-content;
+}
+
+.update-button:hover {
+    background-color: transparent;
+    color: #A30000;
+    border-color: #A30000;
+    transform: scale(1.1);
+}
+
+.user-details-container {
+    BACKGROUND-COLOR: #f2f1f0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    margin: 1rem;
+    /* width: 60rem; */
+    /* gap: 3rem; */
+    /* width: 100%; */
+    padding: 2rem;
+    align-items: flex-start;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px
+}
+
+.user-details {
+    /* display: flex; */
+    flex-direction: column;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.user-image-container h5 {
+    letter-spacing: 2px;
+    color: #A30000;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+
+.user-details-titles {
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1px;
+}
+
+.icon-user-profile-heart {
+    color: #A30000;
+    font-size: 20px;
+    margin: 0.5rem;
+}
+
+.donationlist-container {
+    padding: 1rem;
+    /* border-top: 3px solid white;
+    border-bottom: 3px solid white; */
+}
+
+.user-profile-icon-user {
+    color: #A30000;
+    font-size: 20px;
+    margin-right: 0.5rem;
+}
+
+.donation-container-user-card {
+    /* width: 15rem; */
+    border-radius: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 1rem;
+    background-color: white;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px;
+}
+
+.user-details-titles span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #A30000;
+    padding-right: 1rem;
+}
+
+.user-details-titles h4,
+.user-image-container h4 {
+    font-size: 16px;
+    font-weight: 500;
+    /* letter-spacing: 2px;  */
+}
+
+.donation-container-user {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 40px;
+    padding-top: 1rem;
+}
+
+.donation-container-user span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #A30000;
+    padding-right: 1rem;
+}
+
+.donation-subcontainer-user {
+    /*background-color: white;
+    */
+    /* padding: 1rem; */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column-reverse;
+    /* gap: 1rem;*/
+}
+
+.user-details h4 {
+    padding-bottom: 1rem;
+
+}
+
+.delete-button {
+    background: #A30000;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+    /* min-height: 44px; */
+    height: 30px;
+    line-height: 1;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    text-transform: none;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    width: -moz-fit-content;
+    margin-top: 0.8rem;
+}
+
+.delete-button:hover {
+    background-color: transparent;
+    color: #A30000;
+    border-color: #A30000;
+    transform: scale(1.1);
+}
+
+.test1 {
+    width: 100%;
+    border-bottom: 3px solid white;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
+.inputadd {
+
+    background-color: #e5e5e5;
+    border-color: transparent;
+    font-size: 0.6rem !important;
+    padding: 0.7rem !important;
+    width: 23rem;
+    border-radius: 10px;
+}
+
+.submit-user-profile {
+    background: #A30000;
+    color: #ffffff;
+    border: 1px solid #A30000;
+    padding: 0 10px;
+    text-align: center;
+    cursor: pointer;
+    /* min-height: 44px; */
+    height: 30px;
+    line-height: 1;
+    vertical-align: top;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 18px;
+    text-transform: none;
+    border-radius: 20px;
+    transition: all 0.2s ease-in-out;
+    width: -moz-fit-content;
+    margin-top: 0.8rem;
+}
+
+.submit-user-profile-div {
+    text-align: center;
+}
+
+@media screen and (max-width:1390px) {
+    .user-container {
+        display: flex;
+        flex-direction: row;
+        margin: 1rem;
+    }
+
+    .user-details-container {
+        padding: 1rem;
+
+    }
+}
+
+@media screen and (max-width:1214px) {
+    .user-container {
+        display: flex;
+        flex-direction: column;
+        margin: 5rem;
+        /* gap: 20rem; */
+        /* margin: 5rem 1rem 5rem 15rem; */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-image-container {
+        height: auto;
+        width: 95%;
+    }
+
+    .user-profile {
+
+        margin-top: 1rem;
+    }
+
+    .user-details-container {
+        padding: 1rem;
+        width: 95%;
+    }
+}
+
+@media screen and (max-width:800px) {
+    .user-container {
+        margin: 0.5rem;
+    }
+
+    .user-image-container {
+
+        margin: 1rem;
+        padding: 1rem;
+
+    }
+
+    .user-details-titles {
+        /* display: flex; */
+        display: block;
+        grid-template-columns: auto auto auto;
+        gap: 1px;
+    }
+
+    .user-details-container {
+        padding: 0.5rem;
+        width: 100%;
+    }
+        .donation-container-user {
+            display: block;
+          
+            padding-top: 0rem;
+        }
+
+}

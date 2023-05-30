@@ -1,0 +1,70 @@
+.navlink-mobile {
+    height: calc(100vh - 77px);
+        /* height: max-content; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.8vh;
+        font-weight: 500;
+        padding: 10px 10px;
+        color: #A30000;
+        background-color: white;
+        /* margin-left: -1rem; */
+        z-index: 1000;
+        font-size: 22px;
+        width: 100%;
+        /* justify-content: space-between;   */
+        /* opacity: 0.95; */
+    
+
+}
+
+.navbar-divstyle{
+    color:#3D3D3D;
+
+}
+.navbar-divstyle:hover{
+    color:white;
+
+}
+.one{
+    padding: 0.6rem;
+}
+.one:hover{
+    background-color: #A30000;
+    width: 100%;
+
+ 
+}
+
+.navbar-mobile-container {
+    margin-right: 0.2rem;
+    background-color: transparent;
+    /* top: 90%;
+    width: 100%; */
+    left: 0;
+    right: 0;
+    top: 90%;
+    transition: 0.2s;
+    text-align: center;
+    position: absolute;
+    transition: 0.8s;
+    z-index: 10000;
+  
+
+}
+.login-home-mobile{
+    /* display: flex;
+        flex-direction: row; */
+        gap: 1rem;
+        font-size: 20px;
+        color: #3D3D3D;
+        align-items: center;
+}
+
+/* .login-home-mobile :hover{
+    color:white
+} */
+
+
+

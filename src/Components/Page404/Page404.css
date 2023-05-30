@@ -1,0 +1,118 @@
+.pageerror-container{
+background-color: #A30000;
+height:50rem;
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+}
+
+.pageerror-subcontainer{
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+
+align-items: center
+}
+
+.pageerror-subcontainer h1{
+    color: #f2f1f0;
+}
+
+.pageerror-subcontainer button{
+    background: #f2f1f0;
+        color: #A30000;
+        border: 1px solid #A30000;
+        padding: 5px 40px;
+        text-align: center;
+        cursor: pointer;
+        min-height: 44px;
+        height: 40px;
+        line-height: 1.2;
+        vertical-align: top;
+        font-weight: 500;
+        font-style: normal;
+        font-size: 20px;
+        text-transform: none;
+        border-radius: 20px;
+        transition: all 0.2s ease-in-out;
+        width: -moz-fit-content;
+        width: fit-content;
+        margin: 1rem;
+}
+
+.pageerror-subcontainer button:hover {
+
+    background-color: transparent;
+    color: #f2f1f0;
+    border-color: #f2f1f0;
+    transform: scale(1.1);
+
+}
+.loader2 {
+    width: 175px;
+    height: 80px;
+    display: block;
+    margin: auto;
+    background-image: radial-gradient(circle 25px at 25px 25px, #f2f1f0 100%, transparent 0), radial-gradient(circle 50px at 50px 50px, #f2f1f0 100%, transparent 0), radial-gradient(circle 25px at 25px 25px, #f2f1f0 100%, transparent 0), linear-gradient(#f2f1f0 50px, transparent 0);
+    background-size: 50px 50px, 100px 76px, 50px 50px, 120px 40px;
+    background-position: 0px 30px, 37px 0px, 122px 30px, 25px 40px;
+    background-repeat: no-repeat;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.loader2::before {
+    content: '';
+    left: 60px;
+    bottom: 18px;
+    position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #A30000;
+    background-image: radial-gradient(circle 8px at 18px 18px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 18px 0px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 0px 18px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 36px 18px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 18px 36px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 30px 5px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 30px 5px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 30px 30px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 5px 30px, #f2f1f0 100%, transparent 0), radial-gradient(circle 4px at 5px 5px, #f2f1f0 100%, transparent 0);
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    animation: rotationBack 3s linear infinite;
+}
+
+.loader2::after {
+    content: '';
+    left: 94px;
+    bottom: 15px;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #A30000;
+    background-image: radial-gradient(circle 5px at 12px 12px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 12px 0px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 0px 12px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 24px 12px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 12px 24px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 20px 3px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 20px 3px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 20px 20px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 3px 20px, #FFF 100%, transparent 0), radial-gradient(circle 2.5px at 3px 3px, #FFF 100%, transparent 0);
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    animation: rotationBack 4s linear infinite reverse;
+}
+
+@keyframes rotationBack {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-180deg);
+    }
+}
+
+@media screen  and (max-width:850px){
+    .pageerror-container {
+            background-color: #A30000;
+            height: 40rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+                .pageerror-subcontainer h1 {
+                    color: #f2f1f0;
+                    font-size: 30px;
+                }
+}
