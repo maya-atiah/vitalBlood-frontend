@@ -15,7 +15,10 @@ const Signin = ({ onSignupClick }) => {
 
   const fetchLogin = async () => {
     axios
-      .post("http://localhost:8000/api/user/login", { email, password })
+      .post("https://vital-blood.onrender.com/api/user/login", {
+        email,
+        password,
+      })
       .then((res) => {
         secureLocalStorage.setItem("token", res.data.token);
         secureLocalStorage.setItem("loggedIn", true);
@@ -89,7 +92,7 @@ const Signin = ({ onSignupClick }) => {
           />
         </div>
         <div onClick={() => onSignupClick()} className='dont-have'>
-         Signup!
+          Signup!
         </div>
         <button className='form--submit'>Sign in</button>
       </form>

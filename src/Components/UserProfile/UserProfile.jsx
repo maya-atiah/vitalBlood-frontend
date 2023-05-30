@@ -23,19 +23,18 @@ const UserProfile = () => {
   const [emergency_number, setEmergencyNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-
   function isAuthenticated() {
     const token = secureLocalStorage.getItem("token");
     return token !== null;
   }
- 
+
   //****fetch user details  */
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/user/getuserbyid",
+        "https://vital-blood.onrender.com/api/user/getuserbyid",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -60,7 +59,7 @@ const UserProfile = () => {
 
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/donation/getDonationsByUser",
+        "https://vital-blood.onrender.com/api/donation/getDonationsByUser",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -73,16 +72,15 @@ const UserProfile = () => {
       console.error(error);
     }
   };
-  
 
   //***delete donation by id  */
   const deleteDonation = async (donationId) => {
     const token = secureLocalStorage.getItem("token");
 
     try {
-      setLoading(true)
+      setLoading(true);
       await axios.delete(
-        `http://localhost:8000/api/donation/deleteDonationById/${donationId}`,
+        `https://vital-blood.onrender.com/api/donation/deleteDonationById/${donationId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -97,10 +95,9 @@ const UserProfile = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
-
 
   // ***Update user information
   const updateUser = async () => {
@@ -111,14 +108,14 @@ const UserProfile = () => {
       formData.append("phoneNumber", phoneNumber);
       formData.append("id_number", id_number);
       formData.append("marital_status", marital_status);
-       formData.append("location", location);
+      formData.append("location", location);
       formData.append("emergency_number", emergency_number);
       if (image) {
         formData.append("image", image);
       }
- setIsLoading(true)
+      setIsLoading(true);
       const response = await axios.put(
-        "http://localhost:8000/api/user/updateUserProfile",
+        "https://vital-blood.onrender.com/api/user/updateUserProfile",
         formData,
         {
           headers: {
@@ -144,25 +141,21 @@ const UserProfile = () => {
     } catch (error) {
       console.error("Error updating user information:", error);
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
-  
   useEffect(() => {
-    if (show)
-      document.body.style.overflowY = 'hidden';
-    else
-      document.body.style.overflowY= 'scroll';
-
-   }, [show]);
+    if (show) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "scroll";
+  }, [show]);
   const handleSubmitUpdate = async (e) => {
     e.preventDefault();
 
     try {
       await updateUser();
       setShow(false);
-      window.location.reload()
+      window.location.reload();
     } catch (error) {
       console.log("Error:", error);
     }
@@ -179,14 +172,9 @@ const UserProfile = () => {
     }, 7000);
   }, []);
 
-
   if (loading) {
     return <Loader />;
   }
-
-   
-
-
 
   return (
     <div>
@@ -314,7 +302,7 @@ const UserProfile = () => {
                                         className='delete-button'
                                         onClick={() => deleteDonation(item._id)}
                                       >
-                                      {loading ? 'Deleting' : 'Delete'}
+                                        {loading ? "Deleting" : "Delete"}
                                       </button>
                                     </div>
                                   </div>
@@ -361,7 +349,7 @@ const UserProfile = () => {
       <PopupUserEdit trigger={show} setTrigger={setShow}>
         {user && (
           <div key={user._id} className='user-container-popup'>
-            <div >
+            <div>
               <h4 className='title-user-popup'> User Edit Information</h4>
               <div className='user-details-container-popup'>
                 {/* user details */}
@@ -431,7 +419,9 @@ const UserProfile = () => {
                     </div>
                   </div>
                   <div className='submit-user-profile-div'>
-                    <button className='submit-user-profile'>{isLoading ? "Submitting" : "Submit"}</button>
+                    <button className='submit-user-profile'>
+                      {isLoading ? "Submitting" : "Submit"}
+                    </button>
                   </div>
                 </form>
                 <div className='balloons-user-popup'>

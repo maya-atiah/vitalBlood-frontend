@@ -19,19 +19,19 @@ const Donate = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsloading] = useState(false);
 
-const navigate=useNavigate()
-   function isAuthenticated() {
-     const token = secureLocalStorage.getItem("token");
-     return token !== null;
-   }
-  
+  const navigate = useNavigate();
+  function isAuthenticated() {
+    const token = secureLocalStorage.getItem("token");
+    return token !== null;
+  }
+
   //****fetch user details  */
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/user/getuserbyid",
+        "https://vital-blood.onrender.com/api/user/getuserbyid",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const navigate=useNavigate()
       const token = secureLocalStorage.getItem("token");
       localStorage.setItem("path", "donate");
       if (!token) {
-       navigate('/login')
+        navigate("/login");
       }
 
       if (!firstName || !lastName || !dateOfBirth || !bloodType || !hospital) {
@@ -68,7 +68,7 @@ const navigate=useNavigate()
       }
       setIsloading(true);
       const response = await axios.post(
-        "http://localhost:8000/api/donation/createDonation",
+        "https://vital-blood.onrender.com/api/donation/createDonation",
         {
           firstName,
           lastName,
@@ -83,7 +83,7 @@ const navigate=useNavigate()
           },
         }
       );
-    
+
       setFirstName("");
       setLastName("");
       setDateOfBirth("");
@@ -106,9 +106,9 @@ const navigate=useNavigate()
 
   useEffect(() => {
     // Simulate loading for 3 seconds
-      if (isAuthenticated()) {
-        fetchUser();
-      }
+    if (isAuthenticated()) {
+      fetchUser();
+    }
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -136,7 +136,7 @@ const navigate=useNavigate()
               value={firstName}
               className='form--input'
               autoComplete='off'
-               required={true} 
+              required={true}
             ></input>
           </div>
           <div className='donate-container-label'>
@@ -147,7 +147,7 @@ const navigate=useNavigate()
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
               autoComplete='off'
-               required={true} 
+              required={true}
               className='form--input'
             ></input>
           </div>
@@ -161,7 +161,7 @@ const navigate=useNavigate()
               // onChange={setValue}
               value={phoneNumber}
               autoComplete='off'
-               required={true} 
+              required={true}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
@@ -173,7 +173,7 @@ const navigate=useNavigate()
               className='form--input'
               placeholder='Date of Birth'
               // className='form-input-signup'
-               required={true} 
+              required={true}
               onChange={(e) => setDateOfBirth(e.target.value)}
               value={dateOfBirth}
             />
@@ -185,7 +185,7 @@ const navigate=useNavigate()
               placeholder='Date for Donation'
               // className='form-input-signup'
               className='form--input'
-               required={true} 
+              required={true}
               onChange={(e) => setDateNeeded(e.target.value)}
               value={dateNeeded}
             />
@@ -197,7 +197,7 @@ const navigate=useNavigate()
               onChange={(e) => setBloodType(e.target.value)}
               value={bloodType}
               name='blood_type'
-               required={true} 
+              required={true}
             >
               <option value='0'>Blood Type</option>
               <option value='A+'>A+</option>
@@ -220,7 +220,7 @@ const navigate=useNavigate()
               value={hospital}
               autoComplete='off'
               className='form--input'
-               required={true} 
+              required={true}
             ></input>
           </div>
           <div>

@@ -14,12 +14,12 @@ const Feed = () => {
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState("");
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   //***FEtch donation requests */
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/donation/getAllDonationRequest"
+        "https://vital-blood.onrender.com/api/donation/getAllDonationRequest"
       );
       setDonationRequests(response.data);
     } catch (error) {
@@ -27,15 +27,13 @@ const Feed = () => {
     }
   };
 
-
-
   ///****Requesting to donate****/////
   const donateRequest = async (donationRequestId, index) => {
     try {
       const token = secureLocalStorage.getItem("token");
       secureLocalStorage.setItem("path", "feed");
       if (!token) {
-      navigate('/login')
+        navigate("/login");
         return;
       }
 
@@ -52,8 +50,8 @@ const Feed = () => {
         )
       );
 
-       await axios.post(
-        `http://localhost:8000/api/donation/donateToRequest/${donationRequestId}`,
+      await axios.post(
+        `https://vital-blood.onrender.com/api/donation/donateToRequest/${donationRequestId}`,
         {},
         {
           headers: {
@@ -91,7 +89,6 @@ const Feed = () => {
     }
   };
 
- 
   //**useEffect */
   useEffect(() => {
     fetchData();

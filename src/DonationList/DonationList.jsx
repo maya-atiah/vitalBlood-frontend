@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
-import '../DonationList/DonationList.css'
+import "../DonationList/DonationList.css";
 
 const DonationsList = () => {
-
-  
   const [donations, setDonations] = useState([]);
-  const [loading,setLoading]=useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchDonations();
@@ -17,9 +15,9 @@ const DonationsList = () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.get(
-        "http://localhost:8000/api/donation/getDonationsByUser",
+        "https://vital-blood.onrender.com/api/donation/getDonationsByUser",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,7 +29,7 @@ const DonationsList = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -44,7 +42,7 @@ const DonationsList = () => {
         [requestId]: true,
       }));
       const response = await axios.post(
-        `http://localhost:8000/api/donation/acceptDonationRequest/${donationRequestId}`,
+        `https://vital-blood.onrender.com/api/donation/acceptDonationRequest/${donationRequestId}`,
         {
           requestId,
           status: "accepted",
@@ -95,7 +93,7 @@ const DonationsList = () => {
         [requestId]: true,
       }));
       const response = await axios.post(
-        `http://localhost:8000/api/donation/acceptDonationRequest/${donationRequestId}`,
+        `https://vital-blood.onrender.com/api/donation/acceptDonationRequest/${donationRequestId}`,
         {
           requestId,
           status: "rejected",
@@ -196,7 +194,6 @@ const DonationsList = () => {
                           {loading[request._id] ? "Waiting" : "Reject"}
                         </button>
                       )}
-              
                     </td>
                   </tr>
                 ))

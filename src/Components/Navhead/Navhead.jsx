@@ -12,19 +12,17 @@ import secureLocalStorage from "react-secure-storage";
 const Navhead = (props) => {
   const [user, setUser] = useState();
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   function isAuthenticated() {
-      
-  const token = secureLocalStorage.getItem('token');
-  return token !== null;
-}
-  
-  
+    const token = secureLocalStorage.getItem("token");
+    return token !== null;
+  }
+
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
     try {
       const res = await axios.get(
-        "http://localhost:8000/api/user/getuserbyid",
+        "https://vital-blood.onrender.com/api/user/getuserbyid",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -37,13 +35,11 @@ const Navhead = (props) => {
     }
   };
 
-  
-
   const handleLogout = () => {
     window.localStorage.clear();
-    window.location.reload()
-   navigate('/')
-   
+    window.location.reload();
+    navigate("/");
+
     props.setIsLoggedIn(false);
   };
 

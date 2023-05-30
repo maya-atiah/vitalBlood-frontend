@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "../Volunteers/Volunteers.css";
 import LogoImageRequest from "../../assets/images/logoImageRequest.png";
-import Apositive from '../../assets/images/apositive.png'
-import Opositive from '../../assets/images/oposblood.png'
-import ABpositive from '../../assets/images/abpositive.png'
-import Bpositive from '../../assets/images/bpositove.png'
-import Anegative from '../../assets/images/Anegative.png'
-import Bnegative from '../../assets/images/bnegative2.png'
-import ABnegative from '../../assets/images/abnegative.png'
-import Onegative from '../../assets/images/onegative.png'
+import Apositive from "../../assets/images/apositive.png";
+import Opositive from "../../assets/images/oposblood.png";
+import ABpositive from "../../assets/images/abpositive.png";
+import Bpositive from "../../assets/images/bpositove.png";
+import Anegative from "../../assets/images/Anegative.png";
+import Bnegative from "../../assets/images/bnegative2.png";
+import ABnegative from "../../assets/images/abnegative.png";
+import Onegative from "../../assets/images/onegative.png";
 import { MdOutlineVolunteerActivism, MdOutlineBloodtype } from "react-icons/md";
-import {GoLocation} from 'react-icons/go'
+import { GoLocation } from "react-icons/go";
 import axios from "axios";
 import Loader from "../../Loader/Loader";
 
 const Volunteers = () => {
-
   const [volunteers, setVolunteers] = useState([]);
-   const [loading, setLoading] = useState(true);
-  
+  const [loading, setLoading] = useState(true);
+
   const ImageFunction = (blood) => {
     let image;
     if (blood == "A+") {
@@ -38,32 +37,33 @@ const Volunteers = () => {
     } else if (blood == "AB-") {
       image = ABnegative;
     }
-     return <img src={image} alt='User Blood Group' />;
-  }
+    return <img src={image} alt='User Blood Group' />;
+  };
 
   const fetchVolunteers = async () => {
     try {
-      const res = await axios.get("http://localhost:8000/api/user/getAllUsers");
+      const res = await axios.get(
+        "https://vital-blood.onrender.com/api/user/getAllUsers"
+      );
       setVolunteers(res.data.users);
     } catch (error) {
       console.log("Error:", error);
     }
+  };
+
+  console.log(volunteers);
+
+  useEffect(() => {
+    fetchVolunteers();
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 5000);
+  }, []);
+
+  if (loading) {
+    return <Loader />;
   }
-
-console.log(volunteers)
-  
- useEffect(() => {
-   fetchVolunteers();
-   
-
-   setTimeout(() => {
-     setLoading(false);
-   }, 5000);
- }, []);
-
- if (loading) {
-   return <Loader />;
- }
 
   return (
     <div className='volunnteers-container'>
@@ -92,7 +92,9 @@ console.log(volunteers)
           <tbody>
             {volunteers.length == 0 ? (
               <tr>
-                <td colSpan='7' className="no-volunteers">No Volunteers</td>
+                <td colSpan='7' className='no-volunteers'>
+                  No Volunteers
+                </td>
               </tr>
             ) : (
               <>
@@ -127,8 +129,6 @@ console.log(volunteers)
                   })}
               </>
             )}
-
-    
           </tbody>
         </table>
       </div>

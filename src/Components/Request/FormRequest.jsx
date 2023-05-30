@@ -5,9 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-
-const FormRequest = ({setTrigger}) => {
-
+const FormRequest = ({ setTrigger }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
@@ -19,20 +17,19 @@ const FormRequest = ({setTrigger}) => {
   const [levelOfEmergency, setLeveOfEmergency] = useState("");
   const [numberOfUnits, setNumberOfUnits] = useState("");
 
-  
-  const [isLoading, setIsLoading] = useState(false)
-  const navigate=useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
 
     try {
       const token = secureLocalStorage.getItem("token");
       if (!token) {
-      navigate('/login')
+        navigate("/login");
       }
-   setIsLoading(true)
+      setIsLoading(true);
       await axios.post(
-        "http://localhost:8000/api/donation/createRequest",
+        "https://vital-blood.onrender.com/api/donation/createRequest",
         {
           firstName,
           lastName,
@@ -51,7 +48,6 @@ const FormRequest = ({setTrigger}) => {
           },
         }
       );
-      
 
       setFirstName("");
       setLastName("");
@@ -65,17 +61,17 @@ const FormRequest = ({setTrigger}) => {
       setNumberOfUnits("");
       // setEmergencyNumber("");
 
-    toast.success("Your blood request is submitted successfully", {
-      className: "toast success",
-    });
+      toast.success("Your blood request is submitted successfully", {
+        className: "toast success",
+      });
       setTrigger(false);
     } catch (error) {
       console.error(error);
       toast.error("There is something wrong. Try again", {
-        className: "toast error", 
+        className: "toast error",
       });
-    } finally{
-      setIsLoading(false)
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -91,7 +87,7 @@ const FormRequest = ({setTrigger}) => {
                 type='text'
                 placeholder='First Name'
                 className='form-input-signup'
-                 required={true} 
+                required={true}
                 onChange={(e) => setFirstName(e.target.value)}
                 value={firstName}
               />
@@ -102,7 +98,7 @@ const FormRequest = ({setTrigger}) => {
                 type='text'
                 placeholder='Last Name'
                 className='form-input-signup'
-                 required={true} 
+                required={true}
                 onChange={(e) => setLastName(e.target.value)}
                 value={lastName}
               />
@@ -113,7 +109,7 @@ const FormRequest = ({setTrigger}) => {
                 type='date'
                 placeholder='Last Name'
                 className='form-input-signup'
-                 required={true} 
+                required={true}
                 onChange={(e) => setDateOfBirth(e.target.value)}
                 value={dateOfBirth}
               />
@@ -126,7 +122,7 @@ const FormRequest = ({setTrigger}) => {
                 className='select-signup'
                 onChange={(e) => setCaseType(e.target.value)}
                 value={caseType}
-                 required={true} 
+                required={true}
               >
                 <option value='0'>Case Type</option>
                 <option value='Accident'>Accident</option>
@@ -142,12 +138,11 @@ const FormRequest = ({setTrigger}) => {
                 type='text'
                 placeholder='Case Details'
                 className='form-request-textarea'
-                 required={true} 
+                required={true}
                 onChange={(e) => setCaseDetails(e.target.value)}
                 value={caseDetails}
               ></textarea>
             </div>
-
           </div>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
@@ -156,7 +151,7 @@ const FormRequest = ({setTrigger}) => {
                 className='select-signup'
                 onChange={(e) => setBloodType(e.target.value)}
                 value={bloodType}
-                 required={true} 
+                required={true}
               >
                 <option value='0'>BLood Type</option>
                 <option value='A+'>A+</option>
@@ -176,7 +171,7 @@ const FormRequest = ({setTrigger}) => {
                 type='date'
                 placeholder='Last Name'
                 className='form-input-signup'
-                 required={true} 
+                required={true}
                 onChange={(e) => setDateNeeded(e.target.value)}
                 value={dateNeeded}
               />
@@ -189,7 +184,7 @@ const FormRequest = ({setTrigger}) => {
                 type='text'
                 placeholder='Hospital'
                 className='form-input-signup'
-                 required={true} 
+                required={true}
                 onChange={(e) => setHospital(e.target.value)}
                 value={hospital}
               />
@@ -201,7 +196,7 @@ const FormRequest = ({setTrigger}) => {
                 onChange={(e) => setLeveOfEmergency(e.target.value)}
                 value={levelOfEmergency}
                 placeholder='Level of Emergency'
-                 required={true} 
+                required={true}
               >
                 <option value='0'>level Of Emergency</option>
                 <option value='Urgent'>Urgent</option>
@@ -214,7 +209,7 @@ const FormRequest = ({setTrigger}) => {
                 type='number'
                 placeholder='Number of blood Units'
                 className='form-input-signup'
-                 required={true} 
+                required={true}
                 onChange={(e) => setNumberOfUnits(e.target.value)}
                 value={numberOfUnits}
               />

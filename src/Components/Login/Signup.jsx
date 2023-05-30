@@ -42,7 +42,7 @@ const Signup = ({ onBackToLoginClick }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/user/register",
+        "https://vital-blood.onrender.com/api/user/register",
         {
           firstName,
           lastName,
@@ -86,22 +86,21 @@ const Signup = ({ onBackToLoginClick }) => {
       const path = localStorage.getItem("path");
 
       if (path === "request") {
-      navigate("/request");
-      localStorage.removeItem("path");
-      window.location.reload();
-    } else if (path === "donate") {
-      navigate("/donate");
-      localStorage.removeItem("path");
-      window.location.reload();
-    } else if (path === "feed") {
-      navigate("/feed");
-      localStorage.removeItem("path");
-      window.location.reload();
-    } else {
-      navigate("/");
-      window.location.reload();
-    }
-  
+        navigate("/request");
+        localStorage.removeItem("path");
+        window.location.reload();
+      } else if (path === "donate") {
+        navigate("/donate");
+        localStorage.removeItem("path");
+        window.location.reload();
+      } else if (path === "feed") {
+        navigate("/feed");
+        localStorage.removeItem("path");
+        window.location.reload();
+      } else {
+        navigate("/");
+        window.location.reload();
+      }
     } catch (error) {
       toast.error(error.response.data.message, {
         className: "toast error",
