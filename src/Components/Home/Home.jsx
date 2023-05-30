@@ -43,7 +43,7 @@ const Home = (props) => {
     // Simulate loading for 3 seconds
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 7000);
   }, []);
 
   if (loading) {

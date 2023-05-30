@@ -35,7 +35,7 @@ const Request = () => {
      // Simulate loading for 3 seconds
      setTimeout(() => {
        setLoading(false);
-     }, 2000);
+     }, 3000);
    }, []);
   
   useEffect(() => {

@@ -111,7 +111,7 @@ const Donate = () => {
     }
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 4000);
   }, []);
 
   if (loading) {

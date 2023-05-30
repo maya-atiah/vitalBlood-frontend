@@ -95,7 +95,7 @@ const Feed = () => {
     // Simulate loading for 3 seconds
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 7000);
   }, []);
 
   if (loading) {
