@@ -77,15 +77,18 @@
     display: none;
 }
 .donations-mobile {
-    display: grid;
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 1rem;
-    background-color: white;
-    padding: 1rem;
-    margin: 1rem;
-    grid-auto-columns: auto auto auto;
+
+        margin-bottom: 1rem;
+        display: grid;
+        /* width: 100%; */
+        border-radius: 20px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        padding: 0.5rem;
+        background-color: white;
+    
+        /* margin: 1rem; */
+        grid-auto-columns: auto auto auto;
+    
 }
 .donations-mobile span{
    
@@ -115,6 +118,10 @@
     .donations-table td {
         font-size: 12px;
     }
+        .test1 {
+            
+            padding: 0;
+        }
 
 }
 

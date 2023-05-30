@@ -6,12 +6,11 @@ import Loader from "../../Loader/Loader";
 import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {BiGitPullRequest} from 'react-icons/bi'
+import { BiGitPullRequest } from "react-icons/bi";
 
 const Feed = () => {
   const [donationRequests, setDonationRequests] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
   //***FEtch donation requests */
@@ -21,84 +20,83 @@ const Feed = () => {
         "http://localhost:8000/api/donation/getAllDonationRequest"
       );
       setDonationRequests(response.data);
-      
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log("don", donationRequests);
 
 
   ///****Requesting to donate****/////
- const donateRequest = async (donationRequestId, index) => {
-   try {
-     const token = secureLocalStorage.getItem("token");
-     secureLocalStorage.setItem("path", "feed");
-     if (!token) {
-       window.location.href = "/login";
-       return;
-     }
+  const donateRequest = async (donationRequestId, index) => {
+    try {
+      const token = secureLocalStorage.getItem("token");
+      secureLocalStorage.setItem("path", "feed");
+      if (!token) {
+        window.location.href = "/login";
+        return;
+      }
 
-     const request = donationRequests[index];
+      const request = donationRequests[index];
 
+      if (request.status === "waiting for confirmation") {
+        setErrMsg("Donor has already requested to donate for this request");
+        return;
+      }
 
-     if (request.status === "waiting for confirmation") {
-       setErrMsg("Donor has already requested to donate for this request");
-       return;
-     }
+      setDonationRequests((prevRequests) =>
+        prevRequests.map((req, i) =>
+          i === index ? { ...req, isLoading: true } : req
+        )
+      );
 
-   
-     setDonationRequests((prevRequests) =>
-       prevRequests.map((req, i) =>
-         i === index ? { ...req, isLoading: true } : req
-       )
-     );
+       await axios.post(
+        `http://localhost:8000/api/donation/donateToRequest/${donationRequestId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-     const res = await axios.post(
-       `http://localhost:8000/api/donation/donateToRequest/${donationRequestId}`,
-       {},
-       {
-         headers: {
-           Authorization: `Bearer ${token}`,
-         },
-       }
-     );
-
-     // Update the donationRequests state to mark the requested donation as "waiting for confirmation"
-     setDonationRequests((prevRequests) =>
-       prevRequests.map((req, i) =>
-         i === index
-           ? { ...req, status: "waiting for confirmation", isLoading: false }
-           : req
-       )
-     );
-      toast.success("Your request hasn been sent. Just wait for an email from the receiver", {
-        className: "toast success",
+      // Update the donationRequests state to mark the requested donation as "waiting for confirmation"
+      setDonationRequests((prevRequests) =>
+        prevRequests.map((req, i) =>
+          i === index
+            ? { ...req, status: "waiting for confirmation", isLoading: false }
+            : req
+        )
+      );
+      toast.success(
+        "Your request hasn been sent. Just wait for an email from the receiver",
+        {
+          className: "toast success",
+        }
+      );
+    } catch (error) {
+      toast.error(error.response.data.message, {
+        className: "toast error",
       });
-   } catch (error) {
-     toast.error(error.response.data.message, {
-       className: "toast error",
-     });
-     setErrMsg(error.response.data.message);
-     console.log(error);
-   } finally {
-     // Set isLoading to false for the specific request
-     setDonationRequests((prevRequests) =>
-       prevRequests.map((req, i) =>
-         i === index ? { ...req, isLoading: false } : req
-       )
-     );
-   }
- };
+      setErrMsg(error.response.data.message);
+    } finally {
+      // Set isLoading to false for the specific request
+      setDonationRequests((prevRequests) =>
+        prevRequests.map((req, i) =>
+          i === index ? { ...req, isLoading: false } : req
+        )
+      );
+    }
+  };
 
+ 
   //**useEffect */
   useEffect(() => {
     fetchData();
     // Simulate loading for 3 seconds
     setTimeout(() => {
       setLoading(false);
-    }, 4000);
+    }, 5000);
   }, []);
 
   if (loading) {
@@ -121,8 +119,10 @@ const Feed = () => {
       <div>
         <div className='request-card-details'>
           <div className='req-card-grid'>
-            {donationRequests.length == 0 ? (
-              <p className="no-requests">No Requests available <BiGitPullRequest/></p>
+            {donationRequests.length === 0 ? (
+              <p className='no-requests'>
+                No Requests available <BiGitPullRequest />
+              </p>
             ) : (
               <>
                 {donationRequests &&
@@ -135,32 +135,32 @@ const Feed = () => {
                             <h3>User Details:</h3>
                             <h4>
                               <span>User Name:</span>{" "}
-                              {item.receiver_id.details_id?.firstName}{" "}
-                              {item.receiver_id.details_id?.lastName}
+                              {item.receiver_id?.details_id?.firstName}{" "}
+                              {item.receiver_id?.details_id?.lastName}
                             </h4>
                             <h4>
                               {" "}
                               <span>Phone Number:</span>{" "}
-                              {item.receiver_id.details_id?.phoneNumber}
+                              {item.receiver_id?.details_id?.phoneNumber}
                             </h4>
                             <h4>
                               {" "}
                               <span>Email:</span>{" "}
-                              {item.receiver_id.details_id?.email}
+                              {item.receiver_id?.details_id?.email}
                             </h4>
                           </div>
                           <div>
-                            {item.receiver_id.details_id?.image ? (
+                            {item.receiver_id?.details_id?.image ? (
                               <img
                                 className='img-request'
-                                src={item.receiver_id.details_id?.image}
-                                alt='User Image'
+                                src={item.receiver_id?.details_id?.image}
+                                alt='UserProfile'
                               />
                             ) : (
                               <img
                                 className='img-request'
                                 src={LogoImageRequest}
-                                alt='No Image'
+                                alt='NoProfile'
                               />
                             )}
                           </div>

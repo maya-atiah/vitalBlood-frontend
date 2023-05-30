@@ -29,11 +29,12 @@
     margin: 0.7rem;
 
 }
- .donate-container-label {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
- }
+
+.donate-container-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .select-doante {
     border-radius: 0;
@@ -46,6 +47,7 @@
     margin: 0.7rem;
     color: #7d7c7c
 }
+
 .donate-container-label label {
     color: #A30000;
 }
@@ -79,12 +81,13 @@
         margin: 0.8rem;
         width: 100%;
     }
-         .donate-container-label {
-             display: flex;
-             /* justify-content: space-between; */
-             align-items:flex-start;
-             flex-direction: column;
-         }
+
+    .donate-container-label {
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: flex-start;
+        flex-direction: column;
+    }
 
     .donate-subcontainer h1 {
 
@@ -94,11 +97,11 @@
 
     }
 
-    .donate-container-label label{
+    .donate-container-label label {
         padding-left: 1rem;
     }
 
-   
+
 
     .donate-form-container input,
     .select-doante {

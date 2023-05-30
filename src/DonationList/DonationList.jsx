@@ -7,6 +7,7 @@ const DonationsList = () => {
 
   
   const [donations, setDonations] = useState([]);
+  const [loading,setLoading]=useState(false)
 
   useEffect(() => {
     fetchDonations();
@@ -16,6 +17,7 @@ const DonationsList = () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
+      setLoading(true)
       const response = await axios.get(
         "http://localhost:8000/api/donation/getDonationsByUser",
         {
@@ -28,6 +30,8 @@ const DonationsList = () => {
       setDonations(data);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -35,6 +39,10 @@ const DonationsList = () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
+      setLoading((prevLoading) => ({
+        ...prevLoading,
+        [requestId]: true,
+      }));
       const response = await axios.post(
         `http://localhost:8000/api/donation/acceptDonationRequest/${donationRequestId}`,
         {
@@ -70,6 +78,11 @@ const DonationsList = () => {
       );
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading((prevLoading) => ({
+        ...prevLoading,
+        [requestId]: false,
+      }));
     }
   };
 
@@ -77,6 +90,10 @@ const DonationsList = () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
+      setLoading((prevLoading) => ({
+        ...prevLoading,
+        [requestId]: true,
+      }));
       const response = await axios.post(
         `http://localhost:8000/api/donation/acceptDonationRequest/${donationRequestId}`,
         {
@@ -112,69 +129,82 @@ const DonationsList = () => {
       );
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading((prevLoading) => ({
+        ...prevLoading,
+        [requestId]: false,
+      }));
     }
   };
 
   return (
     <div className='donation-List-container'>
-     
-        <table className='donations-table'>
-          <thead>
+      <table className='donations-table'>
+        <thead>
+          <tr>
+            <th>Donor</th>
+            <th>Receiver Email</th>
+            <th>Receiver Phone</th>
+            <th>Receiver Location</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {donations.length == 0 ? (
             <tr>
-              <th>Donor</th>
-              <th>Receiver Email</th>
-              <th>Receiver Phone</th>
-              <th>Receiver Location</th>
-              <th>Status</th>
-              <th>Actions</th>
+              <td colSpan='7'>No requests</td>
             </tr>
-          </thead>
-          <tbody>
-          {donations.length == 0 ? (<tr>
-            <td colSpan='7'>No requests</td>
-          </tr>) : (
+          ) : (
             <>
               {donations.map((donation) =>
-                donation.request_id.map((request) => (
+                donation.request_id?.map((request) => (
                   <tr key={request._id}>
                     <td>
-                      {request.donor_id.details_id?.firstName}{" "}
-                      {request.donor_id.details_id?.lastName}
+                      {request.donor_id?.details_id?.firstName}{" "}
+                      {request.donor_id?.details_id?.lastName}
                     </td>
-                    <td>{request.donor_id.details_id?.email}</td>
-                    <td>{request.donor_id.details_id?.phoneNumber}</td>
-                    <td>{request.donor_id.details_id?.location}</td>
+                    <td>{request.donor_id?.details_id?.email}</td>
+                    <td>{request.donor_id?.details_id?.phoneNumber}</td>
+                    <td>{request.donor_id?.details_id?.location}</td>
                     <td>{request.status}</td>
                     <td>
                       {request.status !== "accepted" && (
                         <button
-                          className='action-button accept-button'
+                          className={`action-button accept-button ${
+                            loading[request._id] ? "loading" : ""
+                          }`}
                           onClick={() =>
                             acceptDonationRequest(donation._id, request._id)
                           }
+                          disabled={loading[request._id]}
                         >
-                          Accept
+                          {loading[request._id] ? "Waiting" : "Accept"}
                         </button>
                       )}
+
                       {request.status !== "rejected" && (
                         <button
-                          className='action-button reject-button'
+                          className={`action-button reject-button ${
+                            loading[request._id] ? "loading" : ""
+                          }`}
                           onClick={() =>
                             rejectDonationRequest(donation._id, request._id)
                           }
+                          disabled={loading[request._id]}
                         >
-                          Reject
+                          {loading[request._id] ? "Waiting" : "Reject"}
                         </button>
                       )}
+              
                     </td>
                   </tr>
                 ))
               )}
-            </>)}
-            </tbody>
-           
-        </table>
-     
+            </>
+          )}
+        </tbody>
+      </table>
 
       <div className='donationlist-mobile'>
         {donations.length > 0 ? (
@@ -184,13 +214,26 @@ const DonationsList = () => {
                 donation.request_id.map((request) => (
                   <div key={request._id} className='donations-mobile'>
                     <div>
-                     <span>Name: </span> {request.donor_id.details_id.firstName}{" "}
+                      <span>Name: </span>{" "}
+                      {request.donor_id.details_id.firstName}{" "}
                       {request.donor_id.details_id.lastName}
                     </div>
-                    <div><span>Email:</span>{request.donor_id.details_id.email}</div>
-                    <div><span>Phone number: </span>{request.donor_id.details_id.phoneNumber}</div>
-                    <div><span>Location:</span>{request.donor_id.details_id.location}</div>
-                    <div><span>Status</span>{request.status}</div>
+                    <div>
+                      <span>Email:</span>
+                      {request.donor_id.details_id.email}
+                    </div>
+                    <div>
+                      <span>Phone number: </span>
+                      {request.donor_id.details_id.phoneNumber}
+                    </div>
+                    <div>
+                      <span>Location:</span>
+                      {request.donor_id.details_id.location}
+                    </div>
+                    <div>
+                      <span>Status</span>
+                      {request.status}
+                    </div>
                     <div>
                       {request.status !== "accepted" && (
                         <button
@@ -199,7 +242,7 @@ const DonationsList = () => {
                             acceptDonationRequest(donation._id, request._id)
                           }
                         >
-                          Accept
+                          {loading ? "submitting" : "Accept"}
                         </button>
                       )}
                       {request.status !== "rejected" && (
@@ -209,7 +252,7 @@ const DonationsList = () => {
                             rejectDonationRequest(donation._id, request._id)
                           }
                         >
-                          Reject
+                          {loading ? "Waiting" : "Reject"}
                         </button>
                       )}
                     </div>

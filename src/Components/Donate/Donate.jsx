@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "../Donate/Donate.css";
 import Loader from "../../Loader/Loader";
-import PhoneInput from "react-phone-number-input";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import secureLocalStorage from "react-secure-storage";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 
 const Donate = () => {
   const [loading, setLoading] = useState(true);
@@ -24,10 +18,16 @@ const Donate = () => {
   const [user, setUser] = useState("");
   const [isLoading, setIsloading] = useState(false);
 
+
+   function isAuthenticated() {
+     const token = secureLocalStorage.getItem("token");
+     return token !== null;
+   }
+  
   //****fetch user details  */
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
- localStorage.setItem("path", "donate");
+
     try {
       const res = await axios.get(
         "http://localhost:8000/api/user/getuserbyid",
@@ -48,13 +48,13 @@ const Donate = () => {
     }
   };
 
-
   //***Submit Donation */
   const handleSubmitDonation = async (event) => {
     event.preventDefault();
 
     try {
       const token = secureLocalStorage.getItem("token");
+      localStorage.setItem("path", "donate");
       if (!token) {
         window.location.href = "/login";
       }
@@ -82,15 +82,14 @@ const Donate = () => {
           },
         }
       );
-      console.log(response.data);
-
+    
       setFirstName("");
       setLastName("");
       setDateOfBirth("");
       setBloodType("");
       setHospital("");
-      setPhoneNumber('');
-      setDateNeeded('');
+      setPhoneNumber("");
+      setDateNeeded("");
       toast.success("Your blood request is submitted successfully", {
         className: "toast success",
       });
@@ -106,7 +105,9 @@ const Donate = () => {
 
   useEffect(() => {
     // Simulate loading for 3 seconds
-    fetchUser();
+      if (isAuthenticated()) {
+        fetchUser();
+      }
     setTimeout(() => {
       setLoading(false);
     }, 2000);
@@ -134,6 +135,7 @@ const Donate = () => {
               value={firstName}
               className='form--input'
               autoComplete='off'
+               required={true} 
             ></input>
           </div>
           <div className='donate-container-label'>
@@ -144,6 +146,7 @@ const Donate = () => {
               onChange={(e) => setLastName(e.target.value)}
               value={lastName}
               autoComplete='off'
+               required={true} 
               className='form--input'
             ></input>
           </div>
@@ -157,6 +160,7 @@ const Donate = () => {
               // onChange={setValue}
               value={phoneNumber}
               autoComplete='off'
+               required={true} 
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </div>
@@ -168,7 +172,7 @@ const Donate = () => {
               className='form--input'
               placeholder='Date of Birth'
               // className='form-input-signup'
-              required
+               required={true} 
               onChange={(e) => setDateOfBirth(e.target.value)}
               value={dateOfBirth}
             />
@@ -180,7 +184,7 @@ const Donate = () => {
               placeholder='Date for Donation'
               // className='form-input-signup'
               className='form--input'
-              required
+               required={true} 
               onChange={(e) => setDateNeeded(e.target.value)}
               value={dateNeeded}
             />
@@ -192,6 +196,7 @@ const Donate = () => {
               onChange={(e) => setBloodType(e.target.value)}
               value={bloodType}
               name='blood_type'
+               required={true} 
             >
               <option value='0'>Blood Type</option>
               <option value='A+'>A+</option>
@@ -214,6 +219,7 @@ const Donate = () => {
               value={hospital}
               autoComplete='off'
               className='form--input'
+               required={true} 
             ></input>
           </div>
           <div>

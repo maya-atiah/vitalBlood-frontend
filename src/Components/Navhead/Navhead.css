@@ -43,7 +43,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: #A30000;
+
     gap: 1rem;
 }
 
@@ -97,7 +97,7 @@
 }
 
 .img-navhead {
-    border: 2px solid rgb(2, 151, 2);
+box-shadow: #A30000 0px 1px 4px;
     border-radius: 1000px;
     height: 50px;
     width: 50px;

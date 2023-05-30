@@ -12,6 +12,13 @@ import secureLocalStorage from "react-secure-storage";
 const Navhead = (props) => {
   const [user, setUser] = useState();
 
+  function isAuthenticated() {
+      
+  const token = secureLocalStorage.getItem('token');
+  return token !== null;
+}
+  
+  
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
     try {
@@ -29,7 +36,7 @@ const Navhead = (props) => {
     }
   };
 
-  console.log("user", user);
+  
 
   const handleLogout = () => {
     window.localStorage.clear();
@@ -40,7 +47,9 @@ const Navhead = (props) => {
   };
 
   useEffect(() => {
-    fetchUser();
+    if (isAuthenticated()) {
+      fetchUser();
+    }
   }, []);
 
   return (

@@ -103,6 +103,7 @@ const NavbarMobile = (props) => {
             <div className='one'>
               <Link to='/about' style={{ textDecoration: "none" }}>
                 <motion.div
+                  onClick={() => closeMobileMenu()}
                   initial={animatedForm}
                   animate={animatedTo}
                   className='navbar-divstyle'
@@ -123,21 +124,23 @@ const NavbarMobile = (props) => {
                 </motion.div>
               </Link>
             </div>
-            {props.isLoggedIn==true ? (  <div className='one'>
-               <Link to='/userProfile' style={{ textDecoration: "none" }}>
-                <motion.div
-                  onClick={() => closeMobileMenu()}
-                  initial={animatedForm}
-                  animate={animatedTo}
-                  className='navbar-divstyle'
-                >
-                 
-                   My Profile
-                 
-                </motion.div>
-              </Link>
-            </div>):''}
-          
+            {props.isLoggedIn == true ? (
+              <div className='one'>
+                <Link to='/userProfile' style={{ textDecoration: "none" }}>
+                  <motion.div
+                    onClick={() => closeMobileMenu()}
+                    initial={animatedForm}
+                    animate={animatedTo}
+                    className='navbar-divstyle'
+                  >
+                    My Profile
+                  </motion.div>
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
+
             <div className='one'>
               {props.isLoggedIn == false ? (
                 <Link to='/login' style={{ textDecoration: "none" }}>

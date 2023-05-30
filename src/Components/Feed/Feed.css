@@ -36,10 +36,11 @@
     color:#A30000;
     background-color: #f2f1f0;
 }
-.no-requests{
+.no-requests {
     font-size: 25px;
     color: #A30000;
     font-weight: 500;
+    margin: 5rem 0;
 }
 
 .req-card-grid {
@@ -67,7 +68,7 @@
 }
 
 .img-request {
-    border-radius: 1000px;
+    border-radius: 100px;
     height: 100px;
     width: 100px;
 }

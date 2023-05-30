@@ -23,6 +23,12 @@ const UserProfile = () => {
   const [emergency_number, setEmergencyNumber] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+
+  function isAuthenticated() {
+    const token = secureLocalStorage.getItem("token");
+    return token !== null;
+  }
+ 
   //****fetch user details  */
   const fetchUser = async () => {
     const token = secureLocalStorage.getItem("token");
@@ -74,6 +80,7 @@ const UserProfile = () => {
     const token = secureLocalStorage.getItem("token");
 
     try {
+      setLoading(true)
       await axios.delete(
         `http://localhost:8000/api/donation/deleteDonationById/${donationId}`,
         {
@@ -89,6 +96,8 @@ const UserProfile = () => {
       setDonationToDelete(""); // Reset the donationToDelete state
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -139,6 +148,7 @@ const UserProfile = () => {
     }
   };
 
+  
   useEffect(() => {
     if (show)
       document.body.style.overflowY = 'hidden';
@@ -152,19 +162,23 @@ const UserProfile = () => {
     try {
       await updateUser();
       setShow(false);
+      window.location.reload()
     } catch (error) {
       console.log("Error:", error);
     }
   };
 
   useEffect(() => {
-    fetchUser();
+    if (isAuthenticated()) {
+      fetchUser();
+    }
     fetchDonations();
 
     setTimeout(() => {
       setLoading(false);
     }, 7000);
   }, []);
+
 
   if (loading) {
     return <Loader />;
@@ -185,13 +199,13 @@ const UserProfile = () => {
                 <img
                   className='user-profile'
                   src={user.details?.image}
-                  alt='User Image'
+                  alt='User Profile'
                 />
               ) : (
                 <img
                   className='user-profile'
                   src={LogoImageRequest}
-                  alt='No Image'
+                  alt='No Profile'
                 />
               )}
               <h2>
@@ -208,14 +222,7 @@ const UserProfile = () => {
                 <BsFillBalloonHeartFill className='icon-user-profile-heart' />
               </div>
             </div>
-            {/* <div>
-              {" "}
-              <div>
-                <BsFillBalloonHeartFill className='icon-user-profile-heart' />
-                <BsFillBalloonHeartFill className='icon-user-profile-heart' />
-                <BsFillBalloonHeartFill className='icon-user-profile-heart' />
-              </div>{" "}
-            </div> */}
+
             <div className='user-details-container'>
               <div className='test1'>
                 <div>
@@ -276,30 +283,30 @@ const UserProfile = () => {
                                     <p>
                                       {" "}
                                       <span>Blood Type: </span>
-                                      {item.details.bloodRequest.bloodType}
+                                      {item.details?.bloodRequest.bloodType}
                                     </p>
                                     <p>
                                       {" "}
                                       <span>Date Needed:</span>
                                       {new Date(
-                                        item.details.bloodRequest.dateNeeded
+                                        item.details?.bloodRequest.dateNeeded
                                       ).toLocaleDateString()}
                                     </p>
                                     <p>
                                       <span>Hospital:</span>
-                                      {item.details.bloodRequest.hospital}
+                                      {item.details?.bloodRequest.hospital}
                                     </p>
                                     <p>
                                       <span>Level Of Emergency:</span>
                                       {
-                                        item.details.bloodRequest
+                                        item.details?.bloodRequest
                                           .levelOfEmergency
                                       }
                                     </p>
 
                                     <p>
                                       <span> Number Of units</span>
-                                      {item.details.bloodRequest.numberOfUnits}
+                                      {item.details?.bloodRequest.numberOfUnits}
                                     </p>
                                     <div>
                                       {/* Delete button */}
@@ -307,25 +314,25 @@ const UserProfile = () => {
                                         className='delete-button'
                                         onClick={() => deleteDonation(item._id)}
                                       >
-                                        Delete
+                                      {loading ? 'Deleting' : 'Delete'}
                                       </button>
                                     </div>
                                   </div>
                                   <div>
                                     <p>
                                       <span>Patient Name:</span>{" "}
-                                      {item.details.patientInfo.firstName}{" "}
-                                      {item.details.patientInfo.lastName}
+                                      {item.details?.patientInfo.firstName}{" "}
+                                      {item.details?.patientInfo.lastName}
                                     </p>
 
                                     <p>
                                       {" "}
                                       <span>Case :</span> 4{" "}
-                                      {item.details.patientInfo.caseType}
+                                      {item.details?.patientInfo.caseType}
                                     </p>
                                     <p>
                                       <span>Case Details: </span>
-                                      {item.details.patientInfo.caseDetails}
+                                      {item.details?.patientInfo.caseDetails}
                                     </p>
                                     <p>
                                       <span>Date Of Birth:</span>{" "}

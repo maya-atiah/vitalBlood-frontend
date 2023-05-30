@@ -2,22 +2,20 @@ import React, { useEffect, useState } from "react";
 import "../About/About.css";
 import { FaUserPlus, FaTint, FaMobileAlt, FaSmileBeam } from "react-icons/fa";
 import Loader from "../../Loader/Loader";
-import {BsFillBalloonHeartFill} from 'react-icons/bs'
+import { BsFillBalloonHeartFill } from "react-icons/bs";
 const About = () => {
-
   const [loading, setLoading] = useState(true);
 
-   useEffect(() => {
-  
-     // Simulate loading for 3 seconds
-     setTimeout(() => {
-       setLoading(false);
-     }, 2000);
-   }, []);
+  useEffect(() => {
+    // Simulate loading for 3 seconds
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
-   if (loading) {
-     return <Loader />;
-   }
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className='about-container'>
       <div className='about-title-container'>
@@ -92,7 +90,9 @@ const About = () => {
           </div>
           <p>
             {" "}
-            You will receive an emails whenever there is a new request. Also when donating to a specific request you just wait for acceptance or rejection emails to reach you.
+            You will receive an emails whenever there is a new request. Also
+            when donating to a specific request you just wait for acceptance or
+            rejection emails to reach you.
           </p>
         </div>
         <div className='about-more-details-cards'>

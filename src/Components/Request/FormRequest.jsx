@@ -29,7 +29,7 @@ const [isLoading,setIsLoading]=useState(false)
         window.location.href = "/login";
       }
    setIsLoading(true)
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:8000/api/donation/createRequest",
         {
           firstName,
@@ -49,7 +49,7 @@ const [isLoading,setIsLoading]=useState(false)
           },
         }
       );
-      console.log(response.data);
+      
 
       setFirstName("");
       setLastName("");
@@ -89,7 +89,7 @@ const [isLoading,setIsLoading]=useState(false)
                 type='text'
                 placeholder='First Name'
                 className='form-input-signup'
-                required
+                 required={true} 
                 onChange={(e) => setFirstName(e.target.value)}
                 value={firstName}
               />
@@ -100,7 +100,7 @@ const [isLoading,setIsLoading]=useState(false)
                 type='text'
                 placeholder='Last Name'
                 className='form-input-signup'
-                required
+                 required={true} 
                 onChange={(e) => setLastName(e.target.value)}
                 value={lastName}
               />
@@ -111,7 +111,7 @@ const [isLoading,setIsLoading]=useState(false)
                 type='date'
                 placeholder='Last Name'
                 className='form-input-signup'
-                required
+                 required={true} 
                 onChange={(e) => setDateOfBirth(e.target.value)}
                 value={dateOfBirth}
               />
@@ -124,7 +124,7 @@ const [isLoading,setIsLoading]=useState(false)
                 className='select-signup'
                 onChange={(e) => setCaseType(e.target.value)}
                 value={caseType}
-                requierd
+                 required={true} 
               >
                 <option value='0'>Case Type</option>
                 <option value='Accident'>Accident</option>
@@ -140,22 +140,12 @@ const [isLoading,setIsLoading]=useState(false)
                 type='text'
                 placeholder='Case Details'
                 className='form-request-textarea'
-                required
+                 required={true} 
                 onChange={(e) => setCaseDetails(e.target.value)}
                 value={caseDetails}
               ></textarea>
             </div>
-            {/* <div className='label-input-container'>
-              <label>Write the emergency number*</label>
-              <input
-                type='number'
-                placeholder='Emergency Number'
-                className='form-input-signup'
-                required
-                onChange={(e) => setEmergencyNumber(e.target.value)}
-                value={EmergencyNumber}
-              />{" "}
-            </div> */}
+
           </div>
           <div className='request-details-form-input'>
             <div className='label-input-container'>
@@ -164,7 +154,7 @@ const [isLoading,setIsLoading]=useState(false)
                 className='select-signup'
                 onChange={(e) => setBloodType(e.target.value)}
                 value={bloodType}
-                required
+                 required={true} 
               >
                 <option value='0'>BLood Type</option>
                 <option value='A+'>A+</option>
@@ -184,7 +174,7 @@ const [isLoading,setIsLoading]=useState(false)
                 type='date'
                 placeholder='Last Name'
                 className='form-input-signup'
-                required
+                 required={true} 
                 onChange={(e) => setDateNeeded(e.target.value)}
                 value={dateNeeded}
               />
@@ -197,7 +187,7 @@ const [isLoading,setIsLoading]=useState(false)
                 type='text'
                 placeholder='Hospital'
                 className='form-input-signup'
-                required
+                 required={true} 
                 onChange={(e) => setHospital(e.target.value)}
                 value={hospital}
               />
@@ -209,7 +199,7 @@ const [isLoading,setIsLoading]=useState(false)
                 onChange={(e) => setLeveOfEmergency(e.target.value)}
                 value={levelOfEmergency}
                 placeholder='Level of Emergency'
-                required
+                 required={true} 
               >
                 <option value='0'>level Of Emergency</option>
                 <option value='Urgent'>Urgent</option>
@@ -222,7 +212,7 @@ const [isLoading,setIsLoading]=useState(false)
                 type='number'
                 placeholder='Number of blood Units'
                 className='form-input-signup'
-                required
+                 required={true} 
                 onChange={(e) => setNumberOfUnits(e.target.value)}
                 value={numberOfUnits}
               />

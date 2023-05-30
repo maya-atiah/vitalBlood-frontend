@@ -17,7 +17,7 @@ const Request = () => {
   const handleClickSubmit = () => {
     const token = secureLocalStorage.getItem("token");
     localStorage.setItem("path", "request");
-    console.log('token',token)
+   
     if (!token) {
       toast.error("You should login");
       window.location.href = "/login";

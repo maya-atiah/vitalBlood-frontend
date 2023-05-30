@@ -24,28 +24,26 @@ const Signup = ({ onBackToLoginClick }) => {
   const [isSubmitted, setISSubmitted] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
 
-
   const errRef = useRef();
   const emailRef = useRef();
   const confirmPasswordRef = useRef();
 
-
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const fetchRegister = async () => {
-
-     if (password !== confirmPassword) {
-       toast.error("Passwords do not match", {
-         className: "toast error",
-       });
-       setErrMsg("Passwords do not match");
-       confirmPasswordRef.current.focus();
-       return;
-     }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match", {
+        className: "toast error",
+      });
+      setErrMsg("Passwords do not match");
+      confirmPasswordRef.current.focus();
+      return;
+    }
 
     try {
-      await axios
-        .post("http://localhost:8000/api/user/register", {
+      const response = await axios.post(
+        "http://localhost:8000/api/user/register",
+        {
           firstName,
           lastName,
           email,
@@ -59,78 +57,77 @@ const Signup = ({ onBackToLoginClick }) => {
           nationality,
           emergency_number,
           type,
-        })
-        .then((res) => {
-          secureLocalStorage.setItem("token", res.data.token);
-          //  secureLocalStorage.setItem("role", res.data.role);
-          secureLocalStorage.setItem("loggedIn", true);
-          setErrMsg("you are loggedin ");
-          setTimeout(() => setErrMsg(""), 3000);
-          toast.success("Successfully registered! You can login now", {
-            className: "toast success",
-          });
-          setErrMsg("Successfully registered! You can login now");
-          setISSubmitted(true);
-          setEmail("");
-          setPassword("");
-          setFirstName("");
-          setLastName("");
-          setLocation("");
-          setMaritalStatus("");
-          setPhone("");
-          setemergency_number("");
-          setid_Number("");
-          setType("");
-          setnationality("");
-          setGender("");
-          setTimeout(() => setErrMsg(""), 3000);
+        }
+      );
 
-          //**checking the path */
-          const path = localStorage.getItem("path");
+      secureLocalStorage.setItem("token", response.data.token);
+      secureLocalStorage.setItem("loggedIn", true);
 
-          if (path === "request") {
-            navigate("/request");
-            localStorage.removeItem("path");
-            window.location.reload();
-          } else if (path === "donate") {
-            navigate("/donate");
-            localStorage.removeItem("path");
-            window.location.reload();
-          } else if (path === "feed") {
-            navigate("/feed");
-            localStorage.removeItem("path");
-            window.location.reload();
-          } else {
-            navigate("/");
-            window.location.reload();
-          }
-        });
+      toast.success("Successfully registered! You can login now", {
+        className: "toast success",
+      });
+
+      setErrMsg("Successfully registered! You can login now");
+      setISSubmitted(true);
+      setEmail("");
+      setPassword("");
+      setFirstName("");
+      setLastName("");
+      setLocation("");
+      setMaritalStatus("");
+      setPhone("");
+      setemergency_number("");
+      setid_Number("");
+      setType("");
+      setnationality("");
+      setGender("");
+      setTimeout(() => setErrMsg(""), 3000);
+
+      const path = localStorage.getItem("path");
+
+      if (path === "request") {
+      navigate("/request");
+      localStorage.removeItem("path");
+      window.location.reload();
+    } else if (path === "donate") {
+      navigate("/donate");
+      localStorage.removeItem("path");
+      window.location.reload();
+    } else if (path === "feed") {
+      navigate("/feed");
+      localStorage.removeItem("path");
+      window.location.reload();
+    } else {
+      navigate("/");
+      window.location.reload();
+    }
+  
     } catch (error) {
-        toast.error(error.response.data.message, {
-          className: "toast error",
-        });
+      toast.error(error.response.data.message, {
+        className: "toast error",
+      });
       setErrMsg(error.response.data.message);
       setTimeout(() => setErrMsg(""), 3000);
     }
   };
 
- const handleSubmit = (e) => {
-   e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-   if (password !== confirmPassword) {
-     toast.error("Passwords do not match", {
-       className: "toast error",
-     });
-     setErrMsg("Passwords do not match");
-     confirmPasswordRef.current.focus();
-     return;
-   }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match", {
+        className: "toast error",
+      });
+      setErrMsg("Passwords do not match");
+      confirmPasswordRef.current.focus();
+      return;
+    }
 
-   fetchRegister();
- };
-
+    fetchRegister();
+  };
   return (
     <>
+      <ToastContainer position='top-center' />
       <form className='form-signup' onSubmit={handleSubmit}>
         <div>
           {" "}

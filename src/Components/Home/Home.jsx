@@ -10,29 +10,33 @@ import { Link } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import { BsFillBalloonHeartFill } from "react-icons/bs";
 
-const Home = () => {
+const Home = (props) => {
   const [loading, setLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = (props) => {
     // Handle form submission logic here
-    console.log("Form submitted!");
+  
     window.location.href = "/donate";
   };
 
   const handleRedirect = () => {
     // Handle redirect logic here
-    console.log("Redirecting to feed page!");
-    window.location.href = "/donate";
+  
+    window.location.href = "/feed";
   };
   const handleShowPopup = () => {
     setShowPopup(true);
   };
-   useEffect(() => {
-     if (showPopup) document.body.style.overflowY = "hidden";
-     else document.body.style.overflowY = "scroll";
-   }, [showPopup]);
 
+  const handlescroll = () => {
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    if (showPopup) document.body.style.overflowY = "hidden";
+    else document.body.style.overflowY = "scroll";
+  }, [showPopup]);
 
   useEffect(() => {
     // Simulate loading for 3 seconds
@@ -44,7 +48,6 @@ const Home = () => {
   if (loading) {
     return <Loader />;
   }
- 
 
   return (
     <div className='home-container'>
@@ -98,7 +101,7 @@ const Home = () => {
           <Link to='/login' style={{ textDecoration: "none" }}>
             <div className='details-imp-home'>
               <div>
-                <img src={Register} />
+                <img src={Register} alt='Register' />
               </div>
               <h4>Register</h4>
               <p>
@@ -113,7 +116,7 @@ const Home = () => {
           <Link to='/donate' style={{ textDecoration: "none" }}>
             <div className='details-imp-home'>
               <div>
-                <img src={Donate} />
+                <img src={Donate} alt='Donate' />
               </div>
               <h4>Donate</h4>
               <p>
@@ -130,7 +133,7 @@ const Home = () => {
             <div className='details-imp-home'>
               <div>
                 {" "}
-                <img src={Request} />
+                <img src={Request} alt='Request' />
               </div>
               <h4>Request</h4>
               <p>
@@ -146,11 +149,11 @@ const Home = () => {
       </div>
       <div className='home-about-container'>
         <div>
-          <img src={About} />
+          <img src={About} alt='About Vital BLood' />
         </div>
         <div className='home-about-description'>
           {" "}
-          <h1>Lorem ipsum dolor </h1>
+          <h1>Our Mission </h1>
           <p>
             Our blood donation website aims to connect donors and recipients,
             providing two ways to donate. Users can either fill out a donation
@@ -164,7 +167,10 @@ const Home = () => {
           </p>
           <Link to='/about' style={{ textDecoration: "none" }}>
             {" "}
-            <button className='home-btn'> Read more</button>
+            <button className='home-btn' onClick={handlescroll}>
+              {" "}
+              Read more
+            </button>
           </Link>
         </div>
       </div>
@@ -173,11 +179,18 @@ const Home = () => {
       </div>
       <div className='start-saving-lives'>
         <h2>Start Saving Lives</h2>
-        <Link to='/login' style={{ textDecoration: "none" }}>
-          <button className='home-btn-bottom'>Register</button>
-        </Link>
+        {props.isLoggedIn === false ? (
+          <Link to='/login' style={{ textDecoration: "none" }}>
+            <button className='home-btn-bottom' onClick={handlescroll}>
+              Register
+            </button>
+          </Link>
+        ) : (
+          <h4 className='volunteer'>
+            You are a volunteer <BsFillBalloonHeartFill />{" "}
+          </h4>
+        )}
       </div>
-      <div></div>
     </div>
   );
 };

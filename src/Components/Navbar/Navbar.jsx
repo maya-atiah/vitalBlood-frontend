@@ -4,7 +4,7 @@ import "../Navbar/Navbar.css";
 
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("Home");
-  const location = useLocation(); // Import and use the useLocation hook
+  const location = useLocation(); 
 
   const handleNavLinkClick = (link) => {
     setActiveLink(link);

@@ -12,8 +12,7 @@ const Contact = () => {
   const [value, setValue] = useState();
   const [loading, setLoading] = useState(true);
   const form = useRef();
-  const [isLoading,setIsloading]=useState(false)
-
+  const [isLoading, setIsloading] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -28,7 +27,7 @@ const Contact = () => {
         phone_number: value,
         email: e.target.elements.email.value,
       };
- setIsloading(true)
+      setIsloading(true);
       emailjs
         .sendForm(
           "service_3y4blym",
@@ -42,10 +41,10 @@ const Contact = () => {
             // Reset input fields
             setValue(undefined);
             form.current.reset();
-              toast.success("Your message is submitted successfully", {
-                className: "toast success",
-              });
-            setIsloading(false)
+            toast.success("Your message is submitted successfully", {
+              className: "toast success",
+            });
+            setIsloading(false);
           },
           (error) => {
             console.log(error.text);
@@ -86,11 +85,19 @@ const Contact = () => {
         >
           <div className='form-container-div-input'>
             <label>First Name</label>
-            <input name='firstName' placeholder='Enter your First Name' />
+            <input
+              name='firstName'
+              placeholder='Enter your First Name'
+              autoComplete='off'
+            />
           </div>
           <div className='form-container-div-input'>
             <label>Last Name</label>
-            <input name='lastName' placeholder='Enter your Last Name' />
+            <input
+              name='lastName'
+              placeholder='Enter your Last Name'
+              autoComplete='off'
+            />
           </div>
           <div className='form-container-div-input-one'>
             <label>Phone Number</label>
@@ -100,6 +107,7 @@ const Contact = () => {
               value={value}
               onChange={setValue}
               defaultCountry='LB'
+              autoComplete='off'
             />
           </div>
 
@@ -111,12 +119,17 @@ const Contact = () => {
               value={value}
               onChange={setValue}
               defaultCountry='LB'
+              autoComplete='off'
             />
           </div>
 
           <div className='form-container-div-input'>
             <label>Email</label>
-            <input name='email' placeholder='Enter your Email' />
+            <input
+              name='email'
+              placeholder='Enter your Email'
+              autoComplete='off'
+            />
           </div>
           <div className='form-container-div-input'>
             <label>Message</label>
@@ -126,11 +139,13 @@ const Contact = () => {
             ></textarea>
           </div>
           <div>
-            <button className='contact-btn'>{isLoading ?  'Submitting...' : 'Send'}</button>
+            <button className='contact-btn'>
+              {isLoading ? "Submitting..." : "Send"}
+            </button>
           </div>
         </form>
       </div>
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };

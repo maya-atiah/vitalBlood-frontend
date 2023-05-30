@@ -38,7 +38,7 @@ const Volunteers = () => {
     } else if (blood == "AB-") {
       image = ABnegative;
     }
-     return <img src={image} />;
+     return <img src={image} alt='User Blood Group' />;
   }
 
   const fetchVolunteers = async () => {
@@ -50,7 +50,7 @@ const Volunteers = () => {
     }
   }
 
-  console.log(volunteers)
+console.log(volunteers)
   
  useEffect(() => {
    fetchVolunteers();
@@ -58,7 +58,7 @@ const Volunteers = () => {
 
    setTimeout(() => {
      setLoading(false);
-   }, 3000);
+   }, 5000);
  }, []);
 
  if (loading) {
@@ -106,12 +106,13 @@ const Volunteers = () => {
                             <img
                               src={item.details_id?.image}
                               className='image-user-volunteer'
+                              alt='User Profile'
                             />
                           ) : (
                             <img
                               className='td-image'
                               src={LogoImageRequest}
-                              alt='No Image'
+                              alt='No Profile'
                             />
                           )}
                           <div>
