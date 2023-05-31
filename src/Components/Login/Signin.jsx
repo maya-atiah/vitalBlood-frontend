@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import secureLocalStorage from "react-secure-storage";
 import { ToastContainer, toast } from "react-toastify";
@@ -9,11 +9,13 @@ const Signin = ({ onSignupClick }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState("");
+ 
 
   const errRef = useRef();
   const navigate = useNavigate();
 
   const fetchLogin = async () => {
+  
     axios
       .post("https://vital-blood.onrender.com/api/user/login", {
         email,
@@ -56,7 +58,7 @@ const Signin = ({ onSignupClick }) => {
         setErrMsg(error.response.data.message);
         setTimeout(() => setErrMsg(""), 3000);
         // errRef.current.focus();
-      });
+      })
   };
   const handleSubmit = async (e) => {
     e.preventDefault();

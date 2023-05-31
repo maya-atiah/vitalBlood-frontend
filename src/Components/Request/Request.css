@@ -147,6 +147,8 @@
     }
  .request-second-container {
         margin: 1rem 0.8rem;
+        display: block;
+       
     }
 
 
@@ -154,5 +156,12 @@
         /* margin: 0.5rem;   */
         /* width: 100%; */
         text-align: center;
+      /* display: block    ; */
     }
+        .details-request {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+        }
 }
