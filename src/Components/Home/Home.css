@@ -541,6 +541,20 @@ h4 {
         width: -moz-fit-content;
         width: 50%;
     }
+        .image-container {
+            background-image:none;
+         
+            background-color: #f2f1f0;
+            /* background-attachment: fixed; */
+            height: 20rem;
+            align-items: center;
+            /* background-color: #ECEBE9; */
+            border-bottom-left-radius: 30% 10%;
+            top: 5px;
+            padding-top: 5px;
+            border-bottom-right-radius: 30% 10%;
+            /* padding: 5% 3%; */
+        }
 
 }
 

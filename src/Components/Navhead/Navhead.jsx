@@ -13,6 +13,7 @@ const Navhead = (props) => {
   const [user, setUser] = useState();
 
   const navigate = useNavigate();
+  
   function isAuthenticated() {
     const token = secureLocalStorage.getItem("token");
     return token !== null;
@@ -39,7 +40,6 @@ const Navhead = (props) => {
     window.localStorage.clear();
     window.location.reload();
     navigate("/");
-
     props.setIsLoggedIn(false);
   };
 

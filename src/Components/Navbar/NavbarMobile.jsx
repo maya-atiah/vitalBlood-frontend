@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import '../Navbar/NavbarMobile.css';
+import React, { useState } from "react";
+import "../Navbar/NavbarMobile.css";
 import { FaAlignRight, FaRegTimesCircle, FaUserCircle } from "react-icons/fa";
-import { AiOutlineClose } from 'react-icons/ai';
-import { Link } from 'react-router-dom';
+import { AiOutlineClose } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const NavbarMobile = (props) => {
-
   const [open, setOpen] = useState(false);
-  
+  console.log("props", props.isLoggedin);
   const hamburgerIcon = (
     <FaAlignRight className='hamburger ' onClick={() => setOpen(!open)} />
   );
@@ -26,10 +25,10 @@ const NavbarMobile = (props) => {
 
   const handleonClicklogout = () => {
     closeMobileMenu();
-    handleLogout()
-  }
-   const animatedForm = { opacity: 0,y:-30 };
-   const animatedTo = { opacity: 1, y:0};
+    handleLogout();
+  };
+  const animatedForm = { opacity: 0, y: -30 };
+  const animatedTo = { opacity: 1, y: 0 };
   return (
     <div>
       {open ? closeIcon : hamburgerIcon}
@@ -124,25 +123,33 @@ const NavbarMobile = (props) => {
                 </motion.div>
               </Link>
             </div>
-            {props.isLoggedIn == true ? (
-              <div className='one'>
-                <Link to='/userProfile' style={{ textDecoration: "none" }}>
+            {props.isLoggedin === true ? (
+              <>
+                <div className='one'>
+                  <Link to='/userProfile' style={{ textDecoration: "none" }}>
+                    <motion.div
+                      onClick={() => closeMobileMenu()}
+                      initial={animatedForm}
+                      animate={animatedTo}
+                      className='navbar-divstyle'
+                    >
+                      My Profile
+                    </motion.div>
+                  </Link>
+                </div>
+                <div className='one'>
                   <motion.div
-                    onClick={() => closeMobileMenu()}
+                    onClick={handleonClicklogout}
                     initial={animatedForm}
                     animate={animatedTo}
-                    className='navbar-divstyle'
+                    className='login-home-mobile'
                   >
-                    My Profile
+                    Logout
                   </motion.div>
-                </Link>
-              </div>
+                </div>
+              </>
             ) : (
-              ""
-            )}
-
-            <div className='one'>
-              {props.isLoggedIn == false ? (
+              <div className='one'>
                 <Link to='/login' style={{ textDecoration: "none" }}>
                   <motion.div
                     onClick={() => closeMobileMenu()}
@@ -153,23 +160,13 @@ const NavbarMobile = (props) => {
                     Login
                   </motion.div>
                 </Link>
-              ) : (
-                <motion.div
-                  onClick={handleonClicklogout}
-                  initial={animatedForm}
-                  animate={animatedTo}
-                  className='login-home-mobile'
-                >
-                  {" "}
-                  Logout
-                </motion.div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         )}
       </div>
     </div>
   );
-}
+};
 
-export default NavbarMobile
+export default NavbarMobile;

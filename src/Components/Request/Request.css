@@ -145,11 +145,14 @@
         align-content: center;
         align-items: center;
     }
+ .request-second-container {
+        margin: 1rem 0.8rem;
+    }
 
 
     .request-second-container {
         /* margin: 0.5rem;   */
-        width: 100%;
+        /* width: 100%; */
         text-align: center;
     }
 }
