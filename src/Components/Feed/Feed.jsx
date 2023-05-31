@@ -109,10 +109,7 @@ const Feed = () => {
           <h1>Pending Requests</h1>
         </div>
         <div className='about-sub-title'>
-          <h3>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            pulvinar dui nibh,
-          </h3>
+          <h3>Wait for someone to step forward and offer their assistance</h3>
         </div>
       </div>
       <div>
