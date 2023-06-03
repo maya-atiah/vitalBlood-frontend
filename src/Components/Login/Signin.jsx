@@ -26,6 +26,10 @@ const Signin = ({ onSignupClick }) => {
         secureLocalStorage.setItem("loggedIn", true);
         setErrMsg("you are loggedin ");
 
+         setTimeout(() => setErrMsg(""), 3000);
+         toast.success("You are successfullylogged in ", {
+           className: "toast success",
+         });
         //**checking the path */
         const path = localStorage.getItem("path");
 
@@ -46,10 +50,7 @@ const Signin = ({ onSignupClick }) => {
           window.location.reload();
         }
 
-        setTimeout(() => setErrMsg(""), 3000);
-        toast.success("You are successfullylogged in ", {
-          className: "toast success",
-        });
+       
       })
       .catch((error) => {
         toast.error(error.response.data.message, {

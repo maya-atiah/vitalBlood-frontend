@@ -16,6 +16,8 @@ import Feed from './Components/Feed/Feed';
 import Page404 from './Components/Page404/Page404';
 import Signup from './Components/Login/Signup';
 import Scroll from './Components/Scroll/Scroll';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,6 +33,8 @@ function App() {
   };
 
   return (
+    <>
+      <ToastContainer/>
     <div className="App">
       <Navhead isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
@@ -55,7 +59,8 @@ function App() {
       </Routes>
       <Scroll />
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 
