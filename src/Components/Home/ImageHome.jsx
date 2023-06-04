@@ -87,7 +87,7 @@ const ImageHome = () => {
             <h3> Request A blood</h3>
             <p>Wait for someone to step forward and offer their assistance</p>
             <Link to='/request' style={{ textDecoration: "none" }}>
-              <button className='home-btn2'> Request</button>
+              <button className='home-btn2' onClick={handlescroll}> Request</button>
             </Link>
           </div>
         </div>

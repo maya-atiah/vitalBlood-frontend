@@ -58,7 +58,7 @@ const Volunteers = () => {
 
     setTimeout(() => {
       setLoading(false);
-    }, 7000);
+    }, 10000);
   }, []);
 
   if (loading) {
