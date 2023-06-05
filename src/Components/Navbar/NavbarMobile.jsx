@@ -52,18 +52,6 @@ const NavbarMobile = (props) => {
               </Link>
             </div>
             <div className='one'>
-              <Link to='/donate' style={{ textDecoration: "none" }}>
-                <motion.div
-                  onClick={() => closeMobileMenu()}
-                  initial={animatedForm}
-                  animate={animatedTo}
-                  className='navbar-divstyle'
-                >
-                  Donate{" "}
-                </motion.div>
-              </Link>
-            </div>
-            <div className='one'>
               <Link to='/request' style={{ textDecoration: "none" }}>
                 <motion.div
                   onClick={() => closeMobileMenu()}
@@ -75,6 +63,19 @@ const NavbarMobile = (props) => {
                 </motion.div>
               </Link>
             </div>
+            <div className='one'>
+              <Link to='/donate' style={{ textDecoration: "none" }}>
+                <motion.div
+                  onClick={() => closeMobileMenu()}
+                  initial={animatedForm}
+                  animate={animatedTo}
+                  className='navbar-divstyle'
+                >
+                  Donate{" "}
+                </motion.div>
+              </Link>
+            </div>
+
             <div className='one'>
               <Link to='/feed' style={{ textDecoration: "none" }}>
                 <motion.div

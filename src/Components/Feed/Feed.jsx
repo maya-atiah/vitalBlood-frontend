@@ -31,9 +31,10 @@ const Feed = () => {
   const donateRequest = async (donationRequestId, index) => {
     try {
       const token = secureLocalStorage.getItem("token");
-      secureLocalStorage.setItem("path", "feed");
+      localStorage.setItem("path", "feed");
       if (!token) {
         navigate("/login");
+        window.scrollTo(0,0)
         return;
       }
 

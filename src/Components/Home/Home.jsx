@@ -57,15 +57,17 @@ const Home = (props) => {
           <div className='popup-inner-donate'>
             <div className='popup-inner-donate-container'>
               <BsFillBalloonHeartFill className='icon-user-profile-heart' />
-              <div className='first-text'>
-                <p className='first-text-h1'> Submit a Donation form</p>
-                <button onClick={handleFormSubmit}>Form</button>
-              </div>
-              <div className='second-text'>or</div>
+
               <div className='first-text'>
                 <p className='first-text-h1'>Donate for a pending request</p>
 
                 <button onClick={handleRedirect}>Feed</button>
+              </div>
+
+              <div className='second-text'>or</div>
+              <div className='first-text'>
+                <p className='first-text-h1'> Submit a Donation form</p>
+                <button onClick={handleFormSubmit}>Form</button>
               </div>
               <BsFillBalloonHeartFill className='icon-user-profile-heart' />
             </div>

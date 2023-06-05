@@ -23,7 +23,8 @@ const Request = () => {
    
     if (!token) {
       toast.error("You should login");
-     navigate('/login')
+      navigate('/login')
+      window.scrollTo(0, 0);
       return;
     
     }

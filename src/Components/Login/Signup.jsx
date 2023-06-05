@@ -23,6 +23,7 @@ const Signup = ({ onBackToLoginClick }) => {
   const [errMsg, setErrMsg] = useState("");
   const [isSubmitted, setISSubmitted] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [waiting,setWaiting]=useState(false)
 
   const errRef = useRef();
   const emailRef = useRef();
@@ -41,6 +42,7 @@ const Signup = ({ onBackToLoginClick }) => {
     }
 
     try {
+      setWaiting(true)
       const response = await axios.post(
         "https://vital-blood.onrender.com/api/user/register",
         {
@@ -107,6 +109,8 @@ const Signup = ({ onBackToLoginClick }) => {
       });
       setErrMsg(error.response.data.message);
       setTimeout(() => setErrMsg(""), 3000);
+    } finally {
+      setWaiting(false)
     }
   };
 
@@ -296,7 +300,9 @@ const Signup = ({ onBackToLoginClick }) => {
         <div onClick={() => onBackToLoginClick()} className='dont-have'>
           Back to login?
         </div>
-        <button className='form--submit'>Sign up</button>
+        <button className='form--submit'>
+          {waiting ? "loading..." : "Sign up"}
+        </button>
       </form>
       <ToastContainer />
     </>
@@ -304,3 +310,8 @@ const Signup = ({ onBackToLoginClick }) => {
 };
 
 export default Signup;
+
+
+
+
+

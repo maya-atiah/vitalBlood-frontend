@@ -42,14 +42,15 @@ const ImageHome = () => {
             <div className='popup-inner-donate-container'>
               <BsFillBalloonHeartFill className='icon-user-profile-heart' />
               <div className='first-text'>
-                <p className='first-text-h1'> Submit a Donation form</p>
-                <button onClick={handleFormSubmit}>Form</button>
-              </div>
-              <div className='second-text'>or</div>
-              <div className='first-text'>
                 <p className='first-text-h1'>Donate for a pending request</p>
 
                 <button onClick={handleRedirect}>Feed</button>
+              </div>
+              <div className='second-text'>or</div>
+
+              <div className='first-text'>
+                <p className='first-text-h1'> Submit a Donation form</p>
+                <button onClick={handleFormSubmit}>Form</button>
               </div>
               <BsFillBalloonHeartFill className='icon-user-profile-heart' />
             </div>
@@ -87,7 +88,10 @@ const ImageHome = () => {
             <h3> Request A blood</h3>
             <p>Wait for someone to step forward and offer their assistance</p>
             <Link to='/request' style={{ textDecoration: "none" }}>
-              <button className='home-btn2' onClick={handlescroll}> Request</button>
+              <button className='home-btn2' onClick={handlescroll}>
+                {" "}
+                Request
+              </button>
             </Link>
           </div>
         </div>

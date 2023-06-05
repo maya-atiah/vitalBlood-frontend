@@ -9,57 +9,58 @@ const Signin = ({ onSignupClick }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errMsg, setErrMsg] = useState("");
- 
+ const [waiting, setWaiting] = useState(false);
 
   const errRef = useRef();
   const navigate = useNavigate();
 
   const fetchLogin = async () => {
-  
-    axios
-      .post("https://vital-blood.onrender.com/api/user/login", {
+  setWaiting(true)
+  try {
+    const response = await axios.post(
+      "https://vital-blood.onrender.com/api/user/login",
+      {
         email,
         password,
-      })
-      .then((res) => {
-        secureLocalStorage.setItem("token", res.data.token);
-        secureLocalStorage.setItem("loggedIn", true);
-        setErrMsg("you are loggedin ");
+      }
+    );
 
-         setTimeout(() => setErrMsg(""), 3000);
-         toast.success("You are successfullylogged in ", {
-           className: "toast success",
-         });
-        //**checking the path */
-        const path = localStorage.getItem("path");
+    secureLocalStorage.setItem("token", response.data.token);
+    secureLocalStorage.setItem("loggedIn", true);
+    setErrMsg("You are logged in");
 
-        if (path === "request") {
-          navigate("/request");
-          localStorage.removeItem("path");
-          window.location.reload();
-        } else if (path === "donate") {
-          navigate("/donate");
-          localStorage.removeItem("path");
-          window.location.reload();
-        } else if (path === "feed") {
-          navigate("/feed");
-          localStorage.removeItem("path");
-          window.location.reload();
-        } else {
-          navigate("/");
-          window.location.reload();
-        }
+    setTimeout(() => setErrMsg(""), 3000);
+    toast.success("You are successfully logged in", {
+      className: "toast success",
+    });
+    //**checking the path */
+    const path = localStorage.getItem("path");
 
-       
-      })
-      .catch((error) => {
-        toast.error(error.response.data.message, {
-          className: "toast error",
-        });
-        setErrMsg(error.response.data.message);
-        setTimeout(() => setErrMsg(""), 3000);
-        // errRef.current.focus();
-      })
+    if (path === "request") {
+      navigate("/request");
+      localStorage.removeItem("path");
+      window.location.reload();
+    } else if (path === "donate") {
+      navigate("/donate");
+      localStorage.removeItem("path");
+      window.location.reload();
+    } else if (path === "feed") {
+      navigate("/feed");
+      localStorage.removeItem("path");
+      window.location.reload();
+    } else {
+      navigate("/");
+      window.location.reload();
+    }
+  } catch (error) {
+    toast.error(error.response.data.message, {
+      className: "toast error",
+    });
+    setErrMsg(error.response.data.message);
+    setTimeout(() => setErrMsg(""), 3000);
+  } finally {
+    setWaiting(false);
+  }
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,7 +98,10 @@ const Signin = ({ onSignupClick }) => {
         <div onClick={() => onSignupClick()} className='dont-have'>
           Signup!
         </div>
-        <button className='form--submit'>Sign in</button>
+        <button className='form--submit'>
+          {" "}
+          {waiting ? "loading..." : "Login"}
+        </button>
       </form>
       <ToastContainer />
     </>
